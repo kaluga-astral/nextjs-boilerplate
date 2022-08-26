@@ -1,0 +1,6 @@
+{
+  "*.{ts,tsx}": [
+    "eslint --fix",
+    "cross-env NODE_ENV=test jest --bail --findRelatedTests"
+  ]
+}

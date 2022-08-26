@@ -1,0 +1,16 @@
+{
+  "extends": [
+    "@astral-frontend/eslint-config-ts-ui",
+    "plugin:@next/next/recommended"
+  ],
+  "parserOptions": {
+    "project": [
+      "tsconfig.json"
+    ]
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}
