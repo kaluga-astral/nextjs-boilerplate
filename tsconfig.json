@@ -3,7 +3,8 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    "theme.d.ts"
   ],
   "exclude": [
     "node_modules"
