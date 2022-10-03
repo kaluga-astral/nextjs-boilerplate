@@ -10,7 +10,7 @@ import {
 export const IndexPage: NextPage = () => {
   return (
     <div>
-      <Typography>IndePage</Typography>
+      <Typography component="h1">IndePage</Typography>
       <Tooltip title="click me">
         <Button>click me</Button>
       </Tooltip>

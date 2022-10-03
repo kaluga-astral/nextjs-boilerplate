@@ -1,5 +1,6 @@
-/* eslint-disable import/no-extraneous-dependencies */
+// eslint-disable-next-line import/no-extraneous-dependencies
 const withTM = require('next-transpile-modules')(['@astral/ui']);
+// eslint-disable-next-line import/no-extraneous-dependencies
 const { parsed } = require('dotenv').config({
   path: './env/.env',
 });
