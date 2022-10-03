@@ -4,9 +4,7 @@
     "plugin:@next/next/recommended"
   ],
   "parserOptions": {
-    "project": [
-      "tsconfig.json"
-    ]
+    "createDefaultProgram": true
   },
   "settings": {
     "react": {
