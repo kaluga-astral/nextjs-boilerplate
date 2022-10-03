@@ -18,19 +18,15 @@ const nextConfig = {
   env: {
     BRAND: parsed.BRAND,
   },
-  headers() {
-    return [
-      {
-        source: '/_assets/fonts/:path*',
-        headers: [
-          {
-            key: 'Cache-Control',
-            value: 'public, max-age=31536000, stale-while-revalidate',
-          },
-        ],
-      },
-    ];
-  }
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.(woff|woff2)$/i,
+      issuer: { and: [/\.(js|ts)x?$/] },
+      type: 'asset/resource',
+    });
+
+    return config;
+  },
 };
 
 module.exports = withTM(nextConfig);

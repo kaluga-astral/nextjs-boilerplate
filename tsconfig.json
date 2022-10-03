@@ -1,10 +1,14 @@
 {
   "extends": "@tsconfig/next/tsconfig.json",
+  "compilerOptions": {
+    "typeRoots": [
+      "typings"
+    ]
+  },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "theme.d.ts"
   ],
   "exclude": [
     "node_modules"

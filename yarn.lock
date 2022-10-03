@@ -35,6 +35,11 @@
     "eslint-plugin-react-hooks" "4.3.0"
     "prettier" "2.5.1"
 
+"@astral/fonts@^1.19.4":
+  "integrity" "sha512-ygjuWCirEfaRB6yZcJ9PC8+ZqJo9ZJJp64UDKAl5OCh26knFXBWpY+RMiFVePSrPBe9p5w5d9LswpJOwGLNUnQ=="
+  "resolved" "https://registry.npmjs.org/@astral/fonts/-/fonts-1.19.4.tgz"
+  "version" "1.19.4"
+
 "@astral/icons@^0.48.1", "@astral/icons@^0.48.4":
   "integrity" "sha512-wbnNW3FH+sF4DLbx+uB2+qvEgCBp5Vy78CNBQ59CKRLZ5JVNeB2LOdwkWOfIV6Tpcrk5CpK0f5BMqUOlIJyk0g=="
   "resolved" "https://registry.npmjs.org/@astral/icons/-/icons-0.48.4.tgz"
