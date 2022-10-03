@@ -1,8 +1,5 @@
 {
   "name": "@astral/nextjs-example",
-  "packageManager": "yarn@3.2.1",
-  "private": true,
-  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -31,6 +28,7 @@
     "@tsconfig/next": "^1.0.2",
     "@types/node": "^17.0.38",
     "cross-env": "^7.0.3",
+    "dotenv": "^16.0.3",
     "eslint": "^8.22.0",
     "husky": "^8.0.1",
     "jest": "^29.0.0",

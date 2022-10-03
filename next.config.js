@@ -1,14 +1,13 @@
-import * as env from './env.mjs'
-import withTmInitializer from 'next-transpile-modules';
+const withTM = require('next-transpile-modules')(['@astral/ui']);
 
-const withTM = withTmInitializer([
-  '@astral/ui',
-]);
+const { parsed } = require('dotenv').config({
+  path: './env/.env'
+})
 
 /**
  * @type {import('next').NextConfig}
  */
-const nextjsConfig = {
+const nextConfig = {
   // distDir: 'dist',
   reactStrictMode: true,
   swcMinify: true,
@@ -16,7 +15,9 @@ const nextjsConfig = {
   experimental: {
     esmExternals: true,
   },
-  env,
+  env: {
+    BRAND: parsed.BRAND,
+  },
   headers() {
     return [
       {
@@ -32,4 +33,4 @@ const nextjsConfig = {
   }
 };
 
-export default withTM(nextjsConfig);
+module.exports = withTM(nextConfig);
