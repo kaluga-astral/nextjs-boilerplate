@@ -52,7 +52,7 @@ export default class extends NextDocument<{
       <Html>
         <Head>
           {/* <meta name="theme-color" content={theme.palette.primary.main} /> */}
-          <link rel="shortcut icon" href="/static/favicon.ico" />
+          <link rel="icon" type="image/svg+xml" href="/static/favicon.svg" />
           {this.props.emotionStyleTags}
         </Head>
         <body>

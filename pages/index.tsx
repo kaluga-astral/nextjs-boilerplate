@@ -1,22 +1,15 @@
 import { NextPage } from 'next';
-import {
-  Button,
-  CircularProgress,
-  TextField,
-  Tooltip,
-  Typography,
-} from '@astral/ui';
+import { Typography } from '@astral/ui';
+
+import { Container, Logo } from '../src/components';
 
 export const IndexPage: NextPage = () => {
   return (
-    <div>
-      <Typography component="h1">IndePage</Typography>
-      <Tooltip title="click me">
-        <Button>click me</Button>
-      </Tooltip>
-      <CircularProgress color="primary" size="medium" />
-      <TextField label="With placeholder" placeholder="Placeholder value" />
-    </div>
+    <Container>
+      <Typography component="h1">IndexPage</Typography>
+      <Logo mode="vector" />
+      <Logo mode="raster" />
+    </Container>
   );
 };
 
