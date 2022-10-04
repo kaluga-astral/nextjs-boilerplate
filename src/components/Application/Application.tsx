@@ -5,9 +5,7 @@ import { StylesCache } from '@astral/ui/server';
 
 import { Layout } from '../Layout';
 import { createStylesCache } from '../../utils';
-import { useTheme } from '../../hooks';
-
-import { useLoadingProgress } from './useLoadingProgress';
+import { useLoadingProgress, useTheme } from '../../hooks';
 
 const clientSideEmotionCache = createStylesCache();
 
