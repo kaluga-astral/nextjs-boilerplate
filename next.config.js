@@ -4,6 +4,7 @@ const withTM = require('next-transpile-modules')(['@astral/ui']);
 const { parsed } = require('dotenv').config({
   path: './env/.env',
 });
+const { withSentryConfig } = require('@sentry/nextjs');
 
 /**
  * @type {import('next').NextConfig}
@@ -30,4 +31,15 @@ const nextConfig = {
   },
 };
 
-module.exports = withTM(nextConfig);
+module.exports = withSentryConfig(
+  {
+    ...withTM(nextConfig),
+    sentry: {
+      hideSourceMaps: true,
+      autoInstrumentServerFunctions: true,
+    },
+  },
+  {
+    silent: true,
+  }
+);

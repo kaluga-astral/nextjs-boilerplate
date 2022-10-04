@@ -1,5 +1,5 @@
 {
-  "name": "@astral/nextjs-example",
+  "name": "@astral/nextjs-boilerplate",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

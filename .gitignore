@@ -8,3 +8,4 @@ yarn-error.log*
 /.next
 /.swc
 tsconfig.tsbuildinfo
+.sentryclirc
