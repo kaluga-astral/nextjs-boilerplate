@@ -1,10 +1,6 @@
 import { DashboardLayout } from '@astral/ui';
 
-export const useSidebar = () => {
-  const sidebar = { menu: { items: [] } };
-
-  return sidebar;
-};
+import { useSidebar } from './useSidebar';
 
 export const Sidebar = () => {
   const sidebar = useSidebar();
