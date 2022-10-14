@@ -5,9 +5,9 @@ const typeDefs = gql`
   type User {
     id: String!
     createdAt: String!
-    firstName: String!
-    middleName: String!
-    lastName: String!
+    firstname: String!
+    middlename: String!
+    lastname: String!
     email: String!
   }
   type Query {
@@ -19,9 +19,9 @@ const resolvers = {
   Query: {
     user() {
       return {
-        firstName: 'Виталий',
-        middleName: 'Александрович',
-        lastName: 'Григорьев',
+        firstname: 'Виталий',
+        middlename: 'Александрович',
+        lastname: 'Григорьев',
         email: 'vitatiy_grigoriev@astral.ru',
       };
     },

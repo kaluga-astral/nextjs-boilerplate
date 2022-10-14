@@ -5,11 +5,11 @@ export type UserInput = {
 
   createdAt: string;
 
-  firstName: string;
+  firstname: string;
 
-  middleName: string;
+  middlename: string;
 
-  lastName: string;
+  lastname: string;
 
   email: string;
 };
@@ -25,16 +25,16 @@ export class User {
     return new Date(this._input.createdAt);
   }
 
-  get firstName() {
-    return this._input.firstName;
+  get firstname() {
+    return this._input.firstname;
   }
 
-  get middleName() {
-    return this._input.middleName;
+  get middlename() {
+    return this._input.middlename;
   }
 
-  get lastName() {
-    return this._input.lastName;
+  get lastname() {
+    return this._input.lastname;
   }
 
   get email() {
@@ -42,11 +42,11 @@ export class User {
   }
 
   get displayName() {
-    return `${this.firstName} ${this.lastName}`;
+    return `${this.firstname} ${this.lastname}`;
   }
 
   get initials() {
-    return `${this.firstName[0]}${this.lastName[0]}`;
+    return `${this.firstname[0]}${this.lastname[0]}`;
   }
 
   static mapToDomain(input: UserInput) {
