@@ -3,7 +3,6 @@ import { AppProps as NextAppProps } from 'next/app';
 import { Brand, StylesCacheProvider, ThemeProvider } from '@astral/ui';
 import { StylesCache } from '@astral/ui/server';
 
-import { Layout } from '../Layout';
 import { createStylesCache } from '../../utils';
 import { useLoadingProgress, useTheme } from '../../hooks';
 
@@ -31,12 +30,8 @@ export const Application = (props: ApplicationProps) => {
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
       <ThemeProvider theme={theme}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <Component {...pageProps} />
       </ThemeProvider>
     </StylesCacheProvider>
   );
 };
-
-export default Application;

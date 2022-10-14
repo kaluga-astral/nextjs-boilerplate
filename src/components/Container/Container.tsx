@@ -5,5 +5,3 @@ export const Container = styled.div`
   margin: 0 auto;
   background-color: ${({ theme }) => theme.palette.background.default};
 `;
-
-export default Container;

@@ -13,60 +13,66 @@ import {
   MenuProps,
 } from '@astral/ui';
 
+import { User } from '../../domain';
+
 import { HeaderLogo } from './HeaderLogo';
 
-export const useHeader = () => {
-  const header = {
-    product: {
-      name: 'Астрал.ЭДО',
-      logo: HeaderLogo,
-    },
-    profile: {
-      displayName: 'Григорьев Виталий',
-      annotation: 'vitatiy_grig@mail.ru',
-      avatar: {
-        alt: 'Григорьев Виталий',
-        children: 'ГВ',
-      },
-      menu: (props: MenuProps) => (
-        <Menu {...props}>
-          <MenuItem>
-            <ListItemIcon>
-              <ProfileOutlineMd />
-            </ListItemIcon>
-            <ListItemText>Мой профиль</ListItemText>
-          </MenuItem>
-          <MenuItem>
-            <ListItemIcon>
-              <CompanyOutlineMd />
-            </ListItemIcon>
-            <ListItemText>Мои организации</ListItemText>
-          </MenuItem>
-          <MenuItem>
-            <ListItemIcon>
-              <SettingsFillMd />
-            </ListItemIcon>
-            <ListItemText>Настройки</ListItemText>
-          </MenuItem>
-          {/* <Divider /> */}
-          <MenuItem>
-            <ListItemIcon>
-              <QuitOutlineMd />
-            </ListItemIcon>
-            <ListItemText>Выйти</ListItemText>
-          </MenuItem>
-        </Menu>
-      ),
-    },
+export type HeaderProps = {
+  data: {
+    user: User;
   };
-
-  return header;
 };
 
-export const Header = () => {
-  const header = useHeader();
+export const Header = (props: HeaderProps) => {
+  const {
+    data: { user },
+  } = props;
 
-  return <DashboardLayout.Header {...header} />;
+  return (
+    <DashboardLayout.Header
+      {...{
+        product: {
+          name: 'Астрал.ЭДО',
+          logo: HeaderLogo,
+        },
+        profile: {
+          displayName: user.displayName,
+          annotation: user.email,
+          avatar: {
+            alt: user.displayName,
+            children: user.initials,
+          },
+          menu: (menuProps: MenuProps) => (
+            <Menu {...menuProps}>
+              <MenuItem>
+                <ListItemIcon>
+                  <ProfileOutlineMd />
+                </ListItemIcon>
+                <ListItemText>Мой профиль</ListItemText>
+              </MenuItem>
+              <MenuItem>
+                <ListItemIcon>
+                  <CompanyOutlineMd />
+                </ListItemIcon>
+                <ListItemText>Мои организации</ListItemText>
+              </MenuItem>
+              <MenuItem>
+                <ListItemIcon>
+                  <SettingsFillMd />
+                </ListItemIcon>
+                <ListItemText>Настройки</ListItemText>
+              </MenuItem>
+              {/* <Divider /> */}
+              <MenuItem>
+                <ListItemIcon>
+                  <QuitOutlineMd />
+                </ListItemIcon>
+                <ListItemText>Выйти</ListItemText>
+              </MenuItem>
+            </Menu>
+          ),
+        },
+      }}
+    />
+  );
 };
-
-export default Header;
