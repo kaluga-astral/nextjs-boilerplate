@@ -2,7 +2,7 @@ import { NextPage } from 'next';
 import { Typography } from '@astral/ui';
 import { gql } from '@apollo/client';
 
-import { ApolloClient } from '../../src/services';
+import { ApolloClientService } from '../../src/services';
 import { User } from '../../__generated__/graphql';
 import { Layout } from '../../src/components';
 import { UserInputFragment } from '../../src/features';
@@ -38,7 +38,7 @@ export const IncomingDocumentsPageQuery = gql`
 `;
 
 export async function getServerSideProps() {
-  const apolloClient = new ApolloClient();
+  const apolloClient = new ApolloClientService();
   const { data } = await apolloClient.query<IncomingDocumentsPageQueryResponse>(
     {
       query: IncomingDocumentsPageQuery,

@@ -1,7 +1,7 @@
 import { NextPage } from 'next';
 import { Typography } from '@astral/ui';
 
-import { ApolloClient } from '../src/services';
+import { ApolloClientService } from '../src/services';
 import { User } from '../__generated__/graphql';
 import { graphql } from '../__generated__/gql';
 import { Container, Layout, Logo } from '../src/components';
@@ -29,7 +29,7 @@ export const IndexPage: NextPage<IndexPageProps> = (props) => {
 };
 
 export const IndexPageQuery = graphql(`
-  query IndexPageQuery {
+  query IndexPage {
     user {
       ...UserInputFragment
     }
@@ -37,8 +37,8 @@ export const IndexPageQuery = graphql(`
 `);
 
 export async function getServerSideProps() {
-  const apolloClient = new ApolloClient();
-  const { data } = await apolloClient.query<IndexPageQueryResult>({
+  const apollo = new ApolloClientService();
+  const { data } = await apollo.query({
     query: IndexPageQuery,
   });
 

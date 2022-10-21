@@ -4,7 +4,7 @@ import {
   NormalizedCacheObject,
 } from '@apollo/client';
 
-export class ApolloClient extends ApolloClientBase<NormalizedCacheObject> {
+export class ApolloClientService extends ApolloClientBase<NormalizedCacheObject> {
   constructor() {
     super({
       cache: new InMemoryCache(),
