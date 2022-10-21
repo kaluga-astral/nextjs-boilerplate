@@ -4,7 +4,13 @@
     "strict": true,
     "typeRoots": [
       "typings"
-    ]
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "src": [
+        "./src/index.ts"
+      ]
+    },
   },
   "include": [
     "next-env.d.ts",

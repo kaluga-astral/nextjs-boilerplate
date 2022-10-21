@@ -11,7 +11,7 @@ const typeDefs = gql`
     email: String!
   }
   type Query {
-    user: User
+    user: User!
   }
 `;
 
@@ -19,6 +19,8 @@ const resolvers = {
   Query: {
     user() {
       return {
+        id: '1',
+        createdAt: new Date().toISOString(),
         firstname: 'Виталий',
         middlename: 'Александрович',
         lastname: 'Григорьев',

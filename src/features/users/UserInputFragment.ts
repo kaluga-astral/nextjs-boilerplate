@@ -1,7 +1,9 @@
 import { graphql } from '../../../__generated__/gql';
 
 export const UserInputFragment = graphql(/* GraphQL */ `
-  fragment UserInputFragment on User {
+  fragment UserInput on User {
+    id
+    createdAt
     firstname
     middlename
     lastname

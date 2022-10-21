@@ -1,19 +1,10 @@
-import { NextPage } from 'next';
-import { Typography } from '@astral/ui';
-import { gql } from '@apollo/client';
+import { InferGetServerSidePropsType, NextPage } from 'next';
+import { graphql } from '__generated__/gql';
+import { ApolloClientService, Container, Layout, Typography } from 'src';
 
-import { ApolloClientService } from '../../src/services';
-import { User } from '../../__generated__/graphql';
-import { Layout } from '../../src/components';
-import { UserInputFragment } from '../../src/features';
-
-export type IncomingDocumentsPageQueryResponse = {
-  user: User;
-};
-
-export type IncomingDocumentsPageProps = {
-  data: IncomingDocumentsPageQueryResponse;
-};
+export type IncomingDocumentsPageProps = InferGetServerSidePropsType<
+  typeof getServerSideProps
+>;
 
 export const IncomingDocumentsPage: NextPage<IncomingDocumentsPageProps> = (
   props
@@ -22,28 +13,26 @@ export const IncomingDocumentsPage: NextPage<IncomingDocumentsPageProps> = (
 
   return (
     <Layout data={data}>
-      <Typography component="h1">IncomingDocumentsPage</Typography>
+      <Container>
+        <Typography component="h1">IncomingDocumentsPage</Typography>
+      </Container>
     </Layout>
   );
 };
 
-export const IncomingDocumentsPageQuery = gql`
-  query IncomingDocumentsPageQuery {
+export const IncomingDocumentsPageQuery = graphql(`
+  query IncomingDocumentsPage {
     user {
-      ...UserInputFragment
+      ...UserInput
     }
   }
-
-  ${UserInputFragment}
-`;
+`);
 
 export async function getServerSideProps() {
-  const apolloClient = new ApolloClientService();
-  const { data } = await apolloClient.query<IncomingDocumentsPageQueryResponse>(
-    {
-      query: IncomingDocumentsPageQuery,
-    }
-  );
+  const apollo = new ApolloClientService();
+  const { data } = await apollo.query({
+    query: IncomingDocumentsPageQuery,
+  });
 
   return {
     props: {

@@ -1,44 +1,35 @@
-import { NextPage } from 'next';
-import { Typography } from '@astral/ui';
-import { gql } from '@apollo/client';
+import { InferGetServerSidePropsType, NextPage } from 'next';
+import { graphql } from '__generated__/gql';
+import { ApolloClientService, Container, Layout, Typography } from 'src';
 
-import { ApolloClientService } from '../../src/services';
-import { User } from '../../__generated__/graphql';
-import { Layout } from '../../src/components';
-import { UserInputFragment } from '../../src/features';
+export type InvintationPageProps = InferGetServerSidePropsType<
+  typeof getServerSideProps
+>;
 
-export type InvitationsPageQueryResponse = {
-  user: User;
-};
-
-export type InvitationsPageProps = {
-  data: InvitationsPageQueryResponse;
-};
-
-export const InvitationsPage: NextPage<InvitationsPageProps> = (props) => {
+export const InvintationPage: NextPage<InvintationPageProps> = (props) => {
   const { data } = props;
 
   return (
     <Layout data={data}>
-      <Typography component="h1">InvitationsPage</Typography>
+      <Container>
+        <Typography component="h1">InvintationPage</Typography>
+      </Container>
     </Layout>
   );
 };
 
-export const InvitationsPageQuery = gql`
-  query InvitationsPageQuery {
+export const InvintationPageQuery = graphql(`
+  query InvintationPage {
     user {
-      ...UserInputFragment
+      ...UserInput
     }
   }
-
-  ${UserInputFragment}
-`;
+`);
 
 export async function getServerSideProps() {
-  const apolloClient = new ApolloClientService();
-  const { data } = await apolloClient.query<InvitationsPageQueryResponse>({
-    query: InvitationsPageQuery,
+  const apollo = new ApolloClientService();
+  const { data } = await apollo.query({
+    query: InvintationPageQuery,
   });
 
   return {
@@ -48,4 +39,4 @@ export async function getServerSideProps() {
   };
 }
 
-export default InvitationsPage;
+export default InvintationPage;

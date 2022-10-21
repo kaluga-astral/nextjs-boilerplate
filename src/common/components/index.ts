@@ -9,3 +9,5 @@ export * from './Layout';
 export * from './Logo';
 
 export * from './Sidebar';
+
+export * from './Typography';

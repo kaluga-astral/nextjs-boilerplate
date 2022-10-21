@@ -13,7 +13,7 @@ import {
   MenuProps,
 } from '@astral/ui';
 
-import { User } from '../../domain';
+import { User } from '../../../domain';
 
 import { HeaderLogo } from './HeaderLogo';
 

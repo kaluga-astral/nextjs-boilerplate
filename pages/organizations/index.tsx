@@ -1,46 +1,35 @@
-import { NextPage } from 'next';
-import { Typography } from '@astral/ui';
-import { gql } from '@apollo/client';
+import { InferGetServerSidePropsType, NextPage } from 'next';
+import { graphql } from '__generated__/gql';
+import { ApolloClientService, Container, Layout, Typography } from 'src';
 
-import { ApolloClientService } from '../../src/services';
-import { User } from '../../__generated__/graphql';
-import { Container, Layout } from '../../src/components';
-import { UserInputFragment } from '../../src/features';
+export type OrganizationPageProps = InferGetServerSidePropsType<
+  typeof getServerSideProps
+>;
 
-export type OrganizationsPageQueryResponse = {
-  user: User;
-};
-
-export type OrganizationsPageProps = {
-  data: OrganizationsPageQueryResponse;
-};
-
-export const OrganizationsPage: NextPage<OrganizationsPageProps> = (props) => {
+export const OrganizationPage: NextPage<OrganizationPageProps> = (props) => {
   const { data } = props;
 
   return (
-    <Layout data={data} mode="header-only">
+    <Layout data={data}>
       <Container>
-        <Typography component="h1">OrganizationsPage</Typography>
+        <Typography component="h1">OrganizationPage</Typography>
       </Container>
     </Layout>
   );
 };
 
-export const OrganizationsPageQuery = gql`
-  query OrganizationsPageQuery {
+export const OrganizationPageQuery = graphql(`
+  query OrganizationPage {
     user {
-      ...UserInputFragment
+      ...UserInput
     }
   }
-
-  ${UserInputFragment}
-`;
+`);
 
 export async function getServerSideProps() {
-  const apolloClient = new ApolloClientService();
-  const { data } = await apolloClient.query<OrganizationsPageQueryResponse>({
-    query: OrganizationsPageQuery,
+  const apollo = new ApolloClientService();
+  const { data } = await apollo.query({
+    query: OrganizationPageQuery,
   });
 
   return {
@@ -50,4 +39,4 @@ export async function getServerSideProps() {
   };
 }
 
-export default OrganizationsPage;
+export default OrganizationPage;
