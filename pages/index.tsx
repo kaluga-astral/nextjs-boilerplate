@@ -1,4 +1,5 @@
 import { InferGetServerSidePropsType, NextPage } from 'next';
+import { useRouter } from 'next/router';
 import { graphql } from '__generated__/gql';
 import { ApolloClientService, Container, Layout, Logo, Typography } from 'src';
 
@@ -8,9 +9,10 @@ export type IndexPageProps = InferGetServerSidePropsType<
 
 export const IndexPage: NextPage<IndexPageProps> = (props) => {
   const { data } = props;
+  const { pathname } = useRouter();
 
   return (
-    <Layout data={data}>
+    <Layout data={data} location={{ pathname }}>
       <Container>
         <Typography component="h1">IndexPage</Typography>
         <Logo mode="vector" />

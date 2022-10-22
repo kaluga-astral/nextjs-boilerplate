@@ -1,4 +1,5 @@
 import { InferGetServerSidePropsType, NextPage } from 'next';
+import { useRouter } from 'next/router';
 import { graphql } from '__generated__/gql';
 import { ApolloClientService, Container, Layout, Typography } from 'src';
 
@@ -10,9 +11,10 @@ export const IncomingDocumentsPage: NextPage<IncomingDocumentsPageProps> = (
   props
 ) => {
   const { data } = props;
+  const { pathname } = useRouter();
 
   return (
-    <Layout data={data}>
+    <Layout data={data} location={{ pathname }}>
       <Container>
         <Typography component="h1">IncomingDocumentsPage</Typography>
       </Container>

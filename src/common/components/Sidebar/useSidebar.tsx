@@ -1,108 +1,90 @@
-import { ComponentProps, forwardRef, useMemo } from 'react';
+import {
+  ComponentProps,
+  ReactElement,
+  forwardRef,
+  useCallback,
+  useMemo,
+} from 'react';
 import { DashboardLayout } from '@astral/ui';
 import { CompanyOutlineMd, ProfileOutlineMd } from '@astral/icons';
 
+import { RouterLocation } from '../../types';
 import { Link } from '../Link';
 
-type Item = ComponentProps<
-  typeof DashboardLayout.Sidebar
->['menu']['items'][number];
+export const useSidebar = ({ location }: { location: RouterLocation }) => {
+  const createComponent = useCallback(({ pathname }: { pathname: string }) => {
+    return forwardRef<HTMLAnchorElement, { children: ReactElement }>(
+      (props, ref) => {
+        return <Link ref={ref} to={pathname} {...props} />;
+      }
+    );
+  }, []);
 
-const useDocuments = () => {
-  return useMemo<Item>(() => {
-    return [
-      'documents',
-      {
-        icon: <ProfileOutlineMd />,
-        text: 'Документы',
-        active: true,
+  return useMemo<ComponentProps<typeof DashboardLayout.Sidebar>>(() => {
+    return {
+      menu: {
         items: [
           [
-            'incoming-documents',
+            'documents',
             {
-              text: 'Входящие документы',
-              active: true,
-              component: forwardRef((props, ref) => {
-                return <Link ref={ref} to="/documents/incoming" {...props} />;
-              }),
+              icon: <ProfileOutlineMd />,
+              text: 'Документы',
+              items: [
+                [
+                  'incoming-documents',
+                  {
+                    text: 'Входящие документы',
+                    active: ['/documents/incoming'].includes(location.pathname),
+                    component: createComponent({
+                      pathname: '/documents/incoming',
+                    }),
+                  },
+                ],
+                [
+                  'outgoing-documents',
+                  {
+                    text: 'Исходящие документы',
+                    active: ['/documents/outgoing'].includes(location.pathname),
+                    component: createComponent({
+                      pathname: '/documents/outgoing',
+                    }),
+                  },
+                ],
+              ],
             },
           ],
           [
-            'outgoing-documents',
+            'counterparties',
             {
-              text: 'Исходящие документы',
-              active: false,
-              component: forwardRef((props, ref) => {
-                return <Link ref={ref} to="/documents/outgoing" {...props} />;
+              icon: <ProfileOutlineMd />,
+              text: 'Контрагенты',
+              items: [
+                [
+                  'invitations',
+                  {
+                    text: 'Приглашения',
+                    active: ['/invitations'].includes(location.pathname),
+                    component: createComponent({
+                      pathname: '/invitations',
+                    }),
+                  },
+                ],
+              ],
+            },
+          ],
+          [
+            'organizations',
+            {
+              icon: <CompanyOutlineMd />,
+              text: 'Мои организации',
+              active: ['/organizations'].includes(location.pathname),
+              component: createComponent({
+                pathname: '/organizations',
               }),
             },
           ],
         ],
       },
-    ];
+    };
   }, []);
-};
-
-const useCounterparties = () => {
-  return useMemo<Item>(() => {
-    return [
-      'counterparties',
-      {
-        icon: <CompanyOutlineMd />,
-        text: 'Контрагенты',
-        items: [
-          [
-            'invitations',
-            {
-              text: 'Приглашения',
-              active: false,
-              component: forwardRef((props, ref) => {
-                return <Link ref={ref} to="/invitations" {...props} />;
-              }),
-            },
-          ],
-        ],
-      },
-    ];
-  }, []);
-};
-
-const useOrganizations = () => {
-  return useMemo<Item>(() => {
-    return [
-      'organizations',
-      {
-        icon: <CompanyOutlineMd />,
-        text: 'Мои организации',
-        active: false,
-        component: forwardRef((props, ref) => {
-          return <Link ref={ref} to="/organizations" {...props} />;
-        }),
-      },
-    ];
-  }, []);
-};
-
-export const useSidebarItems = () => {
-  const documents = useDocuments();
-  const counterparties = useCounterparties();
-  const organizations = useOrganizations();
-
-  return useMemo(() => {
-    return [documents, counterparties, organizations];
-  }, [documents, counterparties, organizations]);
-};
-
-export const useSidebar = () => {
-  const items = useSidebarItems();
-  const sidebar: ComponentProps<typeof DashboardLayout.Sidebar> =
-    useMemo(() => {
-      return {
-        menu: {
-          items,
-        },
-      };
-    }, [items]);
-
-  return sidebar;
 };
