@@ -12,10 +12,8 @@ export const Link = forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => {
   const { className, to, children } = props;
 
   return (
-    <NextLink href={to} passHref>
-      <a ref={ref} href={to} className={className}>
-        {children}
-      </a>
+    <NextLink href={to} passHref ref={ref} className={className}>
+      {children}
     </NextLink>
   );
 });
