@@ -1,10 +1,9 @@
-import { ISODateTimeString } from '../../types';
 import { DateTime } from '../DateTime';
 
 export class Docflow {
   constructor(
     private readonly _id: string,
-    private readonly _createdAt: ISODateTimeString
+    private readonly _createdAt: string
   ) {}
 
   get id() {

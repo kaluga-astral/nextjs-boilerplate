@@ -1,5 +1,3 @@
-import { ISODateTimeString } from '../../types';
-
 export enum OrganizationKind {
   UL,
   IP,
@@ -8,7 +6,7 @@ export enum OrganizationKind {
 export class Organization {
   constructor(
     private readonly _id: string,
-    private readonly _createdAt: ISODateTimeString,
+    private readonly _createdAt: string,
     private readonly _type: OrganizationKind
   ) {}
 

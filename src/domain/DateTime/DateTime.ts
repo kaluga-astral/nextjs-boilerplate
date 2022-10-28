@@ -1,7 +1,5 @@
-import { ISODateTimeString } from '../../types';
-
 export class DateTime {
-  constructor(private readonly _value: ISODateTimeString) {}
+  constructor(private readonly _value: string) {}
 
   get value() {
     return new Date(this._value);
