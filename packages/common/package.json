@@ -1,0 +1,10 @@
+{
+  "name": "@nextjs-boilerplate/common",
+  "version": "1.0.0",
+  "private": true,
+  "sideEffects": false,
+  "dependencies": {
+    "@astral/ui": "^1.16.3",
+    "@astral/fonts": "^1.16.3"
+  }
+}
