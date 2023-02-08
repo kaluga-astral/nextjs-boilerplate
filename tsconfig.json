@@ -1,7 +1,18 @@
 {
   "extends": "@tsconfig/next/tsconfig.json",
   "compilerOptions": {
-    "strict": true
+    "strict": true,
+    "paths": {
+      "@example/*": [
+        "./src/*"
+      ],
+      "images/*": [
+        "./public/images/*"
+      ],
+      "icons/*": [
+        "./public/images/icons/*"
+      ]
+    }
   },
   "include": [
     "next-env.d.ts",
