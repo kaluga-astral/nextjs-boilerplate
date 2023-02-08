@@ -1,0 +1,30 @@
+{
+  "excludeFiles": [
+    ".git",
+    ".json",
+    "./**/build",
+    "node_modules",
+    "./**/node_modules",
+    "./**/*.spec.*",
+    "./**/*.test.*"
+  ],
+  "format": "html",
+  "lang": "ru",
+  "fileExtensions": [".js", ".jsx", ".ts", ".tsx"],
+  "ignoreCapitalization": true,
+  "ignoreDigits": true,
+  "ignoreUppercase": true,
+  "ignoreUrls": true,
+  "maxRequests": 2,
+  "ignoreText": [
+    ["// .*\n", "g"],
+    ["/\\*([^*]|[\\r\\n]|(\\*+([^*/]|[\\r\\n])))*\\*/", "g"]
+  ],
+  "dictionary": [
+    "астрал",
+    "валидир*",
+    "токен",
+    "госуслуг(и|)",
+    "криптопровайдер"
+  ]
+}

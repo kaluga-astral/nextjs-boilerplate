@@ -1,14 +1,30 @@
 {
-  "extends": [
-    "@astral-frontend/eslint-config-ts-ui",
-    "plugin:@next/next/recommended"
-  ],
-  "parserOptions": {
-    "createDefaultProgram": true
-  },
-  "settings": {
-    "react": {
-      "version": "detect"
-    }
+  "extends": ["@astral/eslint-config-react-ts"],
+  "rules": {
+    "import/order": [
+      "error",
+      {
+        "pathGroups": [
+          {
+            "pattern": "@example/**",
+            "group": "internal",
+            "position": "after"
+          }
+        ],
+        "newlines-between": "always",
+        "pathGroupsExcludedImportTypes": [
+          "internal"
+        ],
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "object",
+          "index"
+        ]
+      }
+    ]
   }
 }
