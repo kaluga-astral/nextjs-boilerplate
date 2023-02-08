@@ -1,13 +1,9 @@
-export * from './Badge';
-
-export * from './hooks';
+export * from './components';
 
 export * from './theme';
 
 export * from './icons';
 
-export * from './form';
+export * from './utils';
 
-export * from './external';
-
-export * from './PageProgressbar';
+export * from './hooks';

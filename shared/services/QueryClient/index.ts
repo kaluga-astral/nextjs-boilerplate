@@ -1,3 +1,8 @@
 export * from './QueryClient';
 
-export { QueryClient } from '@astral/react-query';
+export {
+  QueryClient,
+  type QueryFetchPolicy,
+  type FetchQueryOptions,
+  createQueryClient,
+} from '@astral/react-query';

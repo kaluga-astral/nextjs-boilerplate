@@ -6,19 +6,19 @@ export const APP_ROUTES = {
     },
   },
   createDraftRequest: {
-    route: '/',
+    route: '/createDraftRequest',
     getRedirectPath() {
       return '/createDraftRequest';
     },
   },
   editDraftRequest: {
-    route: '/editDraftRequest/:requestID',
+    route: '/editDraftRequest/:id',
     getRedirectPath(requestID: string) {
       return `/editDraftRequest/${requestID}`;
     },
   },
   request: {
-    route: '/request/:requestID',
+    route: '/request/:id',
     getRedirectPath(requestID: string) {
       return `/request/${requestID}`;
     },

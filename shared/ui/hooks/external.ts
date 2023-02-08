@@ -1,5 +1,18 @@
+export {
+  useFormContext,
+  useFormController,
+  type UseFormControllerProps,
+  useFormWatch,
+  useFormFieldErrorProps,
+  useTheme,
+} from '@astral/ui';
+
 export { useToggle, useBoolean, useEffectOnce } from 'react-use';
 
-export { useMutation } from '@astral/react-query';
+export { useRouter } from 'next/router';
 
-export { useTheme } from '@astral/ui';
+export {
+  useQuery,
+  useMutation,
+  type UseQueryOptions,
+} from '@astral/react-query';

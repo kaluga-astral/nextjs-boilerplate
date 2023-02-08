@@ -1,7 +1,4 @@
-const withTM = require('next-transpile-modules')([
-  '@astral/ui/fonts',
-  '@astral/ui/illustrations',
-]);
+const withTM = require('next-transpile-modules')(['@astral/ui']);
 const { withSentryConfig } = require('@sentry/nextjs');
 
 /**

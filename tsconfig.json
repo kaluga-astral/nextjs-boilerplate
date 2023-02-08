@@ -2,10 +2,10 @@
   "extends": "@tsconfig/next/tsconfig.json",
   "compilerOptions": {
     "strict": true,
-    "isolatedModules": false,
+    "isolatedModules": true,
     "paths": {
-      "@example/shared": [
-        "./shared"
+      "@example/*": [
+        "./*"
       ],
       "public/*": [
         "./public/*"

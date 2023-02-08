@@ -1,1 +1,1 @@
-export { QueryClientCache as RepositoryCache } from '@example/shared';
+export { QueryClientCache } from '@astral/react-query';

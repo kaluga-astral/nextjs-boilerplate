@@ -1,3 +1,3 @@
-export * from './external';
+export * from './useExample';
 
-export * from './useQuery';
+export * from './external';

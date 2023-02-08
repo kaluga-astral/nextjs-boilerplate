@@ -1,6 +1,7 @@
 import { AppProps } from 'next/app';
 import { enableStaticRendering as enableMobxStaticRendering } from 'mobx-react-lite';
 
+import { MainLayout } from '@example/modules/LayoutModule';
 import {
   NotificationContainer,
   PageProgressbar,
@@ -19,16 +20,18 @@ configService.init({
 
 enableMobxStaticRendering(window === undefined);
 
-const cache = createStylesServerCache({ key: 'next' });
+const stylesCache = createStylesServerCache({ key: 'next' });
 
 export const App = ({ Component, pageProps }: AppProps) => {
   return (
-    <StylesCacheProvider value={cache}>
+    <StylesCacheProvider value={stylesCache}>
       <ThemeProvider theme={theme}>
         <QueryClientProvider client={queryClient}>
           <NotificationContainer />
           <PageProgressbar />
-          <Component {...pageProps} />
+          <MainLayout>
+            <Component {...pageProps} />
+          </MainLayout>
         </QueryClientProvider>
       </ThemeProvider>
     </StylesCacheProvider>

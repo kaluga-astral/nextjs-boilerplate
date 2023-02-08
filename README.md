@@ -6,7 +6,7 @@
 # Архитектура
 ## Схема архитектуры
 <p align="center">
-  <img src='https://raw.githubusercontent.com/kaluga-astral/nextjs-boilerplate/main/docs/arch-scheme.png' width='700px'>
+  <img src='https://raw.githubusercontent.com/kaluga-astral/nextjs-boilerplate/main/.docs/arch-scheme.png' width='700px'>
 </p>
 
 ## Описание слоев
