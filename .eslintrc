@@ -1,5 +1,8 @@
 {
   "extends": ["@astral/eslint-config-react-ts"],
+  "parserOptions": {
+    "project": ["tsconfig.json"]
+  },
   "rules": {
     "import/order": [
       "error",

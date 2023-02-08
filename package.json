@@ -25,7 +25,9 @@
     "zod": "^3.20.2",
     "@hookform/resolvers": "^2.9.8",
     "react-hook-form": "^7.43.1",
-    "@astral/react-query": "^1.0.5"
+    "@astral/react-query": "^1.0.5",
+    "next-transpile-modules": "^10.0.0",
+    "@tsconfig/next": "^1.0.5"
   },
   "devDependencies": {
     "eslint": "^8.22.0",
