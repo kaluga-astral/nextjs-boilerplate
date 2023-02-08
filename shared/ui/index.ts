@@ -9,3 +9,5 @@ export * from './icons';
 export * from './form';
 
 export * from './external';
+
+export * from './PageProgressbar';
