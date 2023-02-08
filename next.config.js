@@ -7,7 +7,17 @@ const { withSentryConfig } = require('@sentry/nextjs');
 /**
  * @type {import('next').NextConfig}
  */
-const nextConfig = {};
+const nextConfig = {
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.(woff|woff2)$/i,
+      issuer: { and: [/\.(js|ts)x?$/] },
+      type: 'asset/resource',
+    });
+
+    return config;
+  },
+};
 
 module.exports = withSentryConfig(
   {

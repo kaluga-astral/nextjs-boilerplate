@@ -2,15 +2,13 @@
   "extends": "@tsconfig/next/tsconfig.json",
   "compilerOptions": {
     "strict": true,
+    "isolatedModules": false,
     "paths": {
-      "@example/*": [
-        "./src/*"
+      "@example/shared": [
+        "./shared"
       ],
-      "images/*": [
-        "./public/images/*"
-      ],
-      "icons/*": [
-        "./public/images/icons/*"
+      "public/*": [
+        "./public/*"
       ]
     }
   },

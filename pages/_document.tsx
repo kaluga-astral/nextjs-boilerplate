@@ -1,59 +1,98 @@
-import NextDocument, {
-  DocumentContext,
-  Head,
-  Html,
-  Main,
-  NextScript,
-} from 'next/document';
+import NextDocument, { Head, Html, Main, NextScript } from 'next/document';
 
-import { createStylesCache, createStylesServer } from '../src';
-
-export default class extends NextDocument<{
-  emotionStyleTags: JSX.Element[];
-}> {
-  static async getInitialProps(ctx: DocumentContext) {
-    const originalRenderPage = ctx.renderPage;
-    const cache = createStylesCache();
-    const { extractCriticalToChunks } = createStylesServer(cache);
-
-    ctx.renderPage = () =>
-      originalRenderPage({
-        enhanceApp(App) {
-          // TODO: define type instead of any
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          const EnhancedApp = (props: any) => {
-            return <App {...props} stylesCache={cache} />;
-          };
-
-          return EnhancedApp;
-        },
-      });
-
-    const initialProps = await NextDocument.getInitialProps(ctx);
-    const emotionStyleTags = extractCriticalToChunks(
-      initialProps.html
-    ).styles.map((style) => (
-      <style
-        data-emotion={`${style.key} ${style.ids.join(' ')}`}
-        key={style.key}
-        // eslint-disable-next-line react/no-danger
-        dangerouslySetInnerHTML={{ __html: style.css }}
-      />
-    ));
-
-    return {
-      ...initialProps,
-      emotionStyleTags,
-    };
-  }
-
+export default class extends NextDocument {
   render() {
     return (
-      <Html>
+      <Html lang="ru">
         <Head>
-          {/* <meta name="theme-color" content={theme.palette.primary.main} /> */}
-          <link rel="icon" type="image/svg+xml" href="/static/favicon.svg" />
-          {this.props.emotionStyleTags}
+          <meta charSet="utf-8" />
+          <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+          />
+
+          <title>Astral.Example</title>
+
+          <link rel="shortcut icon" href="/favicons/favicon.ico" />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/favicons/favicon-16x16.png"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/favicons/favicon-32x32.png"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="48x48"
+            href="/favicons/favicon-48x48.png"
+          />
+          <link
+            rel="apple-touch-icon"
+            sizes="57x57"
+            href="/favicons/apple-touch-icon-57x57.png"
+          />
+          <link
+            rel="apple-touch-icon"
+            sizes="60x60"
+            href="/favicons/apple-touch-icon-60x60.png"
+          />
+          <link
+            rel="apple-touch-icon"
+            sizes="72x72"
+            href="/favicons/apple-touch-icon-72x72.png"
+          />
+          <link
+            rel="apple-touch-icon"
+            sizes="76x76"
+            href="/favicons/apple-touch-icon-76x76.png"
+          />
+          <link
+            rel="apple-touch-icon"
+            sizes="114x114"
+            href="/favicons/apple-touch-icon-114x114.png"
+          />
+          <link
+            rel="apple-touch-icon"
+            sizes="120x120"
+            href="/favicons/apple-touch-icon-120x120.png"
+          />
+          <link
+            rel="apple-touch-icon"
+            sizes="144x144"
+            href="/favicons/apple-touch-icon-144x144.png"
+          />
+          <link
+            rel="apple-touch-icon"
+            sizes="152x152"
+            href="/favicons/apple-touch-icon-152x152.png"
+          />
+          <link
+            rel="apple-touch-icon"
+            sizes="167x167"
+            href="/favicons/apple-touch-icon-167x167.png"
+          />
+          <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/favicons/apple-touch-icon-180x180.png"
+          />
+          <link
+            rel="apple-touch-icon"
+            sizes="1024x1024"
+            href="/favicons/apple-touch-icon-1024x1024.png"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="228x228"
+            href="/favicons/coast-228x228.png"
+          />
         </Head>
         <body>
           <Main />

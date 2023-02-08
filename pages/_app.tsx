@@ -1,7 +1,28 @@
-import { Application, ApplicationProps } from '../src';
+import { AppProps } from 'next/app';
 
-export const App = (props: ApplicationProps) => {
-  return <Application {...props} brand={process.env.BRAND} />;
+import {
+  NotificationContainer,
+  QueryClientProvider,
+  StylesCacheProvider,
+  ThemeProvider,
+  createStylesServerCache,
+  queryClient,
+  theme,
+} from '@example/shared';
+
+const cache = createStylesServerCache({ key: 'next' });
+
+export const App = ({ Component, pageProps }: AppProps) => {
+  return (
+    <StylesCacheProvider value={cache}>
+      <ThemeProvider theme={theme}>
+        <QueryClientProvider client={queryClient}>
+          <NotificationContainer />
+          <Component {...pageProps} />
+        </QueryClientProvider>
+      </ThemeProvider>
+    </StylesCacheProvider>
+  );
 };
 
 export default App;
