@@ -1,6 +1,8 @@
 {
-  "extends": ["@astral/eslint-config-react-ts", "plugin:testing-library/react"],
+  "extends": ["@astral/eslint-config-react-ts", "plugin:testing-library/react", "plugin:mobx/recommended"],
+  "plugins": ["mobx"],
   "rules": {
+    "mobx/missing-observer": "off",
     "import/order": [
       "error",
       {
@@ -33,11 +35,6 @@
       "files": "**/*.test.tsx",
       "extends": ["plugin:testing-library/react"],
       "plugins": ["testing-library"]
-    },
-    {
-      "files": "**/(modules|screens)/**/*.+(ts|tsx)",
-      "extends": "plugin:mobx/recommended",
-      "plugins": ["mobx"]
     }
   ]
 }
