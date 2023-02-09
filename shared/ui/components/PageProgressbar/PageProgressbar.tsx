@@ -1,6 +1,6 @@
 import NextjsProgressbar from 'nextjs-progressbar';
 
-import { useTheme } from '../hooks';
+import { useTheme } from '../../hooks';
 
 export const PageProgressbar = () => {
   const theme = useTheme();

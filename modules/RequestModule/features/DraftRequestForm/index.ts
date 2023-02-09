@@ -1,3 +1,3 @@
 export * from './DraftRequestForm';
 
-export { DraftRequestFormValues } from './store';
+export { type DraftRequestFormValues } from './store';

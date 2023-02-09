@@ -13,7 +13,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@astral/ui": "^2.6.2",
+    "@astral/ui": "^2.7.3",
     "@sentry/nextjs": "^7.36.0",
     "next": "^13.1.6",
     "nextjs-progressbar": "0.0.16",
@@ -30,8 +30,10 @@
     "react-hook-form": "^7.43.1",
     "nanoid": "^4.0.1",
     "@astral/react-query": "^1.0.5",
-    "next-transpile-modules": "^10.0.0",
-    "@tsconfig/next": "^1.0.5"
+    "@tsconfig/next": "^1.0.5",
+    "@types/query-string": "6.3.0",
+    "@newhighsco/next-plugin-svgr": "3.0.80",
+    "lodash-es": "^4.17.21"
   },
   "devDependencies": {
     "eslint": "^8.22.0",

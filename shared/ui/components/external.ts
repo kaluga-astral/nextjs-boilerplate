@@ -10,6 +10,8 @@ export {
   Placeholder,
   ContentState,
   Autocomplete,
+  FormAutocomplete,
+  type FormAutocompleteProps,
   Typography,
   FormProvider,
   FormTextField,

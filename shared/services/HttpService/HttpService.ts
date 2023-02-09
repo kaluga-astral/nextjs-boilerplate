@@ -1,4 +1,4 @@
-import { stringify } from 'query-string';
+import qs from 'query-string';
 import axios, {
   AxiosError,
   AxiosInstance,
@@ -43,8 +43,10 @@ export const createHttpService = (
 
   const httpService = axios.create({
     ...config,
-    paramsSerializer: (params) => {
-      return stringify(params);
+    paramsSerializer: {
+      serialize: (params) => {
+        return qs.stringify(params);
+      },
     },
   }) as HttpService;
 

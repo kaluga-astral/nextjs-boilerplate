@@ -1,10 +1,21 @@
-const withTM = require('next-transpile-modules')(['@astral/ui']);
-const { withSentryConfig } = require('@sentry/nextjs');
+import { withSentryConfig } from '@sentry/nextjs';
+import withSvgr from '@newhighsco/next-plugin-svgr';
 
 /**
  * @type {import('next').NextConfig}
  */
 const nextConfig = {
+  reactStrictMode: true,
+  swcMinify: true,
+  transpilePackages: [
+
+    '@astral/ui',
+    '@astral/icons',
+    '@astral/components',
+    '@astral/form',
+    '@astral/validations',
+    'lodash-es',
+  ],
   webpack(config) {
     config.module.rules.push({
       test: /\.(woff|woff2)$/i,
@@ -16,15 +27,17 @@ const nextConfig = {
   },
 };
 
-module.exports = withSentryConfig(
-  {
-    ...withTM(nextConfig),
-    sentry: {
-      hideSourceMaps: true,
-      autoInstrumentServerFunctions: true,
+export default withSvgr(
+  withSentryConfig(
+    {
+      ...nextConfig,
+      sentry: {
+        hideSourceMaps: true,
+        autoInstrumentServerFunctions: true,
+      },
     },
-  },
-  {
-    silent: true,
-  },
+    {
+      silent: true,
+    },
+  ),
 );

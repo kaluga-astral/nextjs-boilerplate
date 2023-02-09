@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { FormAutocomplete, FormAutocompleteProps } from '@example/shared';
-
-import { useTariffsQuery } from '../../data';
+import { useTariffsQuery } from '@example/data';
 
 import {
   TariffFormAutocompleteValue,
@@ -10,7 +9,13 @@ import {
 } from './store';
 
 export type TariffFormAutocompleteProps = Pick<
-  FormAutocompleteProps<TariffFormAutocompleteValue>,
+  FormAutocompleteProps<
+    TariffFormAutocompleteValue,
+    false,
+    false,
+    false,
+    false
+  >,
   'name' | 'control' | 'label'
 >;
 
@@ -30,7 +35,13 @@ export const TariffFormAutocomplete = ({
   }, [query]);
 
   return (
-    <FormAutocomplete<TariffFormAutocompleteValue>
+    <FormAutocomplete<
+      TariffFormAutocompleteValue,
+      TariffFormAutocompleteValue,
+      false,
+      false,
+      false
+    >
       name={name}
       control={control}
       label={label}

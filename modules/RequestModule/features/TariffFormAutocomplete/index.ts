@@ -1,3 +1,3 @@
 export * from './TariffFormAutocomplete';
 
-export { TariffFormAutocompleteValue } from './store';
+export { type TariffFormAutocompleteValue } from './store';

@@ -1,11 +1,10 @@
 import { makeAutoObservable } from 'mobx';
 
 import { notify } from '@example/shared';
-
-import { TariffDTO, TariffListDTO } from '../../../data';
+import { TariffRepositoryDTO } from '@example/data';
 
 export type TariffFormAutocompleteValue = Pick<
-  TariffDTO,
+  TariffRepositoryDTO.TariffDTO,
   'name' | 'id' | 'price'
 >;
 
@@ -19,7 +18,7 @@ export class TariffAutocompleteStore {
   }
 
   private formatTariffs = (
-    data: TariffListDTO['data'],
+    data: TariffRepositoryDTO.TariffListDTO['data'],
   ): TariffFormAutocompleteValue[] =>
     data.map(({ name, id, price }) => ({
       name,
@@ -33,7 +32,7 @@ export class TariffAutocompleteStore {
     error,
   }: {
     isLoading: boolean;
-    data?: TariffListDTO;
+    data?: TariffRepositoryDTO.TariffListDTO;
     error: Error | null;
   }) => {
     this.isLoading = isLoading;

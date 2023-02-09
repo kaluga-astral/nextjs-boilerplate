@@ -3,6 +3,7 @@
   "compilerOptions": {
     "strict": true,
     "isolatedModules": true,
+    "target": "esnext",
     "paths": {
       "@example/*": [
         "./*"

@@ -5,7 +5,5 @@ export {
   createEditRequestDraftLogic,
   CreateDraftRequestStore,
   createDraftRequestStore,
-  EditRequestData,
+  type EditRequestData,
 } from './domain';
-
-export { useRequestWithTariffQuery } from './data';

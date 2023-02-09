@@ -1,4 +1,5 @@
-import { Suspense, lazy, useState } from 'react';
+import { Suspense, useState } from 'react';
+import dynamic from 'next/dynamic';
 import { observer } from 'mobx-react-lite';
 
 import {
@@ -12,7 +13,7 @@ import { TariffStage } from './stages/Tariff';
 import { DraftRequestFormValues, createDraftRequestFormStore } from './store';
 import { DraftRequestStage } from './enums';
 
-const RequestInfoStage = lazy(() => import('./stages/RequestInfo'));
+const RequestInfoStage = dynamic(() => import('./stages/RequestInfo'));
 
 export type DraftRequestFormProps = {
   onSubmit: (values: DraftRequestFormValues) => Promise<void>;

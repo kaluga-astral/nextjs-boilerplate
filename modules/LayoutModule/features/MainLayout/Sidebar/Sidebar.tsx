@@ -1,6 +1,6 @@
 import {
   DashboardLayout,
-  ProfileOutlineMd,
+  PlayIcon,
   RouterLink,
   useRouter,
 } from '@example/shared';
@@ -16,14 +16,16 @@ export const Sidebar = () => {
           [
             APP_ROUTES.createDraftRequest.route,
             {
-              icon: <ProfileOutlineMd />,
+              icon: <PlayIcon />,
               text: 'Создать заявку',
               active: pathname.includes(APP_ROUTES.createDraftRequest.route),
-              component: (props) => (
+              component: ({ children, ...props }) => (
                 <RouterLink
-                  href={APP_ROUTES.createDraftRequest.route}
                   {...props}
-                />
+                  href={APP_ROUTES.createDraftRequest.route}
+                >
+                  {children}
+                </RouterLink>
               ),
             },
           ],

@@ -1,4 +1,4 @@
-import disconnectionImgSrc from 'images/disconnection.svg';
+import disconnectionImgSrc from 'public/images/disconnection.svg';
 import { ReactNode } from 'react';
 
 import { ContentState } from '@example/shared';

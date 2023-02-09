@@ -6,12 +6,6 @@ export default class extends NextDocument {
       <Html lang="ru">
         <Head>
           <meta charSet="utf-8" />
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
-          />
-
-          <title>Astral.Example</title>
 
           <link rel="shortcut icon" href="/favicons/favicon.ico" />
           <link
