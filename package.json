@@ -10,6 +10,8 @@
     "lint:all": "eslint \"**/*.{ts,tsx}\" --fix --quiet",
     "lint:styles": "stylelint --fix",
     "lint:styles:all": "stylelint \"**/*.{ts,tsx}\" --fix",
+    "tests": "vitest run",
+    "tests:ci": "vitest run --reporter=junit --outputFile.junit=junit.xml",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -46,7 +48,14 @@
     "lint-staged": "^11.1.2",
     "stylelint": "^14.11.0",
     "vitest": "^0.28.4",
+    "@vitejs/plugin-react": "^3.1.0",
     "husky": "^8.0.3",
-    "yaspeller": "^8.0.1"
+    "yaspeller": "^8.0.1",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^14.4.3",
+    "jsdom": "^20.0.3",
+    "eslint-plugin-testing-library": "^5.9.1",
+    "@testing-library/jest-dom": "^5.16.5",
+    "vite-tsconfig-paths": "^4.0.5"
   }
 }

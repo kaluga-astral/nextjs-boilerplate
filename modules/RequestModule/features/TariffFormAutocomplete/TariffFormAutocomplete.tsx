@@ -8,22 +8,16 @@ import {
   createTariffAutocompleteStore,
 } from './store';
 
-export type TariffFormAutocompleteProps = Pick<
-  FormAutocompleteProps<
-    TariffFormAutocompleteValue,
-    false,
-    false,
-    false,
-    false
-  >,
+export type TariffFormAutocompleteProps<FieldValues extends object> = Pick<
+  FormAutocompleteProps<FieldValues, false, false, false, false>,
   'name' | 'control' | 'label'
 >;
 
-export const TariffFormAutocomplete = ({
+export const TariffFormAutocomplete = <FieldValues extends object>({
   name,
   control,
   label,
-}: TariffFormAutocompleteProps) => {
+}: TariffFormAutocompleteProps<FieldValues>) => {
   const [{ setFetchTariffResult, tariffs, isLoading }] = useState(
     createTariffAutocompleteStore,
   );
@@ -36,7 +30,7 @@ export const TariffFormAutocomplete = ({
 
   return (
     <FormAutocomplete<
-      TariffFormAutocompleteValue,
+      FieldValues,
       TariffFormAutocompleteValue,
       false,
       false,

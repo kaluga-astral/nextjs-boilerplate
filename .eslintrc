@@ -1,5 +1,6 @@
 {
-  "extends": ["@astral/eslint-config-react-ts"],
+  "extends": ["@astral/eslint-config-react-ts", "plugin:testing-library/react"],
+  "plugins": ["testing-library"],
   "rules": {
     "import/order": [
       "error",

@@ -23,8 +23,6 @@ enableMobxStaticRendering(typeof window === 'undefined');
 
 const stylesCache = createStylesServerCache({ key: 'next' });
 
-
-
 export const App = ({ Component, pageProps }: AppProps) => {
   return (
     <>

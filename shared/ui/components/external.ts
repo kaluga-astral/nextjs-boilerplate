@@ -5,6 +5,7 @@ export {
   ListItemIcon,
   ListItemText,
   Menu,
+  Button,
   MenuItem,
   DataGrid,
   Placeholder,
@@ -29,7 +30,7 @@ export {
 
 export { createStylesCache as createStylesServerCache } from '@astral/ui/server';
 
-export { QueryClientProvider, useMutation } from '@astral/react-query';
+export { QueryClientProvider } from '@astral/react-query';
 
 export { default as Image } from 'next/image';
 
