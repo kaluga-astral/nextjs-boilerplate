@@ -1,10 +1,12 @@
 import { UseQueryOptions, useQuery } from '@example/shared';
 
 import { tariffRepository } from './TariffRepository';
-import { TariffListDTO } from './dto';
+import { TariffRepositoryDTO } from './dto';
 
-export const useTariffsQuery = (options?: UseQueryOptions<TariffListDTO>) =>
-  useQuery<TariffListDTO>(
+export const useTariffsQuery = (
+  options?: UseQueryOptions<TariffRepositoryDTO.TariffListDTO>,
+) =>
+  useQuery<TariffRepositoryDTO.TariffListDTO>(
     tariffRepository.getTariffsCacheKey(),
     () => tariffRepository.getTariffs(),
     options,

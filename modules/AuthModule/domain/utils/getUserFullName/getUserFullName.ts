@@ -1,5 +1,5 @@
-import { UserFullInfoDTO } from '../../../data';
+import { UserRepositoryDTO } from '@example/data';
 
 export const getUserFullName = (
-  user: Pick<UserFullInfoDTO, 'name' | 'surname'>,
+  user: Pick<UserRepositoryDTO.UserFullInfoDTO, 'name' | 'surname'>,
 ): string => `${user.name} ${user.surname}`;

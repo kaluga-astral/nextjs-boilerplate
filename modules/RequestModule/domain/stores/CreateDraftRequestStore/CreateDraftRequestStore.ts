@@ -1,10 +1,11 @@
 import { makeAutoObservable, runInAction } from 'mobx';
 
-import { DraftRequestFormValues } from '../../../features';
 import {
   RequestRepository,
   requestRepository as requestRepositoryInstance,
-} from '../../../data';
+} from '@example/data';
+
+import { DraftRequestFormValues } from '../../../features';
 
 type Handlers = {
   onSuccessCreateRequest: (requestID: string) => void;

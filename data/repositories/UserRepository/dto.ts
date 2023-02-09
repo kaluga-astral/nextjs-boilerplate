@@ -1,3 +1,5 @@
 import { UserContactNetworkDTO, UserPersonNetworkDTO } from '../../sources';
 
-export type UserFullInfoDTO = UserPersonNetworkDTO & UserContactNetworkDTO;
+export namespace UserRepositoryDTO {
+  export type UserFullInfoDTO = UserPersonNetworkDTO & UserContactNetworkDTO;
+}

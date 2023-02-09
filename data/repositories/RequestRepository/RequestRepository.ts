@@ -15,19 +15,12 @@ import {
   ownerRepository as ownerRepositoryInstance,
 } from '../OwnerRepository';
 import {
-  TariffDTO,
   TariffRepository,
+  TariffRepositoryDTO,
   tariffRepository as tariffRepositoryInstance,
 } from '../TariffRepository';
 
-import {
-  CreateDraftRequestInputDTO,
-  EditRequestInputDTO,
-  RequestDTO,
-  RequestFullInfoDTO,
-  RequestStoreInputDTO,
-  RequestWithTariffDTO,
-} from './dto';
+import { RequestRepositoryDTO } from './dto';
 
 /**
  * @description Repository для работы с даннми заявке
@@ -56,7 +49,7 @@ export class RequestRepository {
    * */
   public getRequestFullInfo = async (
     requestID: string,
-  ): Promise<RequestFullInfoDTO> => {
+  ): Promise<RequestRepositoryDTO.RequestFullInfoDTO> => {
     const { ownerID, ...request } = await this.getRequestInfo(requestID);
     const owner = await this.ownerRepository.getOwnerInfo(ownerID);
 
@@ -66,7 +59,9 @@ export class RequestRepository {
     };
   };
 
-  public getRequestInfo = (requestID: string): Promise<RequestDTO> =>
+  public getRequestInfo = (
+    requestID: string,
+  ): Promise<RequestRepositoryDTO.RequestDTO> =>
     this.requestNetworkSources.getRequestInfo(requestID);
 
   public getRequestWithTariffCacheID = (requestID: string): string[] => [
@@ -90,7 +85,9 @@ export class RequestRepository {
 
         return {
           ...requestData,
-          tariff: tariffs.data.find(({ id }) => id === tariffID) as TariffDTO,
+          tariff: tariffs.data.find(
+            ({ id }) => id === tariffID,
+          ) as TariffRepositoryDTO.TariffDTO,
         };
       },
       params,
@@ -98,22 +95,27 @@ export class RequestRepository {
 
   public updateRequestWithTariffCache = (
     requestID: string,
-    updater: (data?: RequestWithTariffDTO) => RequestWithTariffDTO | undefined,
+    updater: (
+      data?: RequestRepositoryDTO.RequestWithTariffDTO,
+    ) => RequestRepositoryDTO.RequestWithTariffDTO | undefined,
   ): void => {
-    this.queryClient.setQueryData<RequestWithTariffDTO>(
+    this.queryClient.setQueryData<RequestRepositoryDTO.RequestWithTariffDTO>(
       this.getRequestWithTariffCacheID(requestID),
       updater,
     );
   };
 
   public createDraftRequest = (
-    data: CreateDraftRequestInputDTO,
+    data: RequestRepositoryDTO.CreateDraftRequestInputDTO,
   ): Promise<string> => this.requestNetworkSources.createDraftRequest(data);
 
-  public editDraftRequest = (data: EditRequestInputDTO): Promise<void> =>
-    this.requestNetworkSources.editRequest(data);
+  public editDraftRequest = (
+    data: RequestRepositoryDTO.EditRequestInputDTO,
+  ): Promise<void> => this.requestNetworkSources.editRequest(data);
 
-  public saveRequestToStore = (request: RequestStoreInputDTO) =>
+  public saveRequestToStore = (
+    request: RequestRepositoryDTO.RequestStoreInputDTO,
+  ) =>
     this.storageService.setItem(this.requestStoreID, JSON.stringify(request));
 }
 

@@ -15,10 +15,10 @@ import {
 } from '@example/shared';
 import { useUserFullInfoQuery } from '@example/data';
 
-import { createHeaderLogic } from './store';
+import { createHeaderStore } from './store';
 
 export const Header = observer(() => {
-  const [{ setUserData, user }] = useState(createHeaderLogic);
+  const [{ setUserData, user }] = useState(createHeaderStore);
 
   const query = useUserFullInfoQuery();
 

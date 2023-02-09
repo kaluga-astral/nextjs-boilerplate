@@ -10,9 +10,3 @@ export {
 export { useToggle, useBoolean, useEffectOnce } from 'react-use';
 
 export { useRouter } from 'next/router';
-
-export {
-  useQuery,
-  useMutation,
-  type UseQueryOptions,
-} from '@astral/react-query';

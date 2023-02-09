@@ -9,7 +9,7 @@ import {
   tariffsNetworkStubSources,
 } from '../../sources';
 
-import { TariffListDTO } from './dto';
+import { TariffRepositoryDTO } from './dto';
 
 /**
  * @description Repository для работы с даннми тарифов
@@ -31,7 +31,7 @@ export class TariffRepository {
    * @description Получение списка всех тарифов
    * */
   public getTariffs = async (params?: RepositoryCachedQueryParams) =>
-    this.queryClient.fetchQuery<TariffListDTO>(
+    this.queryClient.fetchQuery<TariffRepositoryDTO.TariffListDTO>(
       this.getTariffsCacheKey(),
       () => this.tariffNetworkSources.getTariffs(),
       params,

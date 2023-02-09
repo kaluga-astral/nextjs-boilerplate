@@ -1,5 +1,7 @@
 import { TariffListNetworkDTO, TariffNetworkDTO } from '../../sources';
 
-export type TariffDTO = TariffNetworkDTO;
+export namespace TariffRepositoryDTO {
+  export type TariffDTO = TariffNetworkDTO;
 
-export type TariffListDTO = TariffListNetworkDTO;
+  export type TariffListDTO = TariffListNetworkDTO;
+}

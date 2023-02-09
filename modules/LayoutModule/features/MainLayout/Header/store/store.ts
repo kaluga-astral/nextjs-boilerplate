@@ -1,12 +1,12 @@
 import { makeAutoObservable } from 'mobx';
 
-import { UserFullInfoDTO } from '@example/data';
+import { UserRepositoryDTO } from '@example/data';
 
 type UserViewModel = {
   displayName: string;
 };
 
-class HeaderLogic {
+class HeaderStore {
   isLoading: boolean = true;
 
   user: UserViewModel = { displayName: '...' };
@@ -20,7 +20,7 @@ class HeaderLogic {
     data,
   }: {
     isLoading: boolean;
-    data: UserFullInfoDTO;
+    data: UserRepositoryDTO.UserFullInfoDTO;
   }) => {
     const { displayName } = data;
 
@@ -29,4 +29,4 @@ class HeaderLogic {
   };
 }
 
-export const createHeaderLogic = () => new HeaderLogic();
+export const createHeaderStore = () => new HeaderStore();

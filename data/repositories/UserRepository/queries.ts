@@ -1,12 +1,12 @@
 import { UseQueryOptions, useQuery } from '@example/shared';
 
 import { userRepository } from './UserRepository';
-import { UserFullInfoDTO } from './dto';
+import { UserRepositoryDTO } from './dto';
 
 export const useUserFullInfoQuery = (
-  options?: UseQueryOptions<UserFullInfoDTO>,
+  options?: UseQueryOptions<UserRepositoryDTO.UserFullInfoDTO>,
 ) =>
-  useQuery<UserFullInfoDTO>(
+  useQuery<UserRepositoryDTO.UserFullInfoDTO>(
     userRepository.fullInfoCacheKey,
     () => userRepository.getFullInfo(),
     options,

@@ -11,7 +11,7 @@ import {
   userNetworkSources as userNetworkSourcesInstance,
 } from '../../sources';
 
-import { UserFullInfoDTO } from './dto';
+import { UserRepositoryDTO } from './dto';
 
 /**
  * @description Repository для работы с даннми юзере
@@ -35,7 +35,7 @@ export class UserRepository {
    * @description Получение полной информации о юзере
    * */
   public getFullInfo = (params?: RepositoryCachedQueryParams) =>
-    this.queryClient.fetchQuery<UserFullInfoDTO>(
+    this.queryClient.fetchQuery<UserRepositoryDTO.UserFullInfoDTO>(
       this.fullInfoCacheKey,
       async () => {
         const [contactInfo, personInfo] = await Promise.all([

@@ -1,14 +1,14 @@
 import { makeAutoObservable, runInAction } from 'mobx';
 
 import { AsyncState, AsyncStateStore } from '@example/shared';
-
 import {
   RequestRepository,
-  TariffDTO,
   TariffRepository,
+  TariffRepositoryDTO,
   requestRepository as requestRepositoryInstance,
   tariffRepository as tariffRepositoryInstance,
-} from '../../../data';
+} from '@example/data';
+
 import { DraftRequestFormValues } from '../../../features';
 
 export type EditRequestData = DraftRequestFormValues;
@@ -60,7 +60,7 @@ export class EditDraftRequestLogic {
               ...data,
               tariff: tariffs.data.find(
                 ({ id }) => id === data.tariff.id,
-              ) as TariffDTO,
+              ) as TariffRepositoryDTO.TariffDTO,
               updatedDate: new Date().toISOString(),
             };
           }

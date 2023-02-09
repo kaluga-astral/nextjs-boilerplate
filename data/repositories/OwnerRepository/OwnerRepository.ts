@@ -9,7 +9,7 @@ import {
   ownerNetworkSources as ownerNetworkSourcesInstance,
 } from '../../sources';
 
-import { OwnerDTO } from './dto';
+import { OwnerRepositoryDTO } from './dto';
 
 /**
  * @description Repository для работы с даннми владельце
@@ -35,7 +35,7 @@ export class OwnerRepository {
     ownerID: string,
     params?: RepositoryCachedQueryParams,
   ) =>
-    this.queryClient.fetchQuery<OwnerDTO>(
+    this.queryClient.fetchQuery<OwnerRepositoryDTO.OwnerDTO>(
       this.getOwnerInfoCacheKey(ownerID),
       () => this.ownerNetworkSources.getInfo(ownerID),
       params,

@@ -1,13 +1,13 @@
 import { UseQueryOptions, useQuery } from '@example/shared';
 
 import { requestRepository } from './RequestRepository';
-import { RequestWithTariffDTO } from './dto';
+import { RequestRepositoryDTO } from './dto';
 
 export const useRequestWithTariffQuery = (
   requestID: string,
-  options?: UseQueryOptions<RequestWithTariffDTO>,
+  options?: UseQueryOptions<RequestRepositoryDTO.RequestWithTariffDTO>,
 ) =>
-  useQuery<RequestWithTariffDTO>(
+  useQuery<RequestRepositoryDTO.RequestWithTariffDTO>(
     requestRepository.getRequestWithTariffCacheID(requestID),
     () => requestRepository.getRequestWithTariff(requestID),
     options,

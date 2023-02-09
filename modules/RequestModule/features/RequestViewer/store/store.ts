@@ -1,6 +1,6 @@
 import { makeAutoObservable } from 'mobx';
 
-import { RequestWithTariffDTO } from '../../../data';
+import { RequestRepositoryDTO } from '@example/data';
 
 export type RequestViewModel = {
   description: string;
@@ -24,7 +24,7 @@ export class RequestViewerStore {
     error,
   }: {
     isLoading: boolean;
-    data?: RequestWithTariffDTO;
+    data?: RequestRepositoryDTO.RequestWithTariffDTO;
     error: Error | null;
   }) => {
     this.isLoading = isLoading;
