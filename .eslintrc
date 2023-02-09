@@ -1,6 +1,5 @@
 {
   "extends": ["@astral/eslint-config-react-ts", "plugin:testing-library/react"],
-  "plugins": ["testing-library"],
   "rules": {
     "import/order": [
       "error",
@@ -27,5 +26,18 @@
         ]
       }
     ]
-  }
+  },
+  "overrides": [
+    // Для уведичения производительности plugin:testing-library запускается только для test.tsx файлов
+    {
+      "files": "**/*.test.tsx",
+      "extends": ["plugin:testing-library/react"],
+      "plugins": ["testing-library"]
+    },
+    {
+      "files": "**/(modules|screens)/**/*.+(ts|tsx)",
+      "extends": "plugin:mobx/recommended",
+      "plugins": ["mobx"]
+    }
+  ]
 }

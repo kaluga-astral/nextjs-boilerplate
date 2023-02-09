@@ -39,6 +39,7 @@
   },
   "devDependencies": {
     "eslint": "^8.22.0",
+    "eslint-plugin-mobx": "0.0.9",
     "prettier": "^2.7.1",
     "@astral/eslint-config-react-ts": "^1.6.2",
     "@astral/prettier-config": "^1.6.2",
