@@ -35,6 +35,55 @@
       "files": "**/*.test.tsx",
       "extends": ["plugin:testing-library/react"],
       "plugins": ["testing-library"]
+    },
+    // Ниже определены правила, которые устанавливают архитектурные границы (запрещают импорты из директорий)
+    {
+      "files": "shared/**/*.+(ts|tsx)",
+      "rules": {
+        "no-restricted-imports": [
+          "error",
+          {
+            "patterns": [
+              {
+                "group": ["@example/data", "@example/modules", "@example/screens"],
+                "message": "Shared не должен зависеть от: data, modules, screens"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": "pages/**/*.+(ts|tsx)",
+      "rules": {
+        "no-restricted-imports": [
+          "error",
+          {
+            "patterns": [
+              {
+                "group": ["@example/data", "@example/modules"],
+                "message": "Pages не зависит от: data и modules"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": "+(modules|screens|pages)/**/*.+(ts|tsx)",
+      "rules": {
+        "no-restricted-imports": [
+          "error",
+          {
+            "patterns": [
+              {
+                "group": ["@astral", "@mui", "lodash-es"],
+                "message": "Зависимость должна быть инвертирована через shared"
+              }
+            ]
+          }
+        ]
+      }
     }
   ]
 }
