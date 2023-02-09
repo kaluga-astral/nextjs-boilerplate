@@ -1,16 +1,9 @@
 import { NextPage } from 'next';
-import { Typography } from '@astral/ui';
 
-import { Container, Logo } from '../src/components';
+import { CreateDraftRequestScreen } from '@example/screens';
 
 export const IndexPage: NextPage = () => {
-  return (
-    <Container>
-      <Typography component="h1">IndexPage</Typography>
-      <Logo mode="vector" />
-      <Logo mode="raster" />
-    </Container>
-  );
+  return <CreateDraftRequestScreen />;
 };
 
 export default IndexPage;

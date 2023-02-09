@@ -1,6 +1,5 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
-const withTM = require('next-transpile-modules')(['@astral/ui']);
 const { withSentryConfig } = require('@sentry/nextjs');
+const withSvgr = require('@newhighsco/next-plugin-svgr');
 
 /**
  * @type {import('next').NextConfig}
@@ -8,9 +7,17 @@ const { withSentryConfig } = require('@sentry/nextjs');
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  output: 'standalone',
-  experimental: {
-    esmExternals: true,
+  transpilePackages: [
+    '@astral/ui',
+    '@astral/icons',
+    '@astral/components',
+    '@astral/form',
+    '@astral/validations',
+    'lodash-es',
+  ],
+  images: {
+    // При export static оптимизация не работает
+    unoptimized: true,
   },
   webpack(config) {
     config.module.rules.push({
@@ -24,14 +31,11 @@ const nextConfig = {
 };
 
 module.exports = withSentryConfig(
-  {
-    ...withTM(nextConfig),
+  withSvgr({
+    ...nextConfig,
     sentry: {
       hideSourceMaps: true,
       autoInstrumentServerFunctions: true,
     },
-  },
-  {
-    silent: true,
-  }
+  }),
 );
