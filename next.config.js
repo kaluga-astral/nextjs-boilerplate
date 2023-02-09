@@ -16,6 +16,7 @@ const nextConfig = {
     'lodash-es',
   ],
   images: {
+    // При export static оптимизация не работает
     unoptimized: true,
   },
   webpack(config) {
