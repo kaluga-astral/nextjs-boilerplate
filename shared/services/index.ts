@@ -11,3 +11,5 @@ export * from './DataError';
 export * from './external';
 
 export * from './QueryClient';
+
+export * from './Router';

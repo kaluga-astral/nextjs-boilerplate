@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { APP_ROUTES, PageLayout, useRouter } from '@example/shared';
+import { PageLayout, router } from '@example/shared';
 import {
   DraftRequestForm,
   createDraftRequestStore,
@@ -9,15 +9,13 @@ import {
 import { CreateDraftContentState } from './ContentState';
 
 export const CreateDraftRequestScreen = () => {
-  const router = useRouter();
-
   const [
     { isSuccess, createRequest, errorMessage, isLoading, retryCreateRequest },
   ] = useState(() =>
     createDraftRequestStore({
       onSuccessCreateRequest: (requestID) => {
         setTimeout(() => {
-          router.push(APP_ROUTES.request.getRedirectPath(requestID));
+          router.pushToRequest(requestID);
         }, 3000);
       },
     }),
