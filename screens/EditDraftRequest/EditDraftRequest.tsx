@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { observer } from 'mobx-react-lite';
 
-import { PageLayout, router } from '@example/shared';
+import { APP_ROUTES, PageLayout, router } from '@example/shared';
 import { useRequestWithTariffQuery } from '@example/data';
 import {
   DraftRequestForm,
@@ -19,7 +19,7 @@ export const EditDraftRequestScreen = observer(({ requestID }: Props) => {
     createEditRequestDraftLogic(requestID, {
       onSuccessEditRequest: () => {
         setTimeout(() => {
-          router.push(router.routes.createDraftRequest.getRedirectPath());
+          router.push(APP_ROUTES.createDraftRequest.getRedirectPath());
         }, 3000);
       },
     }),

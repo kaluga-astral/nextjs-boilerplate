@@ -1,4 +1,5 @@
 import {
+  APP_ROUTES,
   DashboardLayout,
   PlayIcon,
   RouterLink,
@@ -6,22 +7,22 @@ import {
 } from '@example/shared';
 
 export const Sidebar = () => {
-  const { pathname, routes } = useRouter();
+  const { pathname } = useRouter();
 
   return (
     <DashboardLayout.Sidebar
       menu={{
         items: [
           [
-            routes.createDraftRequest.route,
+            APP_ROUTES.createDraftRequest.route,
             {
               icon: <PlayIcon />,
               text: 'Создать заявку',
-              active: pathname.includes(routes.createDraftRequest.route),
+              active: pathname.includes(APP_ROUTES.createDraftRequest.route),
               component: ({ children, ...props }) => (
                 <RouterLink
                   {...props}
-                  href={routes.createDraftRequest.getRedirectPath()}
+                  href={APP_ROUTES.createDraftRequest.getRedirectPath()}
                 >
                   {children}
                 </RouterLink>

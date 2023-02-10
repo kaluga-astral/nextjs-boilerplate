@@ -1,1 +1,1 @@
-export * from './countryCodes';
+export * from './routes';

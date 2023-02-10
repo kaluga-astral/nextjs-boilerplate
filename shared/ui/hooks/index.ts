@@ -7,5 +7,3 @@ export * from './useForm';
 export * from './useQuery';
 
 export * from './useMutation';
-
-export * from './useRouter';

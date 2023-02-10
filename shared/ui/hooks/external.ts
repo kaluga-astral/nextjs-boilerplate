@@ -8,3 +8,5 @@ export {
 } from '@astral/ui';
 
 export { useToggle, useBoolean, useEffectOnce } from 'react-use';
+
+export { useRouter } from 'next/router';

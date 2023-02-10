@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { PageLayout, router } from '@example/shared';
+import { APP_ROUTES, PageLayout, router } from '@example/shared';
 import {
   DraftRequestForm,
   createDraftRequestStore,
@@ -15,7 +15,7 @@ export const CreateDraftRequestScreen = () => {
     createDraftRequestStore({
       onSuccessCreateRequest: (requestID) => {
         setTimeout(() => {
-          router.push(router.routes.request.getRedirectPath(requestID));
+          router.push(APP_ROUTES.request.getRedirectPath(requestID));
         }, 3000);
       },
     }),
