@@ -1,8 +1,8 @@
 export { DraftRequestForm, RequestViewer } from './features';
 
 export {
-  EditDraftRequestLogic,
-  createEditRequestDraftLogic,
+  EditDraftRequestStore,
+  createEditRequestDraftStore,
   CreateDraftRequestStore,
   createDraftRequestStore,
   type EditRequestData,

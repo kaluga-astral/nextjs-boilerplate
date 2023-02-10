@@ -5,7 +5,7 @@ import { APP_ROUTES, PageLayout, router } from '@example/shared';
 import { useRequestWithTariffQuery } from '@example/data';
 import {
   DraftRequestForm,
-  createEditRequestDraftLogic,
+  createEditRequestDraftStore,
 } from '@example/modules/RequestModule';
 
 import { EditDraftContentState } from './ContentState';
@@ -16,7 +16,7 @@ type Props = {
 
 export const EditDraftRequestScreen = observer(({ requestID }: Props) => {
   const [{ editRequest, retryEditRequest, editRequestState }] = useState(() =>
-    createEditRequestDraftLogic(requestID, {
+    createEditRequestDraftStore(requestID, {
       onSuccessEditRequest: () => {
         setTimeout(() => {
           router.push(APP_ROUTES.createDraftRequest.getRedirectPath());

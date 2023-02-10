@@ -17,7 +17,7 @@ type Handlers = {
   onSuccessEditRequest: () => void;
 };
 
-export class EditDraftRequestLogic {
+export class EditDraftRequestStore {
   private editRequestCache: EditRequestData | undefined;
 
   constructor(
@@ -88,11 +88,11 @@ export class EditDraftRequestLogic {
   };
 }
 
-export const createEditRequestDraftLogic = (
+export const createEditRequestDraftStore = (
   requestID: string,
   handlers: Handlers,
 ) =>
-  new EditDraftRequestLogic(
+  new EditDraftRequestStore(
     requestRepositoryInstance,
     new AsyncStateStore(),
     tariffRepositoryInstance,

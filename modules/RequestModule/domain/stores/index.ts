@@ -1,3 +1,3 @@
-export * from './EditRequestLogic';
+export * from './EditRequestStore';
 
 export * from './CreateDraftRequestStore';
