@@ -1,16 +1,21 @@
 import { AppProps } from 'next/app';
+import { useEffect } from 'react';
 import Head from 'next/head';
 import { enableStaticRendering as enableMobxStaticRendering } from 'mobx-react-lite';
 
+import { authStore } from '@example/modules/AuthModule';
 import { MainLayout } from '@example/modules/LayoutModule';
 import {
+  ConfigProvider,
   NotificationContainer,
   PageProgressbar,
   QueryClientProvider,
   StylesCacheProvider,
   ThemeProvider,
+  apiHttpClient,
   configService,
   createStylesServerCache,
+  monitoringErrorService,
   queryClient,
   theme,
 } from '@example/shared';
@@ -24,6 +29,10 @@ enableMobxStaticRendering(typeof window === 'undefined');
 const stylesCache = createStylesServerCache({ key: 'next' });
 
 export const App = ({ Component, pageProps }: AppProps) => {
+  useEffect(() => {
+    authStore.addProtectedHttpClients([apiHttpClient]);
+  }, []);
+
   return (
     <>
       <Head>
@@ -34,15 +43,19 @@ export const App = ({ Component, pageProps }: AppProps) => {
         <title>Astral.Example</title>
       </Head>
       <StylesCacheProvider value={stylesCache}>
-        <ThemeProvider theme={theme}>
-          <QueryClientProvider client={queryClient}>
-            <NotificationContainer />
-            <PageProgressbar />
-            <MainLayout>
-              <Component {...pageProps} />
-            </MainLayout>
-          </QueryClientProvider>
-        </ThemeProvider>
+        <ConfigProvider
+          captureException={monitoringErrorService.captureException}
+        >
+          <ThemeProvider theme={theme}>
+            <QueryClientProvider client={queryClient}>
+              <NotificationContainer />
+              <PageProgressbar />
+              <MainLayout>
+                <Component {...pageProps} />
+              </MainLayout>
+            </QueryClientProvider>
+          </ThemeProvider>
+        </ConfigProvider>
       </StylesCacheProvider>
     </>
   );

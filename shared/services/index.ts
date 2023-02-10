@@ -13,3 +13,5 @@ export * from './external';
 export * from './QueryClient';
 
 export * from './Router';
+
+export * from './MonitoringErrorService';

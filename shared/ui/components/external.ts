@@ -9,6 +9,7 @@ export {
   MenuItem,
   DataGrid,
   Placeholder,
+  ConfigProvider,
   ContentState,
   Autocomplete,
   FormAutocomplete,
