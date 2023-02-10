@@ -15,7 +15,7 @@ export const CreateDraftRequestScreen = () => {
     createDraftRequestStore({
       onSuccessCreateRequest: (requestID) => {
         setTimeout(() => {
-          router.pushToRequest(requestID);
+          router.push(router.routes.request.getRedirectPath(requestID));
         }, 3000);
       },
     }),

@@ -6,20 +6,23 @@ import {
 } from '@example/shared';
 
 export const Sidebar = () => {
-  const { pathname, createDraftRequestRoute } = useRouter();
+  const { pathname, routes } = useRouter();
 
   return (
     <DashboardLayout.Sidebar
       menu={{
         items: [
           [
-            createDraftRequestRoute,
+            routes.createDraftRequest.route,
             {
               icon: <PlayIcon />,
               text: 'Создать заявку',
-              active: pathname.includes(createDraftRequestRoute),
+              active: pathname.includes(routes.createDraftRequest.route),
               component: ({ children, ...props }) => (
-                <RouterLink {...props} href={createDraftRequestRoute}>
+                <RouterLink
+                  {...props}
+                  href={routes.createDraftRequest.getRedirectPath()}
+                >
                   {children}
                 </RouterLink>
               ),

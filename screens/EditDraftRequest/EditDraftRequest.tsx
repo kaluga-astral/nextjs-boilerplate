@@ -19,7 +19,7 @@ export const EditDraftRequestScreen = observer(({ requestID }: Props) => {
     createEditRequestDraftLogic(requestID, {
       onSuccessEditRequest: () => {
         setTimeout(() => {
-          router.pushToCreateDraftRequest();
+          router.push(router.routes.createDraftRequest.getRedirectPath());
         }, 3000);
       },
     }),

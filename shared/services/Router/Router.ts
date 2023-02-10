@@ -1,24 +1,24 @@
 import NextRouter, { NextRouter as INextRouter } from 'next/router';
 
-type OriginPushParams = Parameters<typeof NextRouter.push>;
-
-type PushParams = [as?: OriginPushParams[1], options?: OriginPushParams[2]];
-
 export interface Router extends INextRouter {
-  editDraftRequestRoute: string;
-  pushToEditDraftRequest(
-    requestID: string,
-    ...params: PushParams
-  ): Promise<boolean>;
-
-  createDraftRequestRoute: string;
-  pushToCreateDraftRequest(...params: PushParams): Promise<boolean>;
-
-  requestRoute: string;
-  pushToRequest(requestID: string, ...params: PushParams): Promise<boolean>;
-
-  ownersRoute: string;
-  pushToOwners(...params: PushParams): Promise<boolean>;
+  routes: {
+    editDraftRequest: {
+      route: string;
+      getRedirectPath: (requestID: string) => string;
+    };
+    createDraftRequest: {
+      route: string;
+      getRedirectPath: () => string;
+    };
+    request: {
+      route: string;
+      getRedirectPath: (requestID: string) => string;
+    };
+    owners: {
+      route: string;
+      getRedirectPath: () => string;
+    };
+  };
 }
 
 /**
@@ -29,25 +29,24 @@ const createRouter = (): Router => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const router = NextRouter as any as Router;
 
-  router.editDraftRequestRoute = '/editDraftRequest/:id';
-
-  router.pushToEditDraftRequest = (requestID, ...params) =>
-    NextRouter.push(`/editDraftRequest/${requestID}`, ...params);
-
-  router.createDraftRequestRoute = '/createDraftRequest';
-
-  router.pushToCreateDraftRequest = (...params) =>
-    NextRouter.push('/createDraftRequest', ...params);
-
-  router.requestRoute = '/request';
-
-  router.pushToRequest = (requestID, ...params) =>
-    NextRouter.push(`/request/${requestID}`, ...params);
-
-  router.ownersRoute = '/owners';
-
-  router.pushToOwners = (...params) =>
-    NextRouter.push('/createDraftRequest', ...params);
+  router.routes = {
+    editDraftRequest: {
+      route: '/editDraftRequest/:id',
+      getRedirectPath: (requestID) => `/editDraftRequest/${requestID}`,
+    },
+    createDraftRequest: {
+      route: '/createDraftRequest',
+      getRedirectPath: () => '/createDraftRequest',
+    },
+    request: {
+      route: '/request',
+      getRedirectPath: (requestID) => `/request/${requestID}`,
+    },
+    owners: {
+      route: '/owners',
+      getRedirectPath: () => '/owners',
+    },
+  };
 
   return router;
 };
