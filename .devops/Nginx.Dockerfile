@@ -6,6 +6,8 @@ WORKDIR /usr/src/app
 
 COPY package.json package-lock.json* ./
 
+# Удаляем prepare скрипт, чтобы исключить установку husky
+RUN npm pkg delete scripts.prepare
 # Игнорируются devDependency при установке зависимостей
 RUN npm i --production
 
