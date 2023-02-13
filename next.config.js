@@ -5,6 +5,14 @@ const withSvgr = require('@newhighsco/next-plugin-svgr');
  * @type {import('next').NextConfig}
  */
 const nextConfig = {
+  eslint: {
+    // Отключаем eslint линтер, т.к. eslint запускается в отдельном шаге CI
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    // Отключаем проверку типов, т.к. check type запускается в отдельном шаге CI
+    ignoreBuildErrors: true,
+  },
   reactStrictMode: true,
   swcMinify: true,
   transpilePackages: [
