@@ -16,7 +16,7 @@ type ErrorFormatter<
 > = (error: HttpServiceError<any, any>) => CurrentDataError;
 
 export interface HttpService extends AxiosInstance {
-  init: (config: HttpServiceConfig) => HttpService;
+  init: (config: HttpServiceInitConfig) => HttpService;
   subscribeOnError(func: ErrorHandler): void;
   initErrorFormatter<
     CurrentDataError extends DataError<Record<string, unknown>>,
