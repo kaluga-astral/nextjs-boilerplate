@@ -1,4 +1,4 @@
-import { HttpService, createHttpService } from '../HttpService';
+import { createHttpService } from '../HttpService';
 import { configService } from '../ConfigService';
 
 import { ApiDataError } from './error';
@@ -13,14 +13,12 @@ const httpService = createHttpService();
  *
  *@description Инициализация apiHttpClient
  */
-export const createApiHttpClient = (): HttpService => {
+export const initApiHttpClient = () => {
   const apiHttpClient = httpService.init({
     baseURL: configService.config.apiUrl,
   });
 
   apiHttpClient.initErrorFormatter<ApiDataError>(formatApiError);
-
-  return apiHttpClient;
 };
 
 /**

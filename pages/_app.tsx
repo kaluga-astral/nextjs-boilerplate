@@ -12,9 +12,10 @@ import {
   QueryClientProvider,
   StylesCacheProvider,
   ThemeProvider,
+  apiHttpClient,
   configService,
-  createApiHttpClient,
   createStylesServerCache,
+  initApiHttpClient,
   monitoringErrorService,
   queryClient,
   theme,
@@ -24,8 +25,7 @@ configService.init({
   apiUrl: process.env.NEXT_PUBLIC_API_URL as string,
 });
 
-const apiHttpClient = createApiHttpClient();
-
+initApiHttpClient();
 enableMobxStaticRendering(typeof window === 'undefined');
 
 const stylesCache = createStylesServerCache({ key: 'next' });
