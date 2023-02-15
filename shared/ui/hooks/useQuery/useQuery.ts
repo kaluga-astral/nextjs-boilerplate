@@ -4,6 +4,8 @@ import {
   useQuery as useAstralQuery,
 } from '@astral/react-query';
 
+export type { UseQueryResult } from '@astral/react-query';
+
 import { DataError } from '../../../services';
 
 type DefaultError = DataError<Record<string, unknown>>;

@@ -4,8 +4,17 @@ import { configService } from '../ConfigService';
 import { ApiDataError } from './error';
 import { formatApiError } from './utils';
 
-const createApiHttpClient = (): HttpService => {
-  const apiHttpClient = createHttpService({
+/**
+ * Создаем экземпляр httpService
+ */
+const httpService = createHttpService();
+
+/**
+ *
+ *@description Инициализация apiHttpClient
+ */
+export const createApiHttpClient = (): HttpService => {
+  const apiHttpClient = httpService.init({
     baseURL: configService.config.apiUrl,
   });
 
@@ -17,4 +26,4 @@ const createApiHttpClient = (): HttpService => {
 /**
  * @description Http service для взаимодействия с основным api
  * */
-export const apiHttpClient = createApiHttpClient();
+export const apiHttpClient = httpService;

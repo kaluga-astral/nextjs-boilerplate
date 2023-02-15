@@ -16,6 +16,7 @@ type ErrorFormatter<
 > = (error: HttpServiceError<any, any>) => CurrentDataError;
 
 export interface HttpService extends AxiosInstance {
+  init: (config: HttpServiceConfig) => HttpService;
   subscribeOnError(func: ErrorHandler): void;
   initErrorFormatter<
     CurrentDataError extends DataError<Record<string, unknown>>,
@@ -31,6 +32,8 @@ export type HttpServiceResponse<T, D = T> = AxiosResponse<T, D>;
 export type HttpServicePromise<T> = AxiosPromise<T>;
 
 type HttpServiceConfig = AxiosRequestConfig;
+
+type HttpServiceInitConfig = Pick<HttpServiceConfig, 'baseURL'>;
 
 export const createHttpService = (
   config: HttpServiceConfig = {},
@@ -59,7 +62,7 @@ export const createHttpService = (
   };
 
   httpService.interceptors.response.use(
-    (res) => res,
+    (res) => res.data,
     (error) => {
       errorListeners.forEach((func) => {
         func(error);
@@ -68,6 +71,14 @@ export const createHttpService = (
       return Promise.reject(errorFormatter(error));
     },
   );
+
+  httpService.init = (newConfig?: HttpServiceInitConfig) => {
+    if (newConfig) {
+      httpService.defaults.baseURL = newConfig.baseURL;
+    }
+
+    return httpService;
+  };
 
   return httpService;
 };

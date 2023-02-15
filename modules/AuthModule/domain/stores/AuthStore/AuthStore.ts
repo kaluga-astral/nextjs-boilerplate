@@ -10,7 +10,13 @@ export class AuthStore {
   private protectedHttpClients: HttpService[] = [];
 
   constructor() {
-    makeAutoObservable(this, {}, { autoBind: true });
+    makeAutoObservable<AuthStore, 'protectedHttpClients'>(
+      this,
+      {
+        protectedHttpClients: false,
+      },
+      { autoBind: true },
+    );
   }
 
   public signIn = (accessToken: string) => {
