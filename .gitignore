@@ -9,3 +9,4 @@ yarn-error.log*
 /.swc
 tsconfig.tsbuildinfo
 .sentryclirc
+out

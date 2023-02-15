@@ -26,7 +26,7 @@ export const Header = observer(() => {
     if (query.data) {
       setUserData(query);
     }
-  }, [query]);
+  }, [query, setUserData]);
 
   return (
     <DashboardLayout.Header

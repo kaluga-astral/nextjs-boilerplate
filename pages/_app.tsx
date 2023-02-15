@@ -15,6 +15,7 @@ import {
   apiHttpClient,
   configService,
   createStylesServerCache,
+  initApiHttpClient,
   monitoringErrorService,
   queryClient,
   theme,
@@ -24,6 +25,7 @@ configService.init({
   apiUrl: process.env.NEXT_PUBLIC_API_URL as string,
 });
 
+initApiHttpClient();
 enableMobxStaticRendering(typeof window === 'undefined');
 
 const stylesCache = createStylesServerCache({ key: 'next' });
@@ -31,6 +33,7 @@ const stylesCache = createStylesServerCache({ key: 'next' });
 export const App = ({ Component, pageProps }: AppProps) => {
   useEffect(() => {
     authStore.addProtectedHttpClients([apiHttpClient]);
+    authStore.signIn('token');
   }, []);
 
   return (

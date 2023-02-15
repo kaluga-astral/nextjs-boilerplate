@@ -25,7 +25,7 @@ class HeaderStore {
     const { displayName } = data;
 
     this.isLoading = isLoading;
-    this.user = { displayName };
+    this.user.displayName = displayName;
   };
 }
 
