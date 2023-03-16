@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 
 import { FormAutocomplete, FormAutocompleteProps } from '@example/shared';
-import { useTariffsQuery } from '@example/data';
 
 import {
   TariffFormAutocompleteValue,
@@ -18,15 +17,13 @@ export const TariffFormAutocomplete = <FieldValues extends object>({
   control,
   label,
 }: TariffFormAutocompleteProps<FieldValues>) => {
-  const [{ setFetchTariffResult, tariffs, isLoading }] = useState(
+  const [{ tariffsQuery, tariffs, fetchTariffs }] = useState(
     createTariffAutocompleteStore,
   );
 
-  const query = useTariffsQuery({ fetchPolicy: 'network-only' });
-
   useEffect(() => {
-    setFetchTariffResult(query);
-  }, [query]);
+    fetchTariffs();
+  }, []);
 
   return (
     <FormAutocomplete<
@@ -40,7 +37,7 @@ export const TariffFormAutocomplete = <FieldValues extends object>({
       control={control}
       label={label}
       options={tariffs}
-      loading={isLoading}
+      loading={tariffsQuery.isLoading}
       getOptionLabel={(option) => option?.name}
     />
   );

@@ -1,5 +1,6 @@
 import {
   QueryClient,
+  queryCache,
   queryClient as queryClientInstance,
 } from '@example/shared';
 
@@ -26,6 +27,11 @@ export class TariffRepository {
   }
 
   public getTariffsCacheKey = () => [this.tariffsCacheID];
+
+  public tariffsQuery = (count: number) =>
+    queryCache.createQuery([count, ...this.getTariffsCacheKey()], () =>
+      this.tariffNetworkSources.getTariffs(),
+    );
 
   /**
    * @description Получение списка всех тарифов

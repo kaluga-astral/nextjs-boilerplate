@@ -1,7 +1,7 @@
 import { makeAutoObservable } from 'mobx';
 
-import { notify } from '@example/shared';
-import { TariffRepositoryDTO } from '@example/data';
+import { QueryStore, notify } from '@example/shared';
+import { TariffRepositoryDTO, tariffRepository } from '@example/data';
 
 export type TariffFormAutocompleteValue = Pick<
   TariffRepositoryDTO.TariffDTO,
@@ -9,41 +9,36 @@ export type TariffFormAutocompleteValue = Pick<
 >;
 
 export class TariffAutocompleteStore {
-  isLoading = true;
-
-  tariffs: TariffFormAutocompleteValue[] = [];
+  tariffsCount: number = 10;
 
   constructor() {
     makeAutoObservable(this, {}, { autoBind: true });
   }
 
-  private formatTariffs = (
-    data: TariffRepositoryDTO.TariffListDTO['data'],
-  ): TariffFormAutocompleteValue[] =>
-    data.map(({ name, id, price }) => ({
+  get tariffsQuery(): QueryStore<TariffRepositoryDTO.TariffListDTO> {
+    return tariffRepository.tariffsQuery(this.tariffsCount);
+  }
+
+  get tariffs(): TariffFormAutocompleteValue[] {
+    return (this.tariffsQuery.data?.data || [])?.map(({ name, id, price }) => ({
       name,
       id,
       price,
     }));
+  }
 
-  public setFetchTariffResult = ({
-    isLoading,
-    data,
-    error,
-  }: {
-    isLoading: boolean;
-    data?: TariffRepositoryDTO.TariffListDTO;
-    error: Error | null;
-  }) => {
-    this.isLoading = isLoading;
+  public fetchTariffs = () => {
+    this.tariffsQuery.sync();
+  };
 
-    if (error) {
-      notify.error(error.message);
+  public setTariffsCount = (count: number) => {
+    this.tariffsCount = count;
+  };
 
-      return;
-    }
+  private fetchEmptyTariffs = async (count: number) => {
+    const res = await tariffRepository.tariffsQuery(count).async();
 
-    this.tariffs = this.formatTariffs(data?.data || []);
+    console.log(res.total);
   };
 }
 
