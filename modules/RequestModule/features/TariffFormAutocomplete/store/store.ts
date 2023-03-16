@@ -1,6 +1,6 @@
 import { makeAutoObservable } from 'mobx';
 
-import { QueryStore, notify } from '@example/shared';
+import { QueryStore, notify, queryCache } from '@example/shared';
 import { TariffRepositoryDTO, tariffRepository } from '@example/data';
 
 export type TariffFormAutocompleteValue = Pick<
@@ -26,6 +26,15 @@ export class TariffAutocompleteStore {
       price,
     }));
   }
+
+  public createTariff = async () => {
+    await fetch();
+    // запрос
+    this.tariffsQuery.sync();
+    // удаление кэша
+    this.tariffsQuery.clearCache();
+    queryCache.clearCache([]);
+  };
 
   public fetchTariffs = () => {
     this.tariffsQuery.sync();

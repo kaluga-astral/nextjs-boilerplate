@@ -30,7 +30,7 @@ export class TariffRepository {
 
   public tariffsQuery = (count: number) =>
     queryCache.createQuery([count, ...this.getTariffsCacheKey()], () =>
-      this.tariffNetworkSources.getTariffs(),
+      this.tariffNetworkSources.getTariffs(count),
     );
 
   /**

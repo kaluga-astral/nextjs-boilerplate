@@ -8,8 +8,17 @@ type QueryParams<TData> = {
   onSuccess?: (res: TData) => void;
 };
 
+// TODO: сделать еще MutationStore
 export class QueryStore<TData> {
   public data: TData | undefined;
+
+  public isInvalid = false;
+
+  get data() {
+    if (!this.isInvalid) {
+      this.sync();
+    }
+  }
 
   public isLoading: boolean = false;
 
@@ -74,6 +83,10 @@ export class QueryStore<TData> {
       });
   };
 
+  public invalidateCache = () => {
+    this.isInvalid = true;
+  };
+
   public clearCache = () => {
     this.data = undefined;
     this.error = undefined;
@@ -90,10 +103,11 @@ export class QueryStore<TData> {
 export class QueryCache {
   cache: Record<string, QueryStore<any>> = {};
 
-  constructor() {
-    makeAutoObservable(this);
-  }
+  // public clearAllCache = () => {
+  //   this.cache[key].clearCache()
+  // };
 
+  // TODO: сделать еще createMutation
   public createQuery = <TData>(
     key: Key[],
     executor: () => Promise<TData>,
