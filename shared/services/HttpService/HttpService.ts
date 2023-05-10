@@ -6,6 +6,7 @@ import axios, {
   AxiosRequestConfig,
   AxiosResponse,
 } from 'axios';
+import axiosRetry from 'axios-retry';
 
 import { DataError } from '../DataError';
 
@@ -52,6 +53,8 @@ export const createHttpService = (
       },
     },
   }) as HttpService;
+
+  axiosRetry(httpService, { retries: 3 });
 
   httpService.subscribeOnError = (func) => {
     errorListeners.push(func);
