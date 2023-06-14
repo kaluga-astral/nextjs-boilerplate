@@ -1,4 +1,4 @@
-export * as validationService from 'yup';
+export * as v from '@astral/validations';
 
 export { notify } from '@astral/ui';
 

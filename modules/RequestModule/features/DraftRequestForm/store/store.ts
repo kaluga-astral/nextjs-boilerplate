@@ -1,6 +1,6 @@
 import { makeAutoObservable } from 'mobx';
 
-import { validationService } from '@example/shared';
+import { v } from '@example/shared';
 
 import { TariffFormAutocompleteValue } from '../../TariffFormAutocomplete';
 import { DraftRequestStage } from '../enums';
@@ -15,13 +15,13 @@ export type RequestInfoStageValues = {
 
 export type DraftRequestFormValues = TariffStageValues & RequestInfoStageValues;
 
-const REQUEST_INFO_STAGE_VALIDATION_SCHEMA = {
-  description: validationService.string().required('Обязательное поле'),
-};
+const REQUEST_INFO_STAGE_VALIDATION_SCHEMA = v.object<RequestInfoStageValues>({
+  description: v.string(v.min(3), v.max(256)),
+});
 
-const TARIFF_STAGE_VALIDATION_SCHEMA = {
-  tariff: validationService.object().required('Обязательное поле'),
-};
+const TARIFF_STAGE_VALIDATION_SCHEMA = v.object<TariffStageValues>({
+  tariff: v.object({}),
+});
 
 type Handlers = {
   onFinishSubmit: (values: DraftRequestFormValues) => Promise<void>;
@@ -32,9 +32,9 @@ export class DraftRequestFormStore {
 
   public isLastStage = false;
 
-  // TODO: сделать типизацию для схем валидаций. Избавиться от any
-  // eslint-disable-next-line
-  public validationSchema: Record<string, any> = TARIFF_STAGE_VALIDATION_SCHEMA;
+  public validationSchema: v.ObjectGuard<
+    TariffStageValues | RequestInfoStageValues
+  > = TARIFF_STAGE_VALIDATION_SCHEMA;
 
   /**
    * @description Выбран догорой тариф

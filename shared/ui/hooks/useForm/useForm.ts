@@ -4,17 +4,16 @@ import {
   UseFormReturn,
   useForm as useAstralForm,
 } from '@astral/ui';
-import { yupResolver } from '@hookform/resolvers/yup';
+import { resolver } from '@astral/validations-react-hook-form-resolver';
 
-import { validationService } from '../../../services';
+import { v } from '../../../services';
 
 export type UseFormProps<
   TFieldValues extends FormFieldValues = FormFieldValues,
   // eslint-disable-next-line
   TContext = any,
 > = Omit<UseAstralFormProps<TFieldValues, TContext>, 'resolver'> & {
-  // eslint-disable-next-line
-  validationSchema?: Record<keyof TFieldValues, any>;
+  validationSchema?: v.ObjectGuard<TFieldValues, TFieldValues>;
 };
 
 export const useForm = <
@@ -32,9 +31,7 @@ export const useForm = <
   useAstralForm<TFieldValues, TContext>({
     ...params,
     defaultValues,
-    resolver:
-      validationSchema &&
-      yupResolver(validationService.object(validationSchema)),
+    resolver: validationSchema && resolver(validationSchema),
   });
 
 export type { UseFormReturn };
