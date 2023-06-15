@@ -1,5 +1,5 @@
 import { AppProps } from 'next/app';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import { enableStaticRendering as enableMobxStaticRendering } from 'mobx-react-lite';
 
@@ -28,13 +28,15 @@ configService.init({
 initApiHttpClient();
 enableMobxStaticRendering(typeof window === 'undefined');
 
-const stylesCache = createStylesServerCache({ key: 'next' });
-
 export const App = ({ Component, pageProps }: AppProps) => {
   useEffect(() => {
     authStore.addProtectedHttpClients([apiHttpClient]);
     authStore.signIn('token');
   }, []);
+
+  const [stylesCache] = useState(() => {
+    return createStylesServerCache({ key: 'next' });
+  });
 
   return (
     <>

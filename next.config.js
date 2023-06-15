@@ -21,6 +21,7 @@ const nextConfig = {
     '@astral/components',
     '@astral/form',
     '@astral/validations',
+    '@astral/validations-react-hook-form-resolver',
     'lodash-es',
   ],
   images: {
