@@ -23,6 +23,7 @@ const nextConfig = {
     '@astral/validations',
     '@astral/validations-react-hook-form-resolver',
     'lodash-es',
+    '@astral/mobx-query',
   ],
   images: {
     // При export static оптимизация не работает
