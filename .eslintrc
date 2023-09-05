@@ -84,6 +84,24 @@
           }
         ]
       }
+    },
+    // разрешаем импорт из других модулей только через external.ts файлы
+    {
+      "files": "modules/**/*.+(ts|tsx)",
+      "excludedFiles": ["modules/**/external.ts"],
+      "rules": {
+        "no-restricted-imports": [
+          "error",
+          {
+            "patterns": [
+              {
+                "group": ["@example/modules"],
+                "message": "Импорты из других модулей должны проходить через external.ts"
+              }
+            ]
+          }
+        ]
+      }
     }
   ]
 }
