@@ -12,6 +12,10 @@ import { AdministrationRepositoryDTO, BookRepositoryDTO } from '@example/data';
 
 import { BookFormStore } from '../store';
 
+type UseBookFormParams = {
+  onSubmit: (values: BookFormValues) => Promise<void>;
+};
+
 export type BookFormValues = {
   name: FormTextFieldValue;
   genre: BookRepositoryDTO.GenreDTO;
@@ -21,9 +25,10 @@ export type BookFormValues = {
   isPresentCoAuthor: FormCheckboxValue;
 };
 
-type Result = {
+type UseBookFormResult = {
   form: UseFormReturn<BookFormValues>;
   isPresentCoAuthor: boolean;
+  submit: ReturnType<UseFormReturn<BookFormValues>['handleSubmit']>;
 };
 
 const validationSchema = v.object<BookFormValues>({
@@ -49,7 +54,10 @@ const validationSchema = v.object<BookFormValues>({
   }),
 });
 
-export const useBookForm = (store: BookFormStore): Result => {
+export const useBookForm = (
+  store: BookFormStore,
+  { onSubmit }: UseBookFormParams,
+): UseBookFormResult => {
   const form = useForm<BookFormValues>({ validationSchema });
 
   useEffect(() => {
@@ -61,7 +69,7 @@ export const useBookForm = (store: BookFormStore): Result => {
 
   const isPresentCoAuthor = form.watch('isPresentCoAuthor');
 
-  return { form, isPresentCoAuthor };
+  return { form, isPresentCoAuthor, submit: form.handleSubmit(onSubmit) };
 };
 
 export const useBookFormContext = () => useFormContext<BookFormValues>();

@@ -3,18 +3,20 @@ import { observer } from 'mobx-react-lite';
 
 import { FormCheckbox, FormProvider, FormTextField } from '@example/shared';
 
-import { useBookForm } from './useForm';
+import { BookFormValues, useBookForm } from './useForm';
 import { Genre } from './Genre';
 import { Preview } from './Preview';
 import { Author } from './Author';
 import { createBookFormStore } from './store';
 
-export type BookFormProps = {};
+export type BookFormProps = {
+  onSubmit: (values: BookFormValues) => Promise<void>;
+};
 
-export const BookForm = observer(({}: BookFormProps) => {
+export const BookForm = observer(({ onSubmit }: BookFormProps) => {
   const [store] = useState(createBookFormStore);
 
-  const { form, isPresentCoAuthor } = useBookForm(store);
+  const { form, isPresentCoAuthor } = useBookForm(store, { onSubmit });
 
   const handleBlurName = (event: ChangeEvent<HTMLInputElement>) => {
     store.findBook(event.target.value);
