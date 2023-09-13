@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react';
+import { useState } from 'react';
 import { observer } from 'mobx-react-lite';
 
 import { FormCheckbox, FormProvider, FormTextField } from '@example/shared';
@@ -18,10 +18,6 @@ export const BookForm = observer(({ onSubmit }: BookFormProps) => {
 
   const { form, isPresentCoAuthor } = useBookForm(store, { onSubmit });
 
-  const handleBlurName = (event: ChangeEvent<HTMLInputElement>) => {
-    store.findBook(event.target.value);
-  };
-
   return (
     <FormProvider {...form}>
       <form noValidate>
@@ -30,7 +26,6 @@ export const BookForm = observer(({ onSubmit }: BookFormProps) => {
           control={form.control}
           name="name"
           label="Название книги"
-          onBlur={handleBlurName}
         />
         <Genre />
         <FormTextField

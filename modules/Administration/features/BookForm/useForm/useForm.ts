@@ -60,14 +60,20 @@ export const useBookForm = (
 ): UseBookFormResult => {
   const form = useForm<BookFormValues>({ validationSchema });
 
+  const isPresentCoAuthor = form.watch('isPresentCoAuthor');
+
+  const name = form.watch('name');
+
   useEffect(() => {
-    store.subscribeOnAutocompleteByName((data) => {
+    store.onAutocompleteByName((data) => {
       form.setValue('genre', data.genre);
       form.setValue('author', data.author);
     });
   }, []);
 
-  const isPresentCoAuthor = form.watch('isPresentCoAuthor');
+  useEffect(() => {
+    store.findBook(name);
+  }, [name]);
 
   return { form, isPresentCoAuthor, submit: form.handleSubmit(onSubmit) };
 };

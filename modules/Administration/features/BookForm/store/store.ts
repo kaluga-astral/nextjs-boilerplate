@@ -1,5 +1,6 @@
 import { makeAutoObservable, runInAction } from 'mobx';
 
+import { debounce } from '@example/shared';
 import {
   BookRepository,
   BookRepositoryDTO,
@@ -17,13 +18,11 @@ export class BookFormStore {
     makeAutoObservable(this);
   }
 
-  public subscribeOnAutocompleteByName = (
-    sub: SubOnAutocompleteByName,
-  ): void => {
+  public onAutocompleteByName = (sub: SubOnAutocompleteByName): void => {
     this.subOnAutocomplete = sub;
   };
 
-  public findBook = (name: string): void => {
+  public findBook = debounce((name: string): void => {
     this.isLoadingBookByName = true;
 
     this.bookRepository
@@ -34,7 +33,7 @@ export class BookFormStore {
           this.isLoadingBookByName = true;
         });
       });
-  };
+  }, 1000);
 }
 
 export const createBookFormStore = () =>

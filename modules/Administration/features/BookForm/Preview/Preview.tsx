@@ -1,9 +1,9 @@
 import { Description, Grid } from '@example/shared';
 
-import { usePreviewLogic } from './useForm';
+import { useFormPreview } from './useForm';
 
 export const Preview = () => {
-  const { name, authorFullName } = usePreviewLogic();
+  const { name, authorFullName } = useFormPreview();
 
   return (
     <Grid spacing={2}>

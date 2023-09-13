@@ -5,7 +5,7 @@ type Returned = {
   authorFullName: string;
 };
 
-export const usePreviewLogic = (): Returned => {
+export const useFormPreview = (): Returned => {
   const { watch } = useBookFormContext();
 
   const { name, author } = watch();
