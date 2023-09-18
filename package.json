@@ -29,13 +29,14 @@
     "typescript": "^4.9.5",
     "mobx": "^6.7.0",
     "mobx-react-lite": "^3.4.0",
-    "@astral/validations": "^3.2.0",
+    "@astral/validations": "^4.8.0",
     "@astral/validations-react-hook-form-resolver": "^3.2.0",
     "nanoid": "^4.0.1",
     "@tsconfig/next": "^1.0.5",
     "@types/query-string": "6.3.0",
     "@newhighsco/next-plugin-svgr": "3.0.80",
-    "lodash-es": "^4.17.21"
+    "lodash-es": "^4.17.21",
+    "@types/lodash-es": "^4.17.9"
   },
   "devDependencies": {
     "eslint": "^8.22.0",
