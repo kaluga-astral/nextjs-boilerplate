@@ -1,13 +1,6 @@
 import { useEffect } from 'react';
 
-import {
-  FormCheckboxValue,
-  FormTextFieldValue,
-  UseFormReturn,
-  useForm,
-  useFormContext,
-  v,
-} from '@example/shared';
+import { UseFormReturn, useForm, useFormContext, v } from '@example/shared';
 import { AdministrationRepositoryDTO, BookRepositoryDTO } from '@example/data';
 
 import { BookFormStore } from '../../store';
@@ -17,12 +10,12 @@ type UseBookFormParams = {
 };
 
 export type BookFormValues = {
-  name: FormTextFieldValue;
+  name: string;
   genre: BookRepositoryDTO.GenreDTO;
-  pageCount: FormTextFieldValue;
+  pageCount: string;
   author: AdministrationRepositoryDTO.CreateBookInputDTO['author'];
   coAuthor?: AdministrationRepositoryDTO.CreateBookInputDTO['coAuthor'];
-  isPresentCoAuthor: FormCheckboxValue;
+  isPresentCoAuthor: boolean;
 };
 
 type UseBookFormResult = {
