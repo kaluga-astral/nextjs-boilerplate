@@ -3,7 +3,7 @@ import { observer } from 'mobx-react-lite';
 
 import { FormAutocomplete } from '@example/shared';
 
-import { useBookFormContext } from '../useForm';
+import { useBookFormContext } from '../hooks';
 
 import { createGenreStore } from './store';
 

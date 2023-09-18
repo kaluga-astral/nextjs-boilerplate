@@ -10,7 +10,7 @@ import {
 } from '@example/shared';
 import { AdministrationRepositoryDTO, BookRepositoryDTO } from '@example/data';
 
-import { BookFormStore } from '../store';
+import { BookFormStore } from '../../store';
 
 type UseBookFormParams = {
   onSubmit: (values: BookFormValues) => Promise<void>;

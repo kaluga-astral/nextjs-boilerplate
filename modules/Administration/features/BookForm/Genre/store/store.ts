@@ -2,13 +2,12 @@ import { makeAutoObservable, runInAction } from 'mobx';
 
 import {
   BookRepository,
+  BookRepositoryDTO,
   bookRepository as bookRepositoryInstance,
 } from '@example/data';
 
-import { BookFormValues } from '../../useForm';
-
 export class GenreStore {
-  public genreList: Array<BookFormValues['genre']> = [];
+  public genreList: BookRepositoryDTO.GenreDTO[] = [];
 
   public isLoading = true;
 

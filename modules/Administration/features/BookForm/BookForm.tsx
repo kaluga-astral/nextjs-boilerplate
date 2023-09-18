@@ -3,7 +3,7 @@ import { observer } from 'mobx-react-lite';
 
 import { FormCheckbox, FormProvider, FormTextField } from '@example/shared';
 
-import { BookFormValues, useBookForm } from './useForm';
+import { BookFormValues, useBookForm } from './hooks';
 import { Genre } from './Genre';
 import { Preview } from './Preview';
 import { Author } from './Author';
