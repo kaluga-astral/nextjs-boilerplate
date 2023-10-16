@@ -1,9 +1,9 @@
 import {
   QueryClient,
+  QueryFetchPolicy,
   queryClient as queryClientInstance,
 } from '@example/shared';
 
-import { RepositoryCachedQueryParams } from '../../types';
 import {
   UserContactNetworkDTO,
   UserNetworkSources,
@@ -34,7 +34,7 @@ export class UserRepository {
   /**
    * @description Получение полной информации о юзере
    * */
-  public getFullInfo = (params?: RepositoryCachedQueryParams) =>
+  public getFullInfo = (params?: { fetchPolicy?: QueryFetchPolicy }) =>
     this.queryClient.fetchQuery<UserRepositoryDTO.UserFullInfoDTO>(
       this.fullInfoCacheKey,
       async () => {
@@ -51,14 +51,14 @@ export class UserRepository {
       params,
     );
 
-  public getContactInfo = (params?: RepositoryCachedQueryParams) =>
+  public getContactInfo = (params?: { fetchPolicy?: QueryFetchPolicy }) =>
     this.queryClient.fetchQuery<UserContactNetworkDTO>(
       this.contactInfoCacheKey,
       this.userNetworkSources.getContactInfo,
       params,
     );
 
-  public getPersonInfo = (params?: RepositoryCachedQueryParams) =>
+  public getPersonInfo = (params?: { fetchPolicy?: QueryFetchPolicy }) =>
     this.queryClient.fetchQuery<UserPersonNetworkDTO>(
       this.personInfoCacheKey,
       this.userNetworkSources.getPersonInfo,

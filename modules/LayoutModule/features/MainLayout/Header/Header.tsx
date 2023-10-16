@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { observer } from 'mobx-react-lite';
 import logo from 'public/images/logo.png';
 
@@ -13,20 +13,11 @@ import {
   ProfileOutlineMd,
   QuitOutlineMd,
 } from '@example/shared';
-import { useUserFullInfoQuery } from '@example/data';
 
 import { createHeaderStore } from './store';
 
 export const Header = observer(() => {
-  const [{ setUserData, user }] = useState(createHeaderStore);
-
-  const query = useUserFullInfoQuery();
-
-  useEffect(() => {
-    if (query.data) {
-      setUserData(query);
-    }
-  }, [query, setUserData]);
+  const [{ user }] = useState(createHeaderStore);
 
   return (
     <DashboardLayout.Header

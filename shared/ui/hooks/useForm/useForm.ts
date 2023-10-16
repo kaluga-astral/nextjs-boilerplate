@@ -13,7 +13,7 @@ export type UseFormProps<
   // eslint-disable-next-line
   TContext = any,
 > = Omit<UseAstralFormProps<TFieldValues, TContext>, 'resolver'> & {
-  validationSchema?: v.ObjectGuard<TFieldValues, TFieldValues>;
+  validationSchema?: v.ObjectGuard<TFieldValues>;
 };
 
 export const useForm = <
