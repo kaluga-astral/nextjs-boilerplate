@@ -17,6 +17,8 @@ import {
   createStylesServerCache,
   initApiHttpClient,
   monitoringErrorService,
+  noDataImgSrc,
+  placeholderImgSrc,
   queryClient,
   theme,
 } from '@example/shared';
@@ -49,6 +51,10 @@ export const App = ({ Component, pageProps }: AppProps) => {
       </Head>
       <StylesCacheProvider value={stylesCache}>
         <ConfigProvider
+          imagesMap={{
+            noDataImgSrc: noDataImgSrc,
+            defaultErrorImgSrc: placeholderImgSrc,
+          }}
           captureException={monitoringErrorService.captureException}
         >
           <ThemeProvider theme={theme}>

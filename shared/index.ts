@@ -9,3 +9,5 @@ export * from './utils';
 export * from './enums';
 
 export * from './constants';
+
+export * from './illustrations';

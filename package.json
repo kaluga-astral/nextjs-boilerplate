@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@astral/react-query": "^1.2.0",
-    "@astral/ui": "^2.23.1",
+    "@astral/ui": "^3.29.1",
     "@sentry/nextjs": "^7.36.0",
     "axios": "^1.4.0",
     "axios-retry": "^3.4.0",
