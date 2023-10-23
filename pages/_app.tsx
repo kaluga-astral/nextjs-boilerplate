@@ -9,7 +9,6 @@ import {
   ConfigProvider,
   NotificationContainer,
   PageProgressbar,
-  QueryClientProvider,
   StylesCacheProvider,
   ThemeProvider,
   apiHttpClient,
@@ -19,7 +18,6 @@ import {
   monitoringErrorService,
   noDataImgSrc,
   placeholderImgSrc,
-  queryClient,
   theme,
 } from '@example/shared';
 
@@ -58,13 +56,11 @@ export const App = ({ Component, pageProps }: AppProps) => {
           captureException={monitoringErrorService.captureException}
         >
           <ThemeProvider theme={theme}>
-            <QueryClientProvider client={queryClient}>
-              <NotificationContainer />
-              <PageProgressbar />
-              <MainLayout>
-                <Component {...pageProps} />
-              </MainLayout>
-            </QueryClientProvider>
+            <NotificationContainer />
+            <PageProgressbar />
+            <MainLayout>
+              <Component {...pageProps} />
+            </MainLayout>
           </ThemeProvider>
         </ConfigProvider>
       </StylesCacheProvider>

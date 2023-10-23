@@ -4,6 +4,7 @@
     "strict": true,
     "isolatedModules": true,
     "target": "esnext",
+    "types": ["vitest/globals"],
     "paths": {
       "@example/*": [
         "./*"

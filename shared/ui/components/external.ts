@@ -35,8 +35,6 @@ export {
 
 export { createStylesCache as createStylesServerCache } from '@astral/ui/server';
 
-export { QueryClientProvider } from '@astral/react-query';
-
 export { default as Image } from 'next/image';
 
 export { default as RouterLink } from 'next/link';

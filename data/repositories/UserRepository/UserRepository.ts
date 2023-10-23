@@ -1,13 +1,7 @@
-import {
-  QueryClient,
-  QueryFetchPolicy,
-  queryClient as queryClientInstance,
-} from '@example/shared';
+import { CacheService, cacheService } from '@example/shared';
 
 import {
-  UserContactNetworkDTO,
   UserNetworkSources,
-  UserPersonNetworkDTO,
   userNetworkSources as userNetworkSourcesInstance,
 } from '../../sources';
 
@@ -17,30 +11,24 @@ import { UserRepositoryDTO } from './dto';
  * @description Repository для работы с даннми юзере
  * */
 export class UserRepository {
-  public fullInfoCacheKey = ['fullInfoCacheKey'];
+  private fullInfoCacheKey = ['fullInfoCacheKey'];
 
-  public contactInfoCacheKey = ['contactInfoCacheKey'];
+  private contactInfoCacheKey = ['contactInfoCacheKey'];
 
-  public personInfoCacheKey = ['personInfoCacheKey'];
+  private personInfoCacheKey = ['personInfoCacheKey'];
 
   constructor(
     private readonly userNetworkSources: UserNetworkSources,
-    private readonly queryClient: QueryClient,
-  ) {
-    this.userNetworkSources = userNetworkSources;
-    this.queryClient = queryClient;
-  }
+    private readonly cache: CacheService,
+  ) {}
 
-  /**
-   * @description Получение полной информации о юзере
-   * */
-  public getFullInfo = (params?: { fetchPolicy?: QueryFetchPolicy }) =>
-    this.queryClient.fetchQuery<UserRepositoryDTO.UserFullInfoDTO>(
+  public getFullInfoQuery = () =>
+    this.cache.createQuery<UserRepositoryDTO.UserFullInfoDTO>(
       this.fullInfoCacheKey,
       async () => {
         const [contactInfo, personInfo] = await Promise.all([
-          this.getContactInfo(params),
-          this.getPersonInfo(params),
+          this.getContactInfoQuery().async(),
+          this.getPersonInfoQuery().async(),
         ]);
 
         return {
@@ -48,25 +36,22 @@ export class UserRepository {
           ...personInfo,
         };
       },
-      params,
     );
 
-  public getContactInfo = (params?: { fetchPolicy?: QueryFetchPolicy }) =>
-    this.queryClient.fetchQuery<UserContactNetworkDTO>(
+  public getContactInfoQuery = () =>
+    this.cache.createQuery<UserRepositoryDTO.UserContactDTO>(
       this.contactInfoCacheKey,
       this.userNetworkSources.getContactInfo,
-      params,
     );
 
-  public getPersonInfo = (params?: { fetchPolicy?: QueryFetchPolicy }) =>
-    this.queryClient.fetchQuery<UserPersonNetworkDTO>(
-      this.personInfoCacheKey,
+  public getPersonInfoQuery = () =>
+    this.cache.createQuery<UserRepositoryDTO.UserPersonDTO>(
+      this.contactInfoCacheKey,
       this.userNetworkSources.getPersonInfo,
-      params,
     );
 }
 
 export const userRepository = new UserRepository(
   userNetworkSourcesInstance,
-  queryClientInstance,
+  cacheService,
 );
