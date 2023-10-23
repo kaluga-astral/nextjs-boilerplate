@@ -15,5 +15,12 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: path.resolve(__dirname, 'vitest.setup.js'),
+    coverage: {
+      enabled: true,
+      lines: 70,
+      branches: 70,
+      functions: 70,
+      statements: 70,
+    },
   },
 });
