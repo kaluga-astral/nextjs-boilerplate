@@ -46,6 +46,7 @@
     "@astral/stylelint-config-styled": "^1.8.0",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.5.1",
+    "@testing-library/jest-dom": "^6.1.4",
     "@vitejs/plugin-react": "^4.1.0",
     "@vitest/coverage-v8": "^0.34.6",
     "commitlint": "^18.0.0",
@@ -59,7 +60,6 @@
     "stylelint": "^15.11.0",
     "vite-tsconfig-paths": "^4.2.1",
     "vitest": "^0.34.6",
-    "vitest-dom": "^0.1.1",
     "yaspeller": "^8.0.1"
   }
 }
