@@ -34,6 +34,7 @@ export type BookByNameNetworkDTO = {
 };
 
 export type BookListItemNetworkDTO = {
+  id: string;
   name: string;
   price: number;
 };

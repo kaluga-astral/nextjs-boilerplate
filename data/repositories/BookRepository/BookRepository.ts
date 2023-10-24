@@ -19,27 +19,30 @@ export class BookRepository {
   ) {}
 
   public getGenreByID = (id: string): Promise<BookRepositoryDTO.GenreDTO> =>
-    this.bookNetworkSources.getGenreByID(id);
+    this.bookNetworkSources.getGenreByID(id).then(({ data }) => data);
 
   public getGenreList = (): Promise<BookRepositoryDTO.GenreListDTO> =>
-    this.bookNetworkSources.getGenreList();
+    this.bookNetworkSources.getGenreList().then(({ data }) => data);
 
   public getBookByName = async (
     name: string,
   ): Promise<BookRepositoryDTO.BookByNameDTO> => {
-    const { genreID, ...data } = await this.bookNetworkSources.getBookByName({
+    const { data } = await this.bookNetworkSources.getBookByName({
       name,
     });
 
+    const { genreID, ...book } = data;
+
     const genre = await this.getGenreByID(genreID);
 
-    return { ...data, genre };
+    return { ...book, genre };
   };
 
-  public getBookList = (params: BookRepositoryDTO.BookListInputDTO) =>
+  public getBookListQuery = (params: BookRepositoryDTO.BookListInputDTO) =>
     this.cache.createQuery<BookRepositoryDTO.BookListDTO>(
       [this.bookListBaseKey, params],
-      async () => this.bookNetworkSources.getBookList(params),
+      async () =>
+        this.bookNetworkSources.getBookList(params).then(({ data }) => data),
     );
 }
 

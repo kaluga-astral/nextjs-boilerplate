@@ -1,5 +1,6 @@
 import {
   BookByNameNetworkDTO,
+  BookListItemNetworkDTO,
   BookListNetworkDTO,
   BookListNetworkInputDTO,
   GenreListNetworkDTO,
@@ -15,5 +16,6 @@ export namespace BookRepositoryDTO {
   };
 
   export type BookListDTO = BookListNetworkDTO;
+  export type BookListItemDTO = BookListItemNetworkDTO;
   export type BookListInputDTO = BookListNetworkInputDTO;
 }

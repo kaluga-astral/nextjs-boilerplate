@@ -1,4 +1,4 @@
-import { SortingOrder } from './enums';
+export type SortingOrder = 'asc' | 'desc';
 
 export type PaginationInputDTO = {
   offset: number;
