@@ -1,3 +1,5 @@
+import { CacheService, cacheService } from '@example/shared';
+
 import {
   BookNetworkSources,
   bookNetworkSources as bookNetworkSourcesInstance,
@@ -9,9 +11,12 @@ import { BookRepositoryDTO } from './dto';
  * @description Работает с данными о книгах
  * */
 export class BookRepository {
-  constructor(private readonly bookNetworkSources: BookNetworkSources) {
-    this.bookNetworkSources = bookNetworkSourcesInstance;
-  }
+  private bookListBaseKey = 'book-list';
+
+  constructor(
+    private readonly bookNetworkSources: BookNetworkSources,
+    private readonly cache: CacheService,
+  ) {}
 
   public getGenreByID = (id: string): Promise<BookRepositoryDTO.GenreDTO> =>
     this.bookNetworkSources.getGenreByID(id);
@@ -30,6 +35,15 @@ export class BookRepository {
 
     return { ...data, genre };
   };
+
+  public getBookList = (params: BookRepositoryDTO.BookListInputDTO) =>
+    this.cache.createQuery<BookRepositoryDTO.BookListDTO>(
+      [this.bookListBaseKey, params],
+      async () => this.bookNetworkSources.getBookList(params),
+    );
 }
 
-export const bookRepository = new BookRepository(bookNetworkSourcesInstance);
+export const bookRepository = new BookRepository(
+  bookNetworkSourcesInstance,
+  cacheService,
+);

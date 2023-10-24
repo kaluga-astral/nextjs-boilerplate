@@ -3,6 +3,8 @@ import { apiHttpClient } from '@example/shared';
 import {
   BookByNameNetworkDTO,
   BookByNameNetworkInputDTO,
+  BookListNetworkDTO,
+  BookListNetworkInputDTO,
   GenreListNetworkDTO,
   GenreNetworkDTO,
 } from './dto';
@@ -19,6 +21,11 @@ export const bookNetworkSources = {
       '/book/byName',
       { params: data },
     ),
+
+  getBookList: (params: BookListNetworkInputDTO) =>
+    apiHttpClient.get<BookListNetworkInputDTO, BookListNetworkDTO>('/books', {
+      params,
+    }),
 };
 
 export type BookNetworkSources = typeof bookNetworkSources;

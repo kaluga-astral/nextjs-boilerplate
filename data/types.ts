@@ -1,3 +1,5 @@
+import { SortingOrder } from './enums';
+
 export type PaginationInputDTO = {
   offset: number;
   count: number;
@@ -5,5 +7,14 @@ export type PaginationInputDTO = {
 
 export type SortInputDTO = {
   sortField?: string;
-  sortOrder?: string;
+  sortOrder?: SortingOrder;
+};
+
+export type PaginationMetaDTO = {
+  totalCount: number;
+};
+
+export type WithPaginationDTO<TData extends object> = {
+  data: TData[];
+  meta: PaginationMetaDTO;
 };
