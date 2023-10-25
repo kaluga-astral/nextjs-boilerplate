@@ -1,20 +1,19 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { observer } from 'mobx-react-lite';
 
-import { DataGrid } from '@example/shared';
+import { DataGrid, DataGridPagination, DataGridSort } from '@example/shared';
 
 import { AvailableSortField, ListItem, createGoodsListStore } from './store';
 
-/**
- * @description Список товаров (книг)
- */
 export const BookList = observer(() => {
-  const [{ list, isLoading, getList, setSort, sort }] =
+  const [{ list, isLoading, totalCount, setSort, sort }] =
     useState(createGoodsListStore);
 
-  useEffect(() => {
-    getList();
-  }, []);
+  const handleSort = (newSort?: DataGridSort<AvailableSortField>) => {
+    if (newSort) {
+      setSort({ sortOrder: newSort.sort, sortField: newSort.fieldId });
+    }
+  };
 
   return (
     <DataGrid<ListItem, AvailableSortField>
@@ -32,8 +31,9 @@ export const BookList = observer(() => {
       rows={list}
       keyId="id"
       loading={isLoading}
-      sorting={sort}
-      onSort={setSort}
+      sorting={sort && { sort: sort.sortOrder, fieldId: sort.sortField }}
+      onSort={handleSort}
+      Footer={<DataGridPagination totalCount={totalCount} />}
     />
   );
 });

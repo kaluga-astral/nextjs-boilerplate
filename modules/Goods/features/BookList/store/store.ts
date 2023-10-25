@@ -3,9 +3,10 @@ import { makeAutoObservable } from 'mobx';
 import {
   BookRepository,
   PaginationInputDTO,
+  SortInputDTO,
   bookRepository as bookRepositoryInstance,
 } from '@example/data';
-import { DataGridSort, formatPriceToView } from '@example/shared';
+import { formatPriceToView } from '@example/shared';
 
 export type ListItem = {
   id: string;
@@ -15,8 +16,10 @@ export type ListItem = {
 
 export type AvailableSortField = 'name' | 'price';
 
+type SortData = Required<SortInputDTO<AvailableSortField>>;
+
 export class GoodsListStore {
-  public sort?: DataGridSort<AvailableSortField>;
+  public sort?: SortData;
 
   public pagination: PaginationInputDTO = { count: 10, offset: 0 };
 
@@ -26,15 +29,14 @@ export class GoodsListStore {
 
   private get listQuery() {
     return this.bookRepository.getBookListQuery({
-      sortField: this.sort?.fieldId,
-      sortOrder: this.sort?.sort,
+      ...this.sort,
       ...this.pagination,
     });
   }
 
-  public getList = (): void => {
-    this.listQuery.sync();
-  };
+  public get totalCount() {
+    return this.listQuery.data?.meta.totalCount || 0;
+  }
 
   public get list(): ListItem[] {
     return (
@@ -50,7 +52,7 @@ export class GoodsListStore {
     return this.listQuery.isLoading;
   }
 
-  public setSort = (sort: DataGridSort<AvailableSortField> | undefined) => {
+  public setSort = (sort: SortData) => {
     this.sort = sort;
   };
 }
