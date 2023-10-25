@@ -1,18 +1,39 @@
 import { useState } from 'react';
 import { observer } from 'mobx-react-lite';
 
-import { DataGrid, DataGridPagination, DataGridSort } from '@example/shared';
+import {
+  DataGrid,
+  DataGridPagination,
+  DataGridPaginationProps,
+  DataGridSort,
+} from '@example/shared';
 
 import { AvailableSortField, ListItem, createGoodsListStore } from './store';
 
 export const BookList = observer(() => {
-  const [{ list, isLoading, totalCount, setSort, sort }] =
-    useState(createGoodsListStore);
+  const [
+    {
+      list,
+      isLoading,
+      totalCount,
+      setSort,
+      setPaginationPage,
+      pagination,
+      sort,
+    },
+  ] = useState(createGoodsListStore);
 
   const handleSort = (newSort?: DataGridSort<AvailableSortField>) => {
     if (newSort) {
       setSort({ sortOrder: newSort.sort, sortField: newSort.fieldId });
     }
+  };
+
+  const handleChangePage: DataGridPaginationProps['onChange'] = (
+    _,
+    newPage,
+  ) => {
+    setPaginationPage(newPage);
   };
 
   return (
@@ -33,7 +54,13 @@ export const BookList = observer(() => {
       loading={isLoading}
       sorting={sort && { sort: sort.sortOrder, fieldId: sort.sortField }}
       onSort={handleSort}
-      Footer={<DataGridPagination totalCount={totalCount} />}
+      Footer={
+        <DataGridPagination
+          onChange={handleChangePage}
+          page={pagination.page}
+          totalCount={totalCount}
+        />
+      }
     />
   );
 });

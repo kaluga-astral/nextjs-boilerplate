@@ -21,7 +21,7 @@ type SortData = Required<SortInputDTO<AvailableSortField>>;
 export class GoodsListStore {
   public sort?: SortData;
 
-  public pagination: PaginationInputDTO = { count: 10, offset: 0 };
+  public pagination: PaginationInputDTO = { count: 10, offset: 0, page: 0 };
 
   constructor(private readonly bookRepository: BookRepository) {
     makeAutoObservable(this);
@@ -54,6 +54,10 @@ export class GoodsListStore {
 
   public setSort = (sort: SortData) => {
     this.sort = sort;
+  };
+
+  public setPaginationPage = (newPage: number) => {
+    this.pagination.page = newPage;
   };
 }
 
