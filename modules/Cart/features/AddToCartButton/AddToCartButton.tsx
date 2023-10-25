@@ -21,7 +21,7 @@ export const AddToCartButton = observer(
     }
 
     return (
-      <Grid container spacing={2} direction="row" className={className}>
+      <Grid container spacing={2} direction="column" className={className}>
         <IconButton onClick={addToCart}>-</IconButton>
         <Typography component="output" color="info">
           {count}

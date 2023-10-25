@@ -46,6 +46,7 @@ export const BookList = observer(() => {
         {
           sortable: false,
           align: 'center',
+          width: '10%',
           renderCell: ({ id }) => {
             return <AddToCartButton goodsID={id} />;
           },

@@ -43,22 +43,20 @@ export class CartStore {
   public addGoods = (goodsID: string[]) => {
     this.optimisticCount = this.optimisticCount + goodsID.length;
 
-    this.cartRepository.addGoods(goodsID).catch((err) => {
-      this.notifyService.error(err);
+    this.cartRepository.addGoods(goodsID).catch((err: Error) => {
+      this.notifyService.error(err.message);
       // откат изменений
       this.optimisticCount = this.optimisticCount - goodsID.length;
-      this.removeGoods(goodsID);
     });
   };
 
   public removeGoods = (goodsID: string[]) => {
     this.optimisticCount = this.optimisticCount - goodsID.length;
 
-    this.cartRepository.removeGoods(goodsID).catch((err) => {
-      this.notifyService.error(err);
+    this.cartRepository.removeGoods(goodsID).catch((err: Error) => {
+      this.notifyService.error(err.message);
       // откат изменений
       this.optimisticCount = this.optimisticCount + goodsID.length;
-      this.addGoods(goodsID);
     });
   };
 }

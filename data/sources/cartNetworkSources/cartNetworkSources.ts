@@ -26,6 +26,21 @@ export const cartNetworkSources = {
       void,
       HttpServiceResponse<CartSourcesNetworkDTO.CartGoodsDTO>
     >('/cart/goods'),
+
+  // getGoods: async (): Promise<
+  //   HttpServiceResponse<CartSourcesNetworkDTO.CartGoodsDTO>
+  // > => ({
+  //   status: 200,
+  //   statusText: 'text',
+  //   headers: {},
+  //   config: {} as any,
+  //   data: {
+  //     data: [
+  //       { id: '1', price: 2000, name: 'Name', count: 1 },
+  //       { id: '2', price: 2000, name: 'Name', count: 0 },
+  //     ],
+  //   },
+  // }),
 };
 
 export type CartNetworkSources = typeof cartNetworkSources;

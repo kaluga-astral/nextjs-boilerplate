@@ -46,12 +46,13 @@ export const createHttpService = (
     });
 
   const httpService = axios.create({
-    ...config,
+    timeout: 3000,
     paramsSerializer: {
       serialize: (params) => {
         return qs.stringify(params);
       },
     },
+    ...config,
   }) as HttpService;
 
   axiosRetry(httpService, { retries: 3 });
