@@ -8,6 +8,8 @@ import {
   DataGridSort,
 } from '@example/shared';
 
+import { AddToCartButton } from '../../external';
+
 import { AvailableSortField, ListItem, createGoodsListStore } from './store';
 
 export const BookList = observer(() => {
@@ -44,8 +46,8 @@ export const BookList = observer(() => {
         {
           sortable: false,
           align: 'center',
-          renderCell: () => {
-            return <>counter</>;
+          renderCell: ({ id }) => {
+            return <AddToCartButton goodsID={id} />;
           },
         },
       ]}

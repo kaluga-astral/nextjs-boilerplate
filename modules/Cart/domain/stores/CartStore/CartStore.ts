@@ -63,5 +63,4 @@ export class CartStore {
   };
 }
 
-export const createCartStore = () =>
-  new CartStore(cartRepositoryInstance, notify);
+export const cartStore = new CartStore(cartRepositoryInstance, notify);

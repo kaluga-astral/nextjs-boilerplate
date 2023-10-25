@@ -12,6 +12,7 @@ export {
   MenuItem,
   DataGrid,
   DataGridPagination,
+  IconButton,
   type DataGridPaginationProps,
   ActionCell,
   type Actions as DataGridActions,
