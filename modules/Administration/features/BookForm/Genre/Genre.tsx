@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { observer } from 'mobx-react-lite';
+import { observer, useLocalObservable } from 'mobx-react-lite';
 
 import { FormAutocomplete } from '@example/shared';
 
@@ -8,7 +7,7 @@ import { useBookFormContext } from '../hooks';
 import { createGenreStore } from './store';
 
 export const Genre = observer(() => {
-  const [{ genreList, isLoading }] = useState(createGenreStore);
+  const { genreList, isLoading } = useLocalObservable(createGenreStore);
 
   const { control } = useBookFormContext();
 

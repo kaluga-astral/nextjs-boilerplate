@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { observer } from 'mobx-react-lite';
+import { observer, useLocalObservable } from 'mobx-react-lite';
 
 import { FormCheckbox, FormProvider, FormTextField } from '@example/shared';
 
@@ -14,7 +13,7 @@ export type BookFormProps = {
 };
 
 export const BookForm = observer(({ onSubmit }: BookFormProps) => {
-  const [store] = useState(createBookFormStore);
+  const store = useLocalObservable(createBookFormStore);
 
   const { form, isPresentCoAuthor } = useBookForm(store, { onSubmit });
 

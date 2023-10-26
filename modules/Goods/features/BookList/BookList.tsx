@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { observer } from 'mobx-react-lite';
+import { observer, useLocalObservable } from 'mobx-react-lite';
 
 import {
   DataGrid,
@@ -13,17 +12,15 @@ import { AddToCartButton } from '../../external';
 import { AvailableSortField, ListItem, createGoodsListStore } from './store';
 
 export const BookList = observer(() => {
-  const [
-    {
-      list,
-      isLoading,
-      totalCount,
-      setSort,
-      setPaginationPage,
-      pagination,
-      sort,
-    },
-  ] = useState(createGoodsListStore);
+  const {
+    list,
+    isLoading,
+    totalCount,
+    setSort,
+    setPaginationPage,
+    pagination,
+    sort,
+  } = useLocalObservable(createGoodsListStore);
 
   const handleSort = (newSort?: DataGridSort<AvailableSortField>) => {
     if (newSort) {

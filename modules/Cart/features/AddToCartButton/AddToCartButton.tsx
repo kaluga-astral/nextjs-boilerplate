@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { observer } from 'mobx-react-lite';
+import { observer, useLocalObservable } from 'mobx-react-lite';
 
 import { Button, Grid, IconButton, Typography } from '@example/shared';
 
@@ -12,9 +11,8 @@ export type AddToCartButtonProps = {
 
 export const AddToCartButton = observer(
   ({ goodsID, className }: AddToCartButtonProps) => {
-    const [{ hasAddedToCart, addToCart, count, removeFromCart }] = useState(
-      () => createAddToCartButtonStore(goodsID),
-    );
+    const { hasAddedToCart, addToCart, count, removeFromCart } =
+      useLocalObservable(() => createAddToCartButtonStore(goodsID));
 
     if (!hasAddedToCart) {
       return <Button onClick={addToCart}>Купить</Button>;

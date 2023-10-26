@@ -10,6 +10,8 @@ export {
   type DataGridSort,
   Button,
   MenuItem,
+  CartOutlineMd,
+  Badge,
   DataGrid,
   DataGridPagination,
   IconButton,

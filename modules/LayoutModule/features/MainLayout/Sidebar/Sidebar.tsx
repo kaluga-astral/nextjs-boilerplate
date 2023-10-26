@@ -14,16 +14,13 @@ export const Sidebar = () => {
       menu={{
         items: [
           [
-            APP_ROUTES.createDraftRequest.route,
+            APP_ROUTES.cart.route,
             {
               icon: <PlayIcon />,
-              text: 'Создать заявку',
-              active: pathname.includes(APP_ROUTES.createDraftRequest.route),
+              text: 'Корзина',
+              active: pathname.includes(APP_ROUTES.cart.route),
               component: ({ children, ...props }) => (
-                <RouterLink
-                  {...props}
-                  href={APP_ROUTES.createDraftRequest.getRedirectPath()}
-                >
+                <RouterLink {...props} href={APP_ROUTES.cart.getRedirectPath()}>
                   {children}
                 </RouterLink>
               ),
