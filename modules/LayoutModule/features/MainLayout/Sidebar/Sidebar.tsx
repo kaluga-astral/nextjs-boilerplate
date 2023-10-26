@@ -6,11 +6,14 @@ import {
   useRouter,
 } from '@example/shared';
 
+import { CartBadge } from '../../../external';
+
 export const Sidebar = () => {
   const { pathname } = useRouter();
 
   return (
     <DashboardLayout.Sidebar
+      header={<CartBadge />}
       menu={{
         items: [
           [
