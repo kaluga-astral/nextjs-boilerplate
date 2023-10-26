@@ -35,6 +35,8 @@ export const BookList = observer(() => {
     setPaginationPage(newPage);
   };
 
+  console.log('list', list);
+
   return (
     <DataGrid<ListItem, AvailableSortField>
       columns={[
