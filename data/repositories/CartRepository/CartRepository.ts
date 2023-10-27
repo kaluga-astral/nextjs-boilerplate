@@ -52,6 +52,14 @@ export class CartRepository {
     this.getGoodsCountQuery().invalidate();
   };
 
+  /**
+   * Инвалидирует все query корзины
+   */
+  public invalidateData = () => {
+    this.getGoodsQuery().invalidate();
+    this.getGoodsCountQuery().invalidate();
+  };
+
   public createAddGoodsMutation = () =>
     this.cache.createMutation(this.addGoods);
 

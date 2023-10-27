@@ -1,14 +1,21 @@
 import { observer, useLocalObservable } from 'mobx-react-lite';
 
 import { CartGoodsList } from '@example/modules/cart';
-import { Button, Grid, PageLayout, createFlagStore } from '@example/shared';
+import { CardPaymentStatus } from '@example/modules/payment';
+import { Button, Dialog, Grid, PageLayout } from '@example/shared';
+
+import { createCartScreenStore } from './store';
 
 export const CartScreen = observer(() => {
   const {
-    flag: isOpenModal,
-    setTrue: openModal,
-    setFalse: closeModal,
-  } = useLocalObservable(createFlagStore);
+    isOpenModal,
+    openModal,
+    closeModal,
+    isErrorPayment,
+    isLoadingPayment,
+    pay,
+    errors,
+  } = useLocalObservable(createCartScreenStore);
 
   return (
     <PageLayout
@@ -17,7 +24,19 @@ export const CartScreen = observer(() => {
         children: (
           <Grid rowSpacing={4}>
             <CartGoodsList />
-            <Button>Оплатить</Button>
+            <Button onClick={openModal}>Оплатить</Button>
+            <Dialog
+              open={isOpenModal}
+              onClose={closeModal}
+              title="Оплата картой"
+            >
+              <CardPaymentStatus
+                isLoading={isLoadingPayment}
+                isError={isErrorPayment}
+                errors={errors}
+                onRetry={pay}
+              />
+            </Dialog>
           </Grid>
         ),
       }}
