@@ -27,10 +27,10 @@ export class CardPaymentStore {
     return this.paymentMutation.error?.errors.map(({ message }) => message);
   }
 
-  public pay = () => {
+  public pay = ({ onSuccess }: { onSuccess: () => void }) => {
     const goodsId = this.cartStore.goods.map(({ id }) => id);
 
-    return this.paymentMutation.async(goodsId);
+    this.paymentMutation.sync({ params: goodsId, onSuccess });
   };
 }
 

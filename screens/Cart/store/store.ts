@@ -46,8 +46,10 @@ export class CartScreenStore {
   }
 
   public pay = () => {
-    this.cardPaymentStore.pay().then(() => {
-      this.#routerService.push(APP_ROUTES.cart.getRedirectPath());
+    this.cardPaymentStore.pay({
+      onSuccess: () => {
+        this.#routerService.push(APP_ROUTES.cart.getRedirectPath());
+      },
     });
   };
 }
