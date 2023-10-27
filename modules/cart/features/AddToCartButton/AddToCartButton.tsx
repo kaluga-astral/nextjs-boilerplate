@@ -1,18 +1,17 @@
-import { observer, useLocalObservable } from 'mobx-react-lite';
+import { observer } from 'mobx-react-lite';
 
 import { Button, Grid, IconButton, Typography } from '@example/shared';
 
-import { createAddToCartButtonStore } from './store';
+import { ProductCartManagerStore } from '../../domain';
 
 export type AddToCartButtonProps = {
-  goodsID: string;
+  store: ProductCartManagerStore;
   className?: string;
 };
 
 export const AddToCartButton = observer(
-  ({ goodsID, className }: AddToCartButtonProps) => {
-    const { hasAddedToCart, addToCart, count, removeFromCart } =
-      useLocalObservable(() => createAddToCartButtonStore(goodsID));
+  ({ className, store }: AddToCartButtonProps) => {
+    const { hasAddedToCart, addToCart, count, removeFromCart } = store;
 
     if (!hasAddedToCart) {
       return <Button onClick={addToCart}>Купить</Button>;

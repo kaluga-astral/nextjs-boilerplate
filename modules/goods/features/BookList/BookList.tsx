@@ -35,8 +35,6 @@ export const BookList = observer(() => {
     setPaginationPage(newPage);
   };
 
-  console.log('list', list);
-
   return (
     <DataGrid<ListItem, AvailableSortField>
       columns={[
@@ -46,8 +44,8 @@ export const BookList = observer(() => {
           sortable: false,
           align: 'center',
           width: '10%',
-          renderCell: ({ id }) => {
-            return <AddToCartButton goodsID={id} />;
+          renderCell: ({ store }) => {
+            return <AddToCartButton store={store} />;
           },
         },
       ]}

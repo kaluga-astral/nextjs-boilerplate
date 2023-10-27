@@ -1,1 +1,5 @@
-export { AddToCartButton } from '@example/modules/cart';
+export {
+  AddToCartButton,
+  createProductCartManagerStore,
+  ProductCartManagerStore,
+} from '@example/modules/cart';

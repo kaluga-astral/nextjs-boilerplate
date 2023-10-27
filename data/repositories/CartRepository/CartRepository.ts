@@ -1,4 +1,4 @@
-import { CacheService, cacheService } from '@example/shared';
+import { ApiDataError, CacheService, cacheService } from '@example/shared';
 
 import {
   CartNetworkSources,
@@ -21,8 +21,10 @@ export class CartRepository {
    * Товары, добавленные в корзину
    */
   public getGoodsQuery = () =>
-    this.cache.createQuery<CartRepositoryDTO.GoodsDTO>([this.goodsKey], () =>
-      this.cartNetworkSources.getGoods().then(({ data }) => data.data),
+    // TODO: удалить проброс ошибки после фикса бага, из-за которого generic MobxQuery класса не прокидывает до сюда тип ошибки
+    this.cache.createQuery<CartRepositoryDTO.GoodsDTO, ApiDataError>(
+      [this.goodsKey],
+      () => this.cartNetworkSources.getGoods().then(({ data }) => data.data),
     );
 
   /**

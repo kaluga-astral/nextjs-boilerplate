@@ -8,10 +8,16 @@ import {
 } from '@example/data';
 import { formatPriceToView } from '@example/shared';
 
+import {
+  ProductCartManagerStore,
+  createProductCartManagerStore,
+} from '../../../external';
+
 export type ListItem = {
   id: string;
   name: string;
   price: string;
+  store: ProductCartManagerStore;
 };
 
 export type AvailableSortField = 'name' | 'price';
@@ -39,13 +45,14 @@ export class GoodsListStore {
   }
 
   public get list(): ListItem[] {
-    return (
-      this.listQuery.data?.data.map(({ id, name, price }) => ({
-        id,
-        name,
-        price: formatPriceToView(price),
-      })) || []
-    );
+    const data = this.listQuery.data?.data || [];
+
+    return data.map(({ id, name, price }) => ({
+      id,
+      name,
+      price: formatPriceToView(price),
+      store: createProductCartManagerStore(id),
+    }));
   }
 
   public get isLoading() {

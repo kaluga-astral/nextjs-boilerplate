@@ -1,3 +1,7 @@
-export { CartStore } from './domain';
+export {
+  CartStore,
+  ProductCartManagerStore,
+  createProductCartManagerStore,
+} from './domain';
 
-export { AddToCartButton, CartBadge } from './features';
+export { AddToCartButton, CartBadge, CartGoodsList } from './features';
