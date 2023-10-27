@@ -1,4 +1,4 @@
-import { makeAutoObservable } from 'mobx';
+import { makeAutoObservable, makeObservable, observable } from 'mobx';
 
 import {
   CardPaymentStore,
@@ -7,17 +7,15 @@ import {
 import { APP_ROUTES, Router, createFlagStore, router } from '@example/shared';
 
 export class CartScreenStore {
-  private flagStore = createFlagStore();
-
-  // TODO: понять как работать с приватными зависимостями, которые не должны быть observable
-  readonly #routerService: Router;
+  private readonly flagStore = createFlagStore();
 
   constructor(
     private readonly cardPaymentStore: CardPaymentStore,
-    routerService: Router,
+    private readonly routerService: Router,
   ) {
-    makeAutoObservable(this);
-    this.#routerService = routerService;
+    makeAutoObservable<CartScreenStore, 'routerService'>(this, {
+      routerService: false,
+    });
   }
 
   public get isOpenModal() {
@@ -48,7 +46,7 @@ export class CartScreenStore {
   public pay = () => {
     this.cardPaymentStore.pay({
       onSuccess: () => {
-        this.#routerService.push(APP_ROUTES.cart.getRedirectPath());
+        this.routerService.push(APP_ROUTES.cart.getRedirectPath());
       },
     });
   };
