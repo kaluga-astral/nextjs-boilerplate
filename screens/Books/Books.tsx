@@ -1,4 +1,4 @@
-import { BookList } from '@example/modules/Goods';
+import { BookList } from '@example/modules/goods';
 import { PageLayout } from '@example/shared';
 
 export const BooksScreen = () => {

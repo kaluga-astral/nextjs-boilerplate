@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import { enableStaticRendering as enableMobxStaticRendering } from 'mobx-react-lite';
 
-import { authStore } from '@example/modules/AuthModule';
-import { MainLayout } from '@example/modules/LayoutModule';
+import { authStore } from '@example/modules/auth';
+import { MainLayout } from '@example/modules/layout';
 import {
   ConfigProvider,
   NotificationContainer,
