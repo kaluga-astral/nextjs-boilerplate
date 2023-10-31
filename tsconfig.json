@@ -1,9 +1,23 @@
 {
-  "extends": "@tsconfig/next/tsconfig.json",
   "compilerOptions": {
-    "strict": true,
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "target": "ESNext",
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "incremental": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
     "isolatedModules": true,
-    "target": "esnext",
+    "jsx": "preserve",
     "types": ["vitest/globals"],
     "paths": {
       "@example/*": [

@@ -17,6 +17,7 @@ import {
   initApiHttpClient,
   monitoringErrorService,
   noDataImgSrc,
+  outdatedReleaseImgSrc,
   placeholderImgSrc,
   theme,
 } from '@example/shared';
@@ -52,6 +53,7 @@ export const App = ({ Component, pageProps }: AppProps) => {
           imagesMap={{
             noDataImgSrc: noDataImgSrc,
             defaultErrorImgSrc: placeholderImgSrc,
+            outdatedReleaseErrorImgSrc: outdatedReleaseImgSrc,
           }}
           captureException={monitoringErrorService.captureException}
         >
