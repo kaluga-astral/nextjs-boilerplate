@@ -1,3 +1,5 @@
+import { ApiDataError, CacheService, cacheService } from '@example/shared';
+
 import {
   BookNetworkSources,
   bookNetworkSources as bookNetworkSourcesInstance,
@@ -9,27 +11,52 @@ import { BookRepositoryDTO } from './dto';
  * @description Работает с данными о книгах
  * */
 export class BookRepository {
-  constructor(private readonly bookNetworkSources: BookNetworkSources) {
-    this.bookNetworkSources = bookNetworkSourcesInstance;
-  }
+  private bookListBaseKey = 'book-list';
 
-  public getGenreByID = (id: string): Promise<BookRepositoryDTO.GenreDTO> =>
-    this.bookNetworkSources.getGenreByID(id);
+  constructor(
+    private readonly bookNetworkSources: BookNetworkSources,
+    private readonly cache: CacheService,
+  ) {}
 
-  public getGenreList = (): Promise<BookRepositoryDTO.GenreListDTO> =>
-    this.bookNetworkSources.getGenreList();
+  public getGenreByIDQuery = (id: string) =>
+    this.cache.createQuery(
+      ['genre', id],
+      (): Promise<BookRepositoryDTO.GenreDTO> =>
+        this.bookNetworkSources.getGenreByID(id).then(({ data }) => data),
+    );
 
-  public getBookByName = async (
-    name: string,
-  ): Promise<BookRepositoryDTO.BookByNameDTO> => {
-    const { genreID, ...data } = await this.bookNetworkSources.getBookByName({
-      name,
-    });
+  public getGenreListQuery = () =>
+    this.cache.createQuery(
+      ['genre-list'],
+      (): Promise<BookRepositoryDTO.GenreListDTO> =>
+        this.bookNetworkSources.getGenreList().then(({ data }) => data),
+    );
 
-    const genre = await this.getGenreByID(genreID);
+  public getBookByNameQuery = (name: string) =>
+    this.cache.createQuery<BookRepositoryDTO.BookByNameDTO, ApiDataError>(
+      ['book-by-name', name],
+      async () => {
+        const { data } = await this.bookNetworkSources.getBookByName({
+          name,
+        });
 
-    return { ...data, genre };
-  };
+        const { genreID, ...book } = data;
+
+        const genre = await this.getGenreByIDQuery(genreID).async();
+
+        return { ...book, genre };
+      },
+    );
+
+  public getBookListQuery = (params: BookRepositoryDTO.BookListInputDTO) =>
+    this.cache.createQuery<BookRepositoryDTO.BookListDTO>(
+      [this.bookListBaseKey, params],
+      async () =>
+        this.bookNetworkSources.getBookList(params).then(({ data }) => data),
+    );
 }
 
-export const bookRepository = new BookRepository(bookNetworkSourcesInstance);
+export const bookRepository = new BookRepository(
+  bookNetworkSourcesInstance,
+  cacheService,
+);

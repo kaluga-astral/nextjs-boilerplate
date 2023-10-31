@@ -3,12 +3,24 @@ export {
   DashboardLayout,
   Divider,
   ListItemIcon,
+  Dialog,
+  DialogContent,
+  DialogTitle,
   ListItemText,
   Menu,
   Grid,
+  type SortState as DataGridSortState,
+  type DataGridSort,
   Button,
   MenuItem,
+  CartOutlineMd,
+  Badge,
   DataGrid,
+  DataGridPagination,
+  IconButton,
+  type DataGridPaginationProps,
+  ActionCell,
+  type Actions as DataGridActions,
   Placeholder,
   ConfigProvider,
   FormCheckbox,
@@ -31,11 +43,10 @@ export {
   Description,
   StylesCacheProvider,
   PageLayout,
+  styled,
 } from '@astral/ui';
 
 export { createStylesCache as createStylesServerCache } from '@astral/ui/server';
-
-export { QueryClientProvider } from '@astral/react-query';
 
 export { default as Image } from 'next/image';
 

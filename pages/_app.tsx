@@ -3,13 +3,12 @@ import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import { enableStaticRendering as enableMobxStaticRendering } from 'mobx-react-lite';
 
-import { authStore } from '@example/modules/AuthModule';
-import { MainLayout } from '@example/modules/LayoutModule';
+import { authStore } from '@example/modules/auth';
+import { MainLayout } from '@example/modules/layout';
 import {
   ConfigProvider,
   NotificationContainer,
   PageProgressbar,
-  QueryClientProvider,
   StylesCacheProvider,
   ThemeProvider,
   apiHttpClient,
@@ -17,7 +16,9 @@ import {
   createStylesServerCache,
   initApiHttpClient,
   monitoringErrorService,
-  queryClient,
+  noDataImgSrc,
+  outdatedReleaseImgSrc,
+  placeholderImgSrc,
   theme,
 } from '@example/shared';
 
@@ -49,16 +50,19 @@ export const App = ({ Component, pageProps }: AppProps) => {
       </Head>
       <StylesCacheProvider value={stylesCache}>
         <ConfigProvider
+          imagesMap={{
+            noDataImgSrc: noDataImgSrc,
+            defaultErrorImgSrc: placeholderImgSrc,
+            outdatedReleaseErrorImgSrc: outdatedReleaseImgSrc,
+          }}
           captureException={monitoringErrorService.captureException}
         >
           <ThemeProvider theme={theme}>
-            <QueryClientProvider client={queryClient}>
-              <NotificationContainer />
-              <PageProgressbar />
-              <MainLayout>
-                <Component {...pageProps} />
-              </MainLayout>
-            </QueryClientProvider>
+            <NotificationContainer />
+            <PageProgressbar />
+            <MainLayout>
+              <Component {...pageProps} />
+            </MainLayout>
           </ThemeProvider>
         </ConfigProvider>
       </StylesCacheProvider>

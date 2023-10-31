@@ -1,9 +1,9 @@
 import { NextPage } from 'next';
 
-import { CreateDraftRequestScreen } from '@example/screens';
+import { BooksScreen } from '@example/screens';
 
 export const IndexPage: NextPage = () => {
-  return <CreateDraftRequestScreen />;
+  return <BooksScreen />;
 };
 
 export default IndexPage;

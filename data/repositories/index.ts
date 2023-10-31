@@ -1,11 +1,9 @@
 export * from './UserRepository';
 
-export * from './OwnerRepository';
-
-export * from './RequestRepository';
-
-export * from './TariffRepository';
-
 export * from './AdministrationRepository';
 
 export * from './BookRepository';
+
+export * from './CartRepository';
+
+export * from './PaymentRepository';

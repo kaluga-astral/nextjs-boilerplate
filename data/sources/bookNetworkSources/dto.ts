@@ -1,3 +1,9 @@
+import {
+  PaginationInputDTO,
+  SortInputDTO,
+  WithPaginationDTO,
+} from '../../types';
+
 export type GenreNetworkDTO = {
   id: string;
   name: string;
@@ -26,3 +32,13 @@ export type BookByNameNetworkDTO = {
     surname: string;
   };
 };
+
+export type BookListItemNetworkDTO = {
+  id: string;
+  name: string;
+  price: number;
+};
+
+export type BookListNetworkDTO = WithPaginationDTO<BookListItemNetworkDTO>;
+
+export type BookListNetworkInputDTO = PaginationInputDTO & SortInputDTO;

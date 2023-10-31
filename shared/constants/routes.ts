@@ -1,26 +1,20 @@
 export const APP_ROUTES = {
-  owners: {
-    route: '/owners',
+  cart: {
+    route: '/cart',
     getRedirectPath() {
-      return '/owners';
+      return '/cart';
     },
   },
-  createDraftRequest: {
-    route: '/createDraftRequest',
+  books: {
+    route: '/',
     getRedirectPath() {
-      return '/createDraftRequest';
+      return '/';
     },
   },
-  editDraftRequest: {
-    route: '/editDraftRequest/:id',
-    getRedirectPath(requestID: string) {
-      return `/editDraftRequest/${requestID}`;
-    },
-  },
-  request: {
-    route: '/request/:id',
-    getRedirectPath(requestID: string) {
-      return `/request/${requestID}`;
+  creatingBook: {
+    route: '/admin/createBook',
+    getRedirectPath() {
+      return '/admin/createBook';
     },
   },
 } as const;
