@@ -1,1 +1,1 @@
-export { BookForm } from './features';
+export { BookForm, type BookFormValues } from './features';

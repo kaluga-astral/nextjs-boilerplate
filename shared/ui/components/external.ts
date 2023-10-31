@@ -43,6 +43,7 @@ export {
   Description,
   StylesCacheProvider,
   PageLayout,
+  styled,
 } from '@astral/ui';
 
 export { createStylesCache as createStylesServerCache } from '@astral/ui/server';

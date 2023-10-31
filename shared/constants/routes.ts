@@ -5,4 +5,16 @@ export const APP_ROUTES = {
       return '/cart';
     },
   },
+  books: {
+    route: '/',
+    getRedirectPath() {
+      return '/';
+    },
+  },
+  creatingBook: {
+    route: '/admin/createBook',
+    getRedirectPath() {
+      return '/admin/createBook';
+    },
+  },
 } as const;

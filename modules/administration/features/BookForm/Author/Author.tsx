@@ -1,4 +1,4 @@
-import { FormTextField } from '@example/shared';
+import { FormTextField, Grid } from '@example/shared';
 
 import { useBookFormContext } from '../hooks';
 
@@ -6,7 +6,7 @@ export const Author = () => {
   const { control } = useBookFormContext();
 
   return (
-    <fieldset>
+    <Grid component="fieldset" spacing={2} columns={2}>
       <FormTextField
         required
         label="Имя автора"
@@ -19,6 +19,6 @@ export const Author = () => {
         control={control}
         name="author.surname"
       />
-    </fieldset>
+    </Grid>
   );
 };

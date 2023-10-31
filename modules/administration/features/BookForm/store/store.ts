@@ -1,6 +1,6 @@
 import { makeAutoObservable, runInAction } from 'mobx';
 
-import { debounce } from '@example/shared';
+import { debounce, notify } from '@example/shared';
 import {
   BookRepository,
   BookRepositoryDTO,
@@ -14,7 +14,10 @@ export class BookFormStore {
 
   public isLoadingBookByName = false;
 
-  constructor(private readonly bookRepository: BookRepository) {
+  constructor(
+    private readonly bookRepository: BookRepository,
+    private readonly notifyService: typeof notify,
+  ) {
     makeAutoObservable(this);
   }
 
@@ -26,8 +29,14 @@ export class BookFormStore {
     this.isLoadingBookByName = true;
 
     this.bookRepository
-      .getBookByName(name)
+      .getBookByNameQuery(name)
+      .async()
       .then(this.subOnAutocomplete)
+      .catch(() => {
+        this.notifyService.info(
+          'Не удалось автоматически заполнить форму по имени книги',
+        );
+      })
       .finally(() => {
         runInAction(() => {
           this.isLoadingBookByName = true;
@@ -37,4 +46,4 @@ export class BookFormStore {
 }
 
 export const createBookFormStore = () =>
-  new BookFormStore(bookRepositoryInstance);
+  new BookFormStore(bookRepositoryInstance, notify);

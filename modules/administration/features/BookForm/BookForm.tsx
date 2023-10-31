@@ -4,9 +4,9 @@ import { FormCheckbox, FormProvider, FormTextField } from '@example/shared';
 
 import { BookFormValues, useBookForm } from './hooks';
 import { Genre } from './Genre';
-import { Preview } from './Preview';
 import { Author } from './Author';
 import { createBookFormStore } from './store';
+import { BookFormPreview, BookFormWrapper } from './styles';
 
 export type BookFormProps = {
   onSubmit: (values: BookFormValues) => Promise<void>;
@@ -19,7 +19,7 @@ export const BookForm = observer(({ onSubmit }: BookFormProps) => {
 
   return (
     <FormProvider {...form}>
-      <form noValidate>
+      <BookFormWrapper noValidate>
         <FormTextField
           required
           control={form.control}
@@ -55,8 +55,8 @@ export const BookForm = observer(({ onSubmit }: BookFormProps) => {
             />
           </fieldset>
         )}
-        <Preview />
-      </form>
+        <BookFormPreview />
+      </BookFormWrapper>
     </FormProvider>
   );
 });

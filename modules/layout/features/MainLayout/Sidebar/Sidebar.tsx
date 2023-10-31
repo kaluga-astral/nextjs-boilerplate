@@ -1,7 +1,7 @@
 import {
   APP_ROUTES,
+  AddOutlineMd,
   DashboardLayout,
-  PlayIcon,
   RouterLink,
   useRouter,
 } from '@example/shared';
@@ -13,17 +13,32 @@ export const Sidebar = () => {
 
   return (
     <DashboardLayout.Sidebar
-      header={<CartBadge />}
       menu={{
         items: [
           [
             APP_ROUTES.cart.route,
             {
-              icon: <PlayIcon />,
+              icon: <CartBadge />,
               text: 'Корзина',
               active: pathname.includes(APP_ROUTES.cart.route),
               component: ({ children, ...props }) => (
                 <RouterLink {...props} href={APP_ROUTES.cart.getRedirectPath()}>
+                  {children}
+                </RouterLink>
+              ),
+            },
+          ],
+          [
+            APP_ROUTES.creatingBook.route,
+            {
+              icon: <AddOutlineMd />,
+              text: 'Добавить книгу',
+              active: pathname.includes(APP_ROUTES.creatingBook.route),
+              component: ({ children, ...props }) => (
+                <RouterLink
+                  {...props}
+                  href={APP_ROUTES.creatingBook.getRedirectPath()}
+                >
                   {children}
                 </RouterLink>
               ),

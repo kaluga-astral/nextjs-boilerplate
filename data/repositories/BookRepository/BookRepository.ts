@@ -1,4 +1,4 @@
-import { CacheService, cacheService } from '@example/shared';
+import { ApiDataError, CacheService, cacheService } from '@example/shared';
 
 import {
   BookNetworkSources,
@@ -18,25 +18,35 @@ export class BookRepository {
     private readonly cache: CacheService,
   ) {}
 
-  public getGenreByID = (id: string): Promise<BookRepositoryDTO.GenreDTO> =>
-    this.bookNetworkSources.getGenreByID(id).then(({ data }) => data);
+  public getGenreByIDQuery = (id: string) =>
+    this.cache.createQuery(
+      ['genre', id],
+      (): Promise<BookRepositoryDTO.GenreDTO> =>
+        this.bookNetworkSources.getGenreByID(id).then(({ data }) => data),
+    );
 
-  public getGenreList = (): Promise<BookRepositoryDTO.GenreListDTO> =>
-    this.bookNetworkSources.getGenreList().then(({ data }) => data);
+  public getGenreListQuery = () =>
+    this.cache.createQuery(
+      ['genre-list'],
+      (): Promise<BookRepositoryDTO.GenreListDTO> =>
+        this.bookNetworkSources.getGenreList().then(({ data }) => data),
+    );
 
-  public getBookByName = async (
-    name: string,
-  ): Promise<BookRepositoryDTO.BookByNameDTO> => {
-    const { data } = await this.bookNetworkSources.getBookByName({
-      name,
-    });
+  public getBookByNameQuery = (name: string) =>
+    this.cache.createQuery<BookRepositoryDTO.BookByNameDTO, ApiDataError>(
+      ['book-by-name', name],
+      async () => {
+        const { data } = await this.bookNetworkSources.getBookByName({
+          name,
+        });
 
-    const { genreID, ...book } = data;
+        const { genreID, ...book } = data;
 
-    const genre = await this.getGenreByID(genreID);
+        const genre = await this.getGenreByIDQuery(genreID).async();
 
-    return { ...book, genre };
-  };
+        return { ...book, genre };
+      },
+    );
 
   public getBookListQuery = (params: BookRepositoryDTO.BookListInputDTO) =>
     this.cache.createQuery<BookRepositoryDTO.BookListDTO>(

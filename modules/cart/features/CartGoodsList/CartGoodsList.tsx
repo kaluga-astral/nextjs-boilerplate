@@ -8,7 +8,7 @@ import { CartGoodsListItem } from './ListItem';
 export type CartGoodsListProps = {};
 
 export const CartGoodsList = observer(({}: CartGoodsListProps) => {
-  const { list, isLoading, error, refetchList } = useLocalObservable(
+  const { list, isLoading, errors, refetchList } = useLocalObservable(
     createCartGoodsListStore,
   );
 
@@ -16,8 +16,8 @@ export const CartGoodsList = observer(({}: CartGoodsListProps) => {
     <ContentState
       isLoading={isLoading}
       errorState={
-        error && {
-          errorList: error.errors.map(({ message }) => message),
+        errors && {
+          errorList: errors,
           // TODO: удалить после фикса бага с required параметром для imgAlt
           imgAlt: 'Разрыв соединения',
           onRetry: refetchList,

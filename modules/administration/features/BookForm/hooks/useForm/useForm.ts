@@ -51,7 +51,10 @@ export const useBookForm = (
   store: BookFormStore,
   { onSubmit }: UseBookFormParams,
 ): UseBookFormResult => {
-  const form = useForm<BookFormValues>({ validationSchema });
+  const form = useForm<BookFormValues>({
+    validationSchema,
+    defaultValues: { author: {} },
+  });
 
   const isPresentCoAuthor = form.watch('isPresentCoAuthor');
 

@@ -1,24 +1,25 @@
-import { makeAutoObservable, runInAction } from 'mobx';
+import { makeAutoObservable } from 'mobx';
 
 import {
   BookRepository,
-  BookRepositoryDTO,
   bookRepository as bookRepositoryInstance,
 } from '@example/data';
 
 export class GenreStore {
-  public genreList: BookRepositoryDTO.GenreDTO[] = [];
-
-  public isLoading = true;
-
   constructor(private readonly bookRepository: BookRepository) {
     makeAutoObservable(this);
+  }
 
-    bookRepository.getGenreList().then(({ list }) => {
-      runInAction(() => {
-        this.genreList = list;
-      });
-    });
+  private get genreListQuery() {
+    return this.bookRepository.getGenreListQuery();
+  }
+
+  public get genreList() {
+    return this.genreListQuery.data?.list || [];
+  }
+
+  public get isLoading() {
+    return this.genreListQuery.isLoading;
   }
 }
 

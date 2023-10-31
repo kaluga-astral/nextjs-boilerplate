@@ -2,11 +2,15 @@ import { Description, Grid } from '@example/shared';
 
 import { useFormPreview } from './useForm';
 
-export const Preview = () => {
+type Props = {
+  className?: string;
+};
+
+export const Preview = ({ className }: Props) => {
   const { name, authorFullName } = useFormPreview();
 
   return (
-    <Grid spacing={2}>
+    <Grid className={className} spacing={2}>
       <Description leader>
         <Description.Name>Название книги</Description.Name>
         <Description.Value>{name}</Description.Value>

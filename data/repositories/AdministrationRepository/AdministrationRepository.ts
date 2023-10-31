@@ -1,3 +1,5 @@
+import { CacheService, cacheService } from '@example/shared';
+
 import {
   AdministrationNetworkSources,
   administrationNetworkSources as administrationNetworkSourcesInstance,
@@ -11,15 +13,19 @@ import { AdministrationRepositoryDTO } from './dto';
 export class AdministrationRepository {
   constructor(
     private readonly administrationNetworkSources: AdministrationNetworkSources,
+    private readonly cache: CacheService,
   ) {
     this.administrationNetworkSources = administrationNetworkSources;
   }
 
-  public createBook = (
-    data: AdministrationRepositoryDTO.CreateBookInputDTO,
-  ): Promise<void> => this.administrationNetworkSources.createBook(data);
+  public createBookMutation = () =>
+    this.cache.createMutation(
+      (data: AdministrationRepositoryDTO.CreateBookInputDTO) =>
+        this.administrationNetworkSources.createBook(data),
+    );
 }
 
 export const administrationRepository = new AdministrationRepository(
   administrationNetworkSourcesInstance,
+  cacheService,
 );

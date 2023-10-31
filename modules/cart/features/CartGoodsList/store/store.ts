@@ -31,8 +31,8 @@ export class CartGoodsListStore {
     return this.listQuery.isLoading;
   }
 
-  public get error() {
-    return this.listQuery.error;
+  public get errors(): string[] | undefined {
+    return this.listQuery.error?.errors.map(({ message }) => message);
   }
 
   public get list(): ListItem[] {
