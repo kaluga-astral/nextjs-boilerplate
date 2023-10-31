@@ -22,7 +22,6 @@
     "@astral/validations-react-hook-form-resolver": "^4.10.1",
     "@newhighsco/next-plugin-svgr": "^3.0.115",
     "@sentry/nextjs": "^7.74.1",
-    "@tsconfig/next": "^2.0.1",
     "@types/lodash-es": "^4.17.10",
     "@types/query-string": "^6.3.0",
     "axios": "^1.5.1",
