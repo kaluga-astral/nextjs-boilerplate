@@ -4,41 +4,43 @@ import {
   WithPaginationDTO,
 } from '../../types';
 
-export type GenreNetworkDTO = {
-  id: string;
-  name: string;
-  description: string;
-};
-
-export type GenreListNetworkDTO = {
-  list: GenreNetworkDTO[];
-  totalCount: number;
-};
-
-export type BookByNameNetworkInputDTO = {
-  name: string;
-};
-
-export type BookByNameNetworkDTO = {
-  name: string;
-  genreID: string;
-  pageCount: number;
-  author: {
+export namespace BookNetworkSourcesDTO {
+  export type GenreDTO = {
+    id: string;
     name: string;
-    surname: string;
+    description: string;
   };
-  coAuthor?: {
+
+  export type GenreListDTO = {
+    list: GenreDTO[];
+    totalCount: number;
+  };
+
+  export type BookByNameInputDTO = {
     name: string;
-    surname: string;
   };
-};
 
-export type BookListItemNetworkDTO = {
-  id: string;
-  name: string;
-  price: number;
-};
+  export type BookByNameDTO = {
+    name: string;
+    genreID: string;
+    pageCount: number;
+    author: {
+      name: string;
+      surname: string;
+    };
+    coAuthor?: {
+      name: string;
+      surname: string;
+    };
+  };
 
-export type BookListNetworkDTO = WithPaginationDTO<BookListItemNetworkDTO>;
+  export type BookListItemDTO = {
+    id: string;
+    name: string;
+    price: number;
+  };
 
-export type BookListNetworkInputDTO = PaginationInputDTO & SortInputDTO;
+  export type BookListDTO = WithPaginationDTO<BookListItemDTO>;
+
+  export type BookListInputDTO = PaginationInputDTO & SortInputDTO;
+}

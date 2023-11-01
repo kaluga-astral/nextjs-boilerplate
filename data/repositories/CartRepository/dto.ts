@@ -1,9 +1,9 @@
-import { CartSourcesNetworkDTO } from '../../sources';
+import { CartNetworkSourcesDTO } from '../../sources';
 
 export namespace CartRepositoryDTO {
-  export type AddGoodsToCartInputDTO = CartSourcesNetworkDTO.AddGoodsInputDTO;
+  export type AddGoodsToCartInputDTO = CartNetworkSourcesDTO.AddGoodsInputDTO;
   export type RemoveGoodsFromCartInputDTO =
-    CartSourcesNetworkDTO.RemoveGoodsInputDTO;
-  export type GoodsDTO = CartSourcesNetworkDTO.CartGoodsDTO['data'];
-  export type GoodsCountDTO = CartSourcesNetworkDTO.GoodsCountDTO;
+    CartNetworkSourcesDTO.RemoveGoodsInputDTO;
+  export type GoodsDTO = CartNetworkSourcesDTO.CartGoodsDTO['data'];
+  export type GoodsCountDTO = CartNetworkSourcesDTO.GoodsCountDTO;
 }

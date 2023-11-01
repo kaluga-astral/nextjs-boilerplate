@@ -1,21 +1,17 @@
-import {
-  BookByNameNetworkDTO,
-  BookListItemNetworkDTO,
-  BookListNetworkDTO,
-  BookListNetworkInputDTO,
-  GenreListNetworkDTO,
-  GenreNetworkDTO,
-} from '../../sources';
+import { BookNetworkSourcesDTO } from '../../sources';
 
 export namespace BookRepositoryDTO {
-  export type GenreListDTO = GenreListNetworkDTO;
-  export type GenreDTO = GenreNetworkDTO;
+  export type GenreListDTO = BookNetworkSourcesDTO.GenreListDTO;
+  export type GenreDTO = BookNetworkSourcesDTO.GenreDTO;
 
-  export type BookByNameDTO = Omit<BookByNameNetworkDTO, 'genreID'> & {
+  export type BookByNameDTO = Omit<
+    BookNetworkSourcesDTO.BookByNameDTO,
+    'genreID'
+  > & {
     genre: GenreDTO;
   };
 
-  export type BookListDTO = BookListNetworkDTO;
-  export type BookListItemDTO = BookListItemNetworkDTO;
-  export type BookListInputDTO = BookListNetworkInputDTO;
+  export type BookListDTO = BookNetworkSourcesDTO.BookListDTO;
+  export type BookListItemDTO = BookNetworkSourcesDTO.BookListItemDTO;
+  export type BookListInputDTO = BookNetworkSourcesDTO.BookListInputDTO;
 }

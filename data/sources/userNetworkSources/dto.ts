@@ -1,10 +1,12 @@
-export type UserContactNetworkDTO = {
-  email?: string;
-  phone: string;
-};
+export namespace UserNetworkSourcesDTO {
+  export type ContactDTO = {
+    email?: string;
+    phone: string;
+  };
 
-export type UserPersonNetworkDTO = {
-  name: string;
-  surname: string;
-  displayName: string;
-};
+  export type PersonDTO = {
+    name: string;
+    surname: string;
+    displayName: string;
+  };
+}

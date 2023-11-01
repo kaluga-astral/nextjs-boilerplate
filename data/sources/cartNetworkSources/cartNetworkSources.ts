@@ -1,34 +1,34 @@
 import { HttpServiceResponse, apiHttpClient } from '@example/shared';
 
-import { CartSourcesNetworkDTO } from './dto';
+import { CartNetworkSourcesDTO } from './dto';
 
 export const cartNetworkSources = {
-  addGoods: (goods: CartSourcesNetworkDTO.AddGoodsInputDTO) =>
+  addGoods: (goods: CartNetworkSourcesDTO.AddGoodsInputDTO) =>
     apiHttpClient.post<
-      CartSourcesNetworkDTO.AddGoodsInputDTO,
+      CartNetworkSourcesDTO.AddGoodsInputDTO,
       HttpServiceResponse<void>
     >('/cart/addGoods', goods),
 
-  removeGoods: (goods: CartSourcesNetworkDTO.RemoveGoodsInputDTO) =>
+  removeGoods: (goods: CartNetworkSourcesDTO.RemoveGoodsInputDTO) =>
     apiHttpClient.post<
-      CartSourcesNetworkDTO.RemoveGoodsInputDTO,
+      CartNetworkSourcesDTO.RemoveGoodsInputDTO,
       HttpServiceResponse<void>
     >('/cart/removeGoods', goods),
 
   getGoodsCount: () =>
     apiHttpClient.get<
       void,
-      HttpServiceResponse<CartSourcesNetworkDTO.GoodsCountDTO>
+      HttpServiceResponse<CartNetworkSourcesDTO.GoodsCountDTO>
     >('/cart/goodsCount'),
 
   getGoods: () =>
     apiHttpClient.get<
       void,
-      HttpServiceResponse<CartSourcesNetworkDTO.CartGoodsDTO>
+      HttpServiceResponse<CartNetworkSourcesDTO.CartGoodsDTO>
     >('/cart/goods'),
 
   // getGoods: async (): Promise<
-  //   HttpServiceResponse<CartSourcesNetworkDTO.CartGoodsDTO>
+  //   HttpServiceResponse<CartNetworkSourcesDTO.CartGoodsDTO>
   // > => ({
   //   status: 200,
   //   statusText: 'text',

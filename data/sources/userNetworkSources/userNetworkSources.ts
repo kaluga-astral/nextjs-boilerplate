@@ -1,12 +1,14 @@
 import { apiHttpClient } from '@example/shared';
 
-import { UserContactNetworkDTO, UserPersonNetworkDTO } from './dto';
+import { UserNetworkSourcesDTO } from './dto';
 
 export const userNetworkSources = {
   getContactInfo: () =>
-    apiHttpClient.get<void, UserContactNetworkDTO>('/my/contactInfo'),
+    apiHttpClient.get<void, UserNetworkSourcesDTO.ContactDTO>(
+      '/my/contactInfo',
+    ),
   getPersonInfo: () =>
-    apiHttpClient.get<void, UserPersonNetworkDTO>('/my/personInfo'),
+    apiHttpClient.get<void, UserNetworkSourcesDTO.PersonDTO>('/my/personInfo'),
 };
 
 export type UserNetworkSources = typeof userNetworkSources;

@@ -1,10 +1,10 @@
 import { apiHttpClient } from '@example/shared';
 
-import { PaymentSourcesNetworkDTO } from './dto';
+import { PaymentNetworkSourcesDTO } from './dto';
 
 export const paymentNetworkSources = {
-  payByCard: (data: PaymentSourcesNetworkDTO.PayByCardInputDTO) =>
-    apiHttpClient.post<PaymentSourcesNetworkDTO.PayByCardInputDTO, void>(
+  payByCard: (data: PaymentNetworkSourcesDTO.PayByCardInputDTO) =>
+    apiHttpClient.post<PaymentNetworkSourcesDTO.PayByCardInputDTO, void>(
       '/payment/payByCard',
       data,
     ),

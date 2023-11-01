@@ -1,13 +1,13 @@
 import { apiHttpClient } from '@example/shared';
 
-import { CreateBookNetworkInputDTO } from './dto';
+import { AdministrationNetworkSourcesDTO } from './dto';
 
 export const administrationNetworkSources = {
-  createBook: (data: CreateBookNetworkInputDTO) =>
-    apiHttpClient.post<CreateBookNetworkInputDTO, void>(
-      '/administration/books/create',
-      data,
-    ),
+  createBook: (data: AdministrationNetworkSourcesDTO.CreateBookInputDTO) =>
+    apiHttpClient.post<
+      AdministrationNetworkSourcesDTO.CreateBookInputDTO,
+      void
+    >('/administration/books/create', data),
 };
 
 export type AdministrationNetworkSources = typeof administrationNetworkSources;

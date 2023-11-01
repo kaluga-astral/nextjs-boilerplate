@@ -1,5 +1,5 @@
-import { PaymentSourcesNetworkDTO } from '../../sources';
+import { PaymentNetworkSourcesDTO } from '../../sources';
 
 export namespace PaymentRepositoryDTO {
-  export type PayByCardInputDTO = PaymentSourcesNetworkDTO.PayByCardInputDTO;
+  export type PayByCardInputDTO = PaymentNetworkSourcesDTO.PayByCardInputDTO;
 }

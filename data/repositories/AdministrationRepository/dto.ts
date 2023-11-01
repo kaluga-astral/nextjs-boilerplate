@@ -1,5 +1,6 @@
-import { CreateBookNetworkInputDTO } from '../../sources';
+import { AdministrationNetworkSourcesDTO } from '../../sources';
 
 export namespace AdministrationRepositoryDTO {
-  export type CreateBookInputDTO = CreateBookNetworkInputDTO;
+  export type CreateBookInputDTO =
+    AdministrationNetworkSourcesDTO.CreateBookInputDTO;
 }

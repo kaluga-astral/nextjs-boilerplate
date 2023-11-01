@@ -1,35 +1,30 @@
 import { HttpServiceResponse, apiHttpClient } from '@example/shared';
 
-import {
-  BookByNameNetworkDTO,
-  BookByNameNetworkInputDTO,
-  BookListNetworkDTO,
-  BookListNetworkInputDTO,
-  GenreListNetworkDTO,
-  GenreNetworkDTO,
-} from './dto';
+import { BookNetworkSourcesDTO } from './dto';
 
 export const bookNetworkSources = {
   getGenreList: () =>
-    apiHttpClient.get<void, HttpServiceResponse<GenreListNetworkDTO>>(
-      '/book/genreList',
-    ),
+    apiHttpClient.get<
+      void,
+      HttpServiceResponse<BookNetworkSourcesDTO.GenreListDTO>
+    >('/book/genreList'),
 
   getGenreByID: (id: string) =>
-    apiHttpClient.get<string, HttpServiceResponse<GenreNetworkDTO>>(
-      `/book/genre/${id}`,
-    ),
-
-  getBookByName: (data: BookByNameNetworkInputDTO) =>
     apiHttpClient.get<
-      BookByNameNetworkInputDTO,
-      HttpServiceResponse<BookByNameNetworkDTO>
+      string,
+      HttpServiceResponse<BookNetworkSourcesDTO.GenreDTO>
+    >(`/book/genre/${id}`),
+
+  getBookByName: (data: BookNetworkSourcesDTO.BookByNameInputDTO) =>
+    apiHttpClient.get<
+      BookNetworkSourcesDTO.BookByNameInputDTO,
+      HttpServiceResponse<BookNetworkSourcesDTO.BookByNameDTO>
     >('/book/byName', { params: data }),
 
-  getBookList: (params: BookListNetworkInputDTO) =>
+  getBookList: (params: BookNetworkSourcesDTO.BookListInputDTO) =>
     apiHttpClient.get<
-      BookListNetworkInputDTO,
-      HttpServiceResponse<BookListNetworkDTO>
+      BookNetworkSourcesDTO.BookListInputDTO,
+      HttpServiceResponse<BookNetworkSourcesDTO.BookListDTO>
     >('/books', {
       params,
     }),

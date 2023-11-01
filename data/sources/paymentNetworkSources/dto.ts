@@ -1,4 +1,4 @@
-export namespace PaymentSourcesNetworkDTO {
+export namespace PaymentNetworkSourcesDTO {
   /**
    * Список id товаров
    */

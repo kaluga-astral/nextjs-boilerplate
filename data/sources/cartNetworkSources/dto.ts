@@ -1,4 +1,4 @@
-export namespace CartSourcesNetworkDTO {
+export namespace CartNetworkSourcesDTO {
   export type AddGoodsInputDTO = string[];
 
   export type RemoveGoodsInputDTO = string[];
