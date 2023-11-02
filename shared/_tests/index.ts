@@ -8,6 +8,3 @@ export * from '@testing-library/react';
 
 // eslint-disable-next-line import/no-extraneous-dependencies
 export { mock } from 'vitest-mock-extended';
-
-// eslint-disable-next-line import/no-extraneous-dependencies
-export { fakerRU as faker } from '@faker-js/faker';

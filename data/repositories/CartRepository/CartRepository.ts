@@ -1,9 +1,6 @@
 import { ApiDataError, CacheService, cacheService } from '@example/shared';
 
-import {
-  CartNetworkSources,
-  cartNetworkSources as cartNetworkSourcesInstance,
-} from '../../sources';
+import { CartNetworkSources, fakeCartNetworkSources } from '../../sources';
 
 import { CartRepositoryDTO } from './dto';
 
@@ -68,6 +65,6 @@ export class CartRepository {
 }
 
 export const cartRepository = new CartRepository(
-  cartNetworkSourcesInstance,
+  fakeCartNetworkSources,
   cacheService,
 );

@@ -1,5 +1,5 @@
 export * from './bookNetworkSources';
 
-export * from './dto';
+export * from './bookNetworkSources.fake';
 
-export * from './faker';
+export * from './dto';

@@ -1,5 +1,8 @@
-import { faker } from '@example/shared/_tests';
+import { faker } from '@example/shared';
 
+import { makeFakeSourceRes } from '../utils';
+
+import { BookNetworkSources, bookNetworkSources } from './bookNetworkSources';
 import { BookNetworkSourcesDTO } from './dto';
 
 export const bookNetworkSourcesFaker = {
@@ -20,6 +23,15 @@ export const bookNetworkSourcesFaker = {
     ...data,
   }),
 
+  makeBookList: (length: number): BookNetworkSourcesDTO.BookListDTO => ({
+    data: Array.from({ length }).map(() => ({
+      name: faker.commerce.productName(),
+      id: faker.string.uuid(),
+      price: faker.number.int(100000),
+    })),
+    meta: { totalCount: 100 },
+  }),
+
   makeGenre: (
     data?: Partial<BookNetworkSourcesDTO.GenreDTO>,
   ): BookNetworkSourcesDTO.GenreDTO => ({
@@ -28,4 +40,10 @@ export const bookNetworkSourcesFaker = {
     description: faker.lorem.sentence(),
     ...data,
   }),
+};
+
+export const fakeBookNetworkSources: BookNetworkSources = {
+  ...bookNetworkSources,
+  getBookList: async ({ count }) =>
+    makeFakeSourceRes(bookNetworkSourcesFaker.makeBookList(count)),
 };

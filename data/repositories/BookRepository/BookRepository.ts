@@ -1,9 +1,6 @@
 import { ApiDataError, CacheService, cacheService } from '@example/shared';
 
-import {
-  BookNetworkSources,
-  bookNetworkSources as bookNetworkSourcesInstance,
-} from '../../sources';
+import { BookNetworkSources, fakeBookNetworkSources } from '../../sources';
 
 import { BookRepositoryDTO } from './dto';
 
@@ -57,6 +54,6 @@ export class BookRepository {
 }
 
 export const bookRepository = new BookRepository(
-  bookNetworkSourcesInstance,
+  fakeBookNetworkSources,
   cacheService,
 );

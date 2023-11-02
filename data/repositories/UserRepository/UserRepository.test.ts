@@ -1,5 +1,5 @@
-import { cacheService } from '@example/shared';
-import { faker, mock } from '@example/shared/_tests';
+import { cacheService, faker } from '@example/shared';
+import { mock } from '@example/shared/_tests';
 
 import {
   UserNetworkSources,
