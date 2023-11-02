@@ -28,22 +28,6 @@ export const bookNetworkSources = {
     >('/books', {
       params,
     }),
-  //
-  // getBookList: async (
-  //   params: BookListNetworkInputDTO,
-  // ): Promise<HttpServiceResponse<BookListNetworkDTO>> => ({
-  //   status: 200,
-  //   statusText: 'text',
-  //   headers: {},
-  //   config: {} as any,
-  //   data: {
-  //     data: [
-  //       { id: '1', price: 2000, name: 'Name' },
-  //       { id: '2', price: 2000, name: 'Name' },
-  //     ],
-  //     meta: { totalCount: 5 },
-  //   },
-  // }),
 };
 
 export type BookNetworkSources = typeof bookNetworkSources;
