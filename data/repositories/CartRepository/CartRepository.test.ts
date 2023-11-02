@@ -3,8 +3,7 @@ import { when } from 'mobx';
 import { cacheService } from '@example/shared';
 import { mock } from '@example/shared/_tests';
 
-import { CartNetworkSources } from '../../sources';
-import { makeFakeSourceRes } from '../../sources/_tests';
+import { CartNetworkSources, makeFakeSourceRes } from '../../sources';
 
 import { CartRepository } from './CartRepository';
 

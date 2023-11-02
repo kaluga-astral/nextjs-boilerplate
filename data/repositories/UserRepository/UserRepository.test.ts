@@ -1,8 +1,11 @@
 import { cacheService } from '@example/shared';
 import { faker, mock } from '@example/shared/_tests';
 
-import { UserNetworkSources, UserNetworkSourcesDTO } from '../../sources';
-import { makeFakeSourceRes } from '../../sources/_tests';
+import {
+  UserNetworkSources,
+  UserNetworkSourcesDTO,
+  makeFakeSourceRes,
+} from '../../sources';
 
 import { UserRepository } from './UserRepository';
 

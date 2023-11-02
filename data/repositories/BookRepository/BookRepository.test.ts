@@ -1,8 +1,11 @@
 import { mock } from '@example/shared/_tests';
 import { cacheService } from '@example/shared';
 
-import { BookNetworkSources, bookNetworkSourcesFaker } from '../../sources';
-import { makeFakeSourceRes } from '../../sources/_tests';
+import {
+  BookNetworkSources,
+  bookNetworkSourcesFaker,
+  makeFakeSourceRes,
+} from '../../sources';
 
 import { BookRepository } from './BookRepository';
 
