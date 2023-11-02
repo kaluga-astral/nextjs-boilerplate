@@ -41,13 +41,13 @@ export class UserRepository {
   public getContactInfoQuery = () =>
     this.cache.createQuery<UserRepositoryDTO.UserContactDTO>(
       this.contactInfoCacheKey,
-      this.userNetworkSources.getContactInfo,
+      () => this.userNetworkSources.getContactInfo().then(({ data }) => data),
     );
 
   public getPersonInfoQuery = () =>
     this.cache.createQuery<UserRepositoryDTO.UserPersonDTO>(
-      this.contactInfoCacheKey,
-      this.userNetworkSources.getPersonInfo,
+      this.personInfoCacheKey,
+      () => this.userNetworkSources.getPersonInfo().then(({ data }) => data),
     );
 }
 

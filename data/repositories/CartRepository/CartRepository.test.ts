@@ -1,28 +1,22 @@
-import { expect, vi } from 'vitest';
 import { when } from 'mobx';
 
 import { cacheService } from '@example/shared';
+import { mock } from '@example/shared/_tests';
 
-import { cartNetworkSources } from '../../sources';
+import { CartNetworkSources } from '../../sources';
 import { makeFakeSourceRes } from '../../sources/_tests';
 
 import { CartRepository } from './CartRepository';
 
 describe('CartRepository', () => {
+  const cartSourcesStub = mock<CartNetworkSources>({
+    addGoods: async () => makeFakeSourceRes(undefined),
+    getGoods: async () => makeFakeSourceRes({ data: [] }),
+    getGoodsCount: async () => makeFakeSourceRes(0),
+  });
+
   it('При добавлении товара в корзину инвалидирует данные корзины', async () => {
-    vi.spyOn(cartNetworkSources, 'addGoods').mockResolvedValue(
-      makeFakeSourceRes(undefined),
-    );
-
-    vi.spyOn(cartNetworkSources, 'getGoods').mockResolvedValue(
-      makeFakeSourceRes({ data: [] }),
-    );
-
-    vi.spyOn(cartNetworkSources, 'getGoodsCount').mockResolvedValue(
-      makeFakeSourceRes(0),
-    );
-
-    const sut = new CartRepository(cartNetworkSources, cacheService);
+    const sut = new CartRepository(cartSourcesStub, cacheService);
     const goodsQuery = sut.getGoodsQuery();
     const goodsCountQuery = sut.getGoodsCountQuery();
 
@@ -37,19 +31,7 @@ describe('CartRepository', () => {
   });
 
   it('При удалении товара из корзины инвалидирует данные корзины', async () => {
-    vi.spyOn(cartNetworkSources, 'removeGoods').mockResolvedValue(
-      makeFakeSourceRes(undefined),
-    );
-
-    vi.spyOn(cartNetworkSources, 'getGoods').mockResolvedValue(
-      makeFakeSourceRes({ data: [] }),
-    );
-
-    vi.spyOn(cartNetworkSources, 'getGoodsCount').mockResolvedValue(
-      makeFakeSourceRes(0),
-    );
-
-    const sut = new CartRepository(cartNetworkSources, cacheService);
+    const sut = new CartRepository(cartSourcesStub, cacheService);
     const goodsQuery = sut.getGoodsQuery();
     const goodsCountQuery = sut.getGoodsCountQuery();
 
