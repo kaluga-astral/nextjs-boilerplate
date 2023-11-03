@@ -1,2 +1,2 @@
 export const formatPriceToView = (price: number): string =>
-  `${price.toLocaleString('ru')} руб.`;
+  price ? `${price.toLocaleString('ru')} руб.` : 'Бесплатно';
