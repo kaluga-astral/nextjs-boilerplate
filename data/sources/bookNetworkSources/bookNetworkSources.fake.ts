@@ -23,11 +23,15 @@ export const bookNetworkSourcesFaker = {
     ...data,
   }),
 
-  makeBookList: (length: number): BookNetworkSourcesDTO.BookListDTO => ({
+  makeBookList: (
+    length: number = 10,
+    item?: Partial<BookNetworkSourcesDTO.BookListItemDTO>,
+  ): BookNetworkSourcesDTO.BookListDTO => ({
     data: Array.from({ length }).map(() => ({
       name: faker.commerce.productName(),
       id: faker.string.uuid(),
       price: faker.number.int(100000),
+      ...item,
     })),
     meta: { totalCount: 100 },
   }),
