@@ -6,14 +6,22 @@ import { CartNetworkSources, cartNetworkSources } from './cartNetworkSources';
 import { CartNetworkSourcesDTO } from './dto';
 
 export const cartNetworkSourcesFaker = {
-  makeGoodsList: (length: number = 10): CartNetworkSourcesDTO.CartGoodsDTO => ({
-    data: Array.from({ length }).map(() => ({
+  makeGoodsList(length: number = 10): CartNetworkSourcesDTO.CartGoodsDTO {
+    return {
+      data: Array.from({ length }).map(() => this.makeGoodsItem()),
+    };
+  },
+  makeGoodsItem(
+    data?: Partial<CartNetworkSourcesDTO.CartGoodsItemDTO>,
+  ): CartNetworkSourcesDTO.CartGoodsItemDTO {
+    return {
       name: faker.commerce.productName(),
       id: faker.string.uuid(),
       price: faker.number.int(100000),
       count: faker.number.int(5),
-    })),
-  }),
+      ...data,
+    };
+  },
 };
 
 export const fakeCartNetworkSources: CartNetworkSources = {
