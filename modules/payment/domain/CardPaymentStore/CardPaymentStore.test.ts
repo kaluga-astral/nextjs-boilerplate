@@ -1,6 +1,5 @@
 import { mock } from '@example/shared/_tests';
 import { PaymentRepository, cartRepositoryFaker } from '@example/data';
-import { cacheService } from '@example/shared';
 
 import { CartStore } from '../../external';
 
@@ -10,20 +9,20 @@ describe('CardPaymentStore', () => {
   it('Отправляет на оплату все товары, добавленные в корзину', () => {
     const fakeGoodsList = cartRepositoryFaker.makeGoodsList(2);
 
-    const payByCardMock = vi.fn();
+    const mutationMock =
+      mock<ReturnType<PaymentRepository['createPaymentByCardMutation']>>();
 
     const cartStoreStub = mock<CartStore>({
       goods: fakeGoodsList,
     });
     const paymentRepositoryMock = mock<PaymentRepository>({
-      createPaymentByCardMutation: () =>
-        cacheService.createMutation(async (params) => payByCardMock(params)),
+      createPaymentByCardMutation: () => mutationMock,
     });
     const sut = new CardPaymentStore(cartStoreStub, paymentRepositoryMock);
 
     sut.pay();
 
-    expect(payByCardMock).toBeCalledWith([
+    expect(mutationMock.sync.mock.lastCall?.[0]?.params).toEqual([
       fakeGoodsList[0].id,
       fakeGoodsList[1].id,
     ]);
