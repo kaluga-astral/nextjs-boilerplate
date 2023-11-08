@@ -1,15 +1,12 @@
 import { observer, useLocalObservable } from 'mobx-react-lite';
 
-import {
-  DataGrid,
-  DataGridPagination,
-  DataGridPaginationProps,
-  DataGridSort,
-} from '@example/shared';
+import type { DataGridPaginationProps, DataGridSort } from '@example/shared';
+import { DataGrid, DataGridPagination } from '@example/shared';
 
 import { AddToCartButton } from '../../external';
 
-import { AvailableSortField, ListItem, createGoodsListStore } from './store';
+import type { AvailableSortField, ListItem } from './store';
+import { createGoodsListStore } from './store';
 
 export const BookList = observer(() => {
   const {

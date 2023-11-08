@@ -1,6 +1,7 @@
-import { HttpServiceResponse, apiHttpClient } from '@example/shared';
+import type { HttpServiceResponse } from '@example/shared';
+import { apiHttpClient } from '@example/shared';
 
-import { BookNetworkSourcesDTO } from './dto';
+import type { BookNetworkSourcesDTO } from './dto';
 
 export const bookNetworkSources = {
   getGenreList: () =>

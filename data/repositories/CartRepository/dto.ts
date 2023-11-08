@@ -1,4 +1,4 @@
-import { CartNetworkSourcesDTO } from '../../sources';
+import type { CartNetworkSourcesDTO } from '../../sources';
 
 export namespace CartRepositoryDTO {
   export type AddGoodsToCartInputDTO = CartNetworkSourcesDTO.AddGoodsInputDTO;

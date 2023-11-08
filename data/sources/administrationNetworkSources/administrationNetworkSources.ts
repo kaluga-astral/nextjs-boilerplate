@@ -1,6 +1,6 @@
 import { apiHttpClient } from '@example/shared';
 
-import { AdministrationNetworkSourcesDTO } from './dto';
+import type { AdministrationNetworkSourcesDTO } from './dto';
 
 export const administrationNetworkSources = {
   createBook: (data: AdministrationNetworkSourcesDTO.CreateBookInputDTO) =>

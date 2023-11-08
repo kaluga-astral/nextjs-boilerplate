@@ -1,8 +1,8 @@
 import { vi } from 'vitest';
 
-import { CartRepository } from '@example/data';
+import type { CartRepository } from '@example/data';
 import { mock } from '@example/shared/_tests';
-import { notify } from '@example/shared';
+import type { notify } from '@example/shared';
 
 import { CartStore } from './CartStore';
 

@@ -1,15 +1,11 @@
 import { makeAutoObservable } from 'mobx';
 
-import {
-  CartRepository,
-  cartRepository as cartRepositoryInstance,
-} from '@example/data';
+import type { CartRepository } from '@example/data';
+import { cartRepository as cartRepositoryInstance } from '@example/data';
 import { formatPriceToView } from '@example/shared';
 
-import {
-  ProductCartManagerStore,
-  createProductCartManagerStore,
-} from '../../../domain';
+import type { ProductCartManagerStore } from '../../../domain';
+import { createProductCartManagerStore } from '../../../domain';
 
 export type ListItem = {
   id: string;

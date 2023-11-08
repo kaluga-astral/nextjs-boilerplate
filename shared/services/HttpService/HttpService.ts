@@ -1,11 +1,12 @@
 import qs from 'query-string';
-import axios, {
+import type {
   AxiosError,
   AxiosInstance,
   AxiosPromise,
   AxiosRequestConfig,
   AxiosResponse,
 } from 'axios';
+import axios from 'axios';
 import axiosRetry from 'axios-retry';
 
 import { DataError } from '../DataError';

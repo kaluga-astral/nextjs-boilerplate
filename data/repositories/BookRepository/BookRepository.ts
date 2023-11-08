@@ -1,8 +1,10 @@
-import { ApiDataError, CacheService, cacheService } from '@example/shared';
+import type { ApiDataError, CacheService } from '@example/shared';
+import { cacheService } from '@example/shared';
 
-import { BookNetworkSources, fakeBookNetworkSources } from '../../sources';
+import type { BookNetworkSources } from '../../sources';
+import { fakeBookNetworkSources } from '../../sources';
 
-import { BookRepositoryDTO } from './dto';
+import type { BookRepositoryDTO } from './dto';
 
 /**
  * @description Работает с данными о книгах

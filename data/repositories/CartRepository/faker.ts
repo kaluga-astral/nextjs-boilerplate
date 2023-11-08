@@ -1,6 +1,6 @@
 import { cartNetworkSourcesFaker } from '../../sources';
 
-import { CartRepositoryDTO } from './dto';
+import type { CartRepositoryDTO } from './dto';
 
 export const cartRepositoryFaker = {
   makeGoodsList(length?: number): CartRepositoryDTO.GoodsDTO {

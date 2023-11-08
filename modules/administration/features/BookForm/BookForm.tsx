@@ -2,7 +2,8 @@ import { observer, useLocalObservable } from 'mobx-react-lite';
 
 import { FormCheckbox, FormProvider, FormTextField } from '@example/shared';
 
-import { BookFormValues, useBookForm } from './hooks';
+import type { BookFormValues } from './hooks';
+import { useBookForm } from './hooks';
 import { Genre } from './Genre';
 import { Author } from './Author';
 import { createBookFormStore } from './store';

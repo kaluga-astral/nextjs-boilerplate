@@ -1,8 +1,8 @@
 import { cacheService } from '@example/shared';
 import { mock } from '@example/shared/_tests';
 
-import { PaymentNetworkSources } from '../../sources';
-import { CartRepository } from '../CartRepository';
+import type { PaymentNetworkSources } from '../../sources';
+import type { CartRepository } from '../CartRepository';
 
 import { PaymentRepository } from './PaymentRepository';
 

@@ -2,8 +2,9 @@ import { faker } from '@example/shared';
 
 import { makeFakeSourceRes } from '../utils';
 
-import { BookNetworkSources, bookNetworkSources } from './bookNetworkSources';
-import { BookNetworkSourcesDTO } from './dto';
+import type { BookNetworkSources } from './bookNetworkSources';
+import { bookNetworkSources } from './bookNetworkSources';
+import type { BookNetworkSourcesDTO } from './dto';
 
 export const bookNetworkSourcesFaker = {
   makeBookByName: (

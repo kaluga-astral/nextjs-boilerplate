@@ -1,6 +1,7 @@
 import { when } from 'mobx';
 
-import { BookRepository, bookRepositoryFaker } from '@example/data';
+import type { BookRepository } from '@example/data';
+import { bookRepositoryFaker } from '@example/data';
 import { mock } from '@example/shared/_tests';
 import { cacheService } from '@example/shared';
 

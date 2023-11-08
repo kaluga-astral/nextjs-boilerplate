@@ -1,4 +1,4 @@
-import { AppProps } from 'next/app';
+import type { AppProps } from 'next/app';
 import { useEffect, useState } from 'react';
 import Head from 'next/head';
 import { enableStaticRendering as enableMobxStaticRendering } from 'mobx-react-lite';

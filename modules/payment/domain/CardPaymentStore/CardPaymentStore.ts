@@ -1,11 +1,10 @@
 import { makeAutoObservable } from 'mobx';
 
-import {
-  PaymentRepository,
-  paymentRepository as paymentRepositoryInstance,
-} from '@example/data';
+import type { PaymentRepository } from '@example/data';
+import { paymentRepository as paymentRepositoryInstance } from '@example/data';
 
-import { CartStore, cartStore as cartStoreInstance } from '../../external';
+import type { CartStore } from '../../external';
+import { cartStore as cartStoreInstance } from '../../external';
 
 export class CardPaymentStore {
   constructor(

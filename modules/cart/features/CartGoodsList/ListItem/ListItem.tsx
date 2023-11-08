@@ -3,7 +3,7 @@ import { observer } from 'mobx-react-lite';
 import { Description, Grid, Typography } from '@example/shared';
 
 import { AddToCartButton } from '../../AddToCartButton';
-import { ListItem } from '../store';
+import type { ListItem } from '../store';
 
 type Props = ListItem;
 

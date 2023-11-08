@@ -2,8 +2,9 @@ import { faker } from '@example/shared';
 
 import { makeFakeSourceRes } from '../utils';
 
-import { CartNetworkSources, cartNetworkSources } from './cartNetworkSources';
-import { CartNetworkSourcesDTO } from './dto';
+import type { CartNetworkSources } from './cartNetworkSources';
+import { cartNetworkSources } from './cartNetworkSources';
+import type { CartNetworkSourcesDTO } from './dto';
 
 export const cartNetworkSourcesFaker = {
   makeGoodsList(length: number = 10): CartNetworkSourcesDTO.CartGoodsDTO {

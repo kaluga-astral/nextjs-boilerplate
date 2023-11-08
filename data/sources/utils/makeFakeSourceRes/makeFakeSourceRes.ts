@@ -1,4 +1,4 @@
-import { HttpServiceResponse } from '@example/shared';
+import type { HttpServiceResponse } from '@example/shared';
 
 export const makeFakeSourceRes = <TResponse>(
   data: TResponse,

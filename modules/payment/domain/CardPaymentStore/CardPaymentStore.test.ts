@@ -1,7 +1,8 @@
 import { mock } from '@example/shared/_tests';
-import { PaymentRepository, cartRepositoryFaker } from '@example/data';
+import type { PaymentRepository } from '@example/data';
+import { cartRepositoryFaker } from '@example/data';
 
-import { CartStore } from '../../external';
+import type { CartStore } from '../../external';
 
 import { CardPaymentStore } from './CardPaymentStore';
 

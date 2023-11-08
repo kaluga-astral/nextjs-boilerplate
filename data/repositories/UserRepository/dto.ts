@@ -1,4 +1,4 @@
-import { UserNetworkSourcesDTO } from '../../sources';
+import type { UserNetworkSourcesDTO } from '../../sources';
 
 export namespace UserRepositoryDTO {
   export type UserContactDTO = UserNetworkSourcesDTO.ContactDTO;

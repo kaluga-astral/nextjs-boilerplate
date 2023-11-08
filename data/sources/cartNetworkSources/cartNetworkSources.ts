@@ -1,6 +1,7 @@
-import { HttpServiceResponse, apiHttpClient } from '@example/shared';
+import type { HttpServiceResponse } from '@example/shared';
+import { apiHttpClient } from '@example/shared';
 
-import { CartNetworkSourcesDTO } from './dto';
+import type { CartNetworkSourcesDTO } from './dto';
 
 export const cartNetworkSources = {
   addGoods: (goods: CartNetworkSourcesDTO.AddGoodsInputDTO) =>

@@ -1,6 +1,7 @@
-import { HttpServiceResponse, apiHttpClient } from '@example/shared';
+import type { HttpServiceResponse } from '@example/shared';
+import { apiHttpClient } from '@example/shared';
 
-import { UserNetworkSourcesDTO } from './dto';
+import type { UserNetworkSourcesDTO } from './dto';
 
 export const userNetworkSources = {
   getContactInfo: () =>

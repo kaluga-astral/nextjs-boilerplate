@@ -1,11 +1,10 @@
 import { makeAutoObservable } from 'mobx';
 
-import {
-  AdministrationRepository,
-  administrationRepository as administrationRepositoryInstance,
-} from '@example/data';
-import { APP_ROUTES, Router, notify, router } from '@example/shared';
-import { BookFormValues } from '@example/modules/administration';
+import type { AdministrationRepository } from '@example/data';
+import { administrationRepository as administrationRepositoryInstance } from '@example/data';
+import type { Router } from '@example/shared';
+import { APP_ROUTES, notify, router } from '@example/shared';
+import type { BookFormValues } from '@example/modules/administration';
 
 export class CreateBookScreenStore {
   constructor(

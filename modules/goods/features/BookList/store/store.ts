@@ -1,17 +1,15 @@
 import { makeAutoObservable } from 'mobx';
 
-import {
+import type {
   BookRepository,
   PaginationInputDTO,
   SortInputDTO,
-  bookRepository as bookRepositoryInstance,
 } from '@example/data';
+import { bookRepository as bookRepositoryInstance } from '@example/data';
 import { formatPriceToView } from '@example/shared';
 
-import {
-  ProductCartManagerStore,
-  createProductCartManagerStore,
-} from '../../../external';
+import type { ProductCartManagerStore } from '../../../external';
+import { createProductCartManagerStore } from '../../../external';
 
 export type ListItem = {
   id: string;

@@ -2,7 +2,7 @@ import { observer } from 'mobx-react-lite';
 
 import { Button, Grid, IconButton, Typography } from '@example/shared';
 
-import { ProductCartManagerStore } from '../../domain';
+import type { ProductCartManagerStore } from '../../domain';
 
 export type AddToCartButtonProps = {
   store: ProductCartManagerStore;

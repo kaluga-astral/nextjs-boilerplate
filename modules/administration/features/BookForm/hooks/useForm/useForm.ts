@@ -1,9 +1,13 @@
 import { useEffect } from 'react';
 
-import { UseFormReturn, useForm, useFormContext, v } from '@example/shared';
-import { AdministrationRepositoryDTO, BookRepositoryDTO } from '@example/data';
+import type { UseFormReturn } from '@example/shared';
+import { useForm, useFormContext, v } from '@example/shared';
+import type {
+  AdministrationRepositoryDTO,
+  BookRepositoryDTO,
+} from '@example/data';
 
-import { BookFormStore } from '../../store';
+import type { BookFormStore } from '../../store';
 
 type UseBookFormParams = {
   onSubmit: (values: BookFormValues) => Promise<void>;

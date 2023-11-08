@@ -1,7 +1,7 @@
 import { mock } from '@example/shared/_tests';
 import { cartRepositoryFaker } from '@example/data';
 
-import { CartStore } from '../CartStore';
+import type { CartStore } from '../CartStore';
 
 import { ProductCartManagerStore } from './ProductCartManagerStore';
 

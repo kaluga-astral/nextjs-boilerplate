@@ -1,11 +1,8 @@
 import { makeAutoObservable, runInAction } from 'mobx';
 
 import { debounce, notify } from '@example/shared';
-import {
-  BookRepository,
-  BookRepositoryDTO,
-  bookRepository as bookRepositoryInstance,
-} from '@example/data';
+import type { BookRepository, BookRepositoryDTO } from '@example/data';
+import { bookRepository as bookRepositoryInstance } from '@example/data';
 
 type SubOnAutocompleteByName = (data: BookRepositoryDTO.BookByNameDTO) => void;
 
