@@ -1,5 +1,6 @@
-import { observer, useLocalObservable } from 'mobx-react-lite';
+import { observer } from 'mobx-react-lite';
 import logo from 'public/images/logo.png';
+import { useState } from 'react';
 
 import {
   DashboardLayout,
@@ -16,7 +17,7 @@ import {
 import { createHeaderStore } from './store';
 
 export const Header = observer(() => {
-  const { user } = useLocalObservable(createHeaderStore);
+  const [{ user }] = useState(createHeaderStore);
 
   return (
     <DashboardLayout.Header

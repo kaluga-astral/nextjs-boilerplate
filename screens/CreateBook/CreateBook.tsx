@@ -1,4 +1,5 @@
-import { observer, useLocalObservable } from 'mobx-react-lite';
+import { observer } from 'mobx-react-lite';
+import { useState } from 'react';
 
 import { PageLayout } from '@example/shared';
 import { BookForm } from '@example/modules/administration';
@@ -6,7 +7,7 @@ import { BookForm } from '@example/modules/administration';
 import { createBookScreenStore } from './store';
 
 export const CreateBookScreen = observer(() => {
-  const { createBook } = useLocalObservable(createBookScreenStore);
+  const [{ createBook }] = useState(createBookScreenStore);
 
   return (
     <PageLayout

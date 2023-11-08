@@ -1,4 +1,5 @@
-import { observer, useLocalObservable } from 'mobx-react-lite';
+import { observer } from 'mobx-react-lite';
+import { useState } from 'react';
 
 import type { DataGridPaginationProps, DataGridSort } from '@example/shared';
 import { DataGrid, DataGridPagination } from '@example/shared';
@@ -9,15 +10,17 @@ import type { AvailableSortField, ListItem } from './store';
 import { createGoodsListStore } from './store';
 
 export const BookList = observer(() => {
-  const {
-    list,
-    isLoading,
-    totalCount,
-    setSort,
-    setPaginationPage,
-    pagination,
-    sort,
-  } = useLocalObservable(createGoodsListStore);
+  const [
+    {
+      list,
+      isLoading,
+      totalCount,
+      setSort,
+      setPaginationPage,
+      pagination,
+      sort,
+    },
+  ] = useState(createGoodsListStore);
 
   const handleSort = (newSort?: DataGridSort<AvailableSortField>) => {
     if (newSort) {

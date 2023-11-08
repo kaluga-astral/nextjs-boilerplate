@@ -1,4 +1,5 @@
-import { observer, useLocalObservable } from 'mobx-react-lite';
+import { observer } from 'mobx-react-lite';
+import { useState } from 'react';
 
 import { CartGoodsList } from '@example/modules/cart';
 import { CardPaymentStatus } from '@example/modules/payment';
@@ -7,15 +8,17 @@ import { Button, Dialog, Grid, PageLayout } from '@example/shared';
 import { createCartScreenStore } from './store';
 
 export const CartScreen = observer(() => {
-  const {
-    isOpenModal,
-    openModal,
-    closeModal,
-    isErrorPayment,
-    isLoadingPayment,
-    pay,
-    errors,
-  } = useLocalObservable(createCartScreenStore);
+  const [
+    {
+      isOpenModal,
+      openModal,
+      closeModal,
+      isErrorPayment,
+      isLoadingPayment,
+      pay,
+      errors,
+    },
+  ] = useState(createCartScreenStore);
 
   return (
     <PageLayout

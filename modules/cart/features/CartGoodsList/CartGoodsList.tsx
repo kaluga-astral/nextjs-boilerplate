@@ -1,4 +1,5 @@
-import { observer, useLocalObservable } from 'mobx-react-lite';
+import { observer } from 'mobx-react-lite';
+import { useState } from 'react';
 
 import { ContentState, Grid } from '@example/shared';
 
@@ -8,7 +9,7 @@ import { CartGoodsListItem } from './ListItem';
 export type CartGoodsListProps = {};
 
 export const CartGoodsList = observer(({}: CartGoodsListProps) => {
-  const { list, isLoading, errors, refetchList } = useLocalObservable(
+  const [{ list, isLoading, errors, refetchList }] = useState(
     createCartGoodsListStore,
   );
 

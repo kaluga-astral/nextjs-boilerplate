@@ -1,12 +1,13 @@
-import { observer, useLocalObservable } from 'mobx-react-lite';
+import { observer } from 'mobx-react-lite';
+import { useState } from 'react';
 
 import { Badge, CartOutlineMd, IconButton } from '@example/shared';
 
 import { createCartBadgeStore } from './store';
 
 export const CartBadge = observer(() => {
-  const { isAccessCount, count, redirectToCart } =
-    useLocalObservable(createCartBadgeStore);
+  const [{ isAccessCount, count, redirectToCart }] =
+    useState(createCartBadgeStore);
 
   return (
     <Badge color="error" badgeContent={isAccessCount ? count : undefined}>
