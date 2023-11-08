@@ -23,20 +23,24 @@ export class BookFormStore {
   };
 
   public findBook = debounce((name: string): void => {
-    this.isLoadingBookByName = true;
+    runInAction(() => {
+      this.isLoadingBookByName = true;
+    });
 
     this.bookRepository
       .getBookByNameQuery(name)
       .async()
       .then(this.subOnAutocomplete)
       .catch(() => {
+        console.log('error');
+
         this.notifyService.info(
           'Не удалось автоматически заполнить форму по имени книги',
         );
       })
       .finally(() => {
         runInAction(() => {
-          this.isLoadingBookByName = true;
+          this.isLoadingBookByName = false;
         });
       });
   }, 1000);

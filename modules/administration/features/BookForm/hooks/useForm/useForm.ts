@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-import type { UseFormReturn } from '@example/shared';
+import type { DeepPartial, UseFormReturn } from '@example/shared';
 import { useForm, useFormContext, v } from '@example/shared';
 import type {
   AdministrationRepositoryDTO,
@@ -11,6 +11,7 @@ import type { BookFormStore } from '../../store';
 
 type UseBookFormParams = {
   onSubmit: (values: BookFormValues) => Promise<void>;
+  initialValues?: DeepPartial<BookFormValues>;
 };
 
 export type BookFormValues = {
@@ -53,11 +54,14 @@ const validationSchema = v.object<BookFormValues>({
 
 export const useBookForm = (
   store: BookFormStore,
-  { onSubmit }: UseBookFormParams,
+  {
+    onSubmit,
+    initialValues = { author: {}, isPresentCoAuthor: false },
+  }: UseBookFormParams,
 ): UseBookFormResult => {
   const form = useForm<BookFormValues>({
     validationSchema,
-    defaultValues: { author: {} },
+    defaultValues: initialValues,
   });
 
   const isPresentCoAuthor = form.watch('isPresentCoAuthor');

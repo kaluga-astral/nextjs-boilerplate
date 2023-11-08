@@ -19,6 +19,7 @@
     "@astral/mobx-query": "^1.2.2",
     "@astral/ui": "^3.29.1",
     "@astral/validations": "^4.10.1",
+    "utility-types": "^3.10.0",
     "@astral/validations-react-hook-form-resolver": "^4.10.1",
     "@newhighsco/next-plugin-svgr": "^3.0.115",
     "@sentry/nextjs": "^7.74.1",
