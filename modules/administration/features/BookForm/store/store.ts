@@ -32,8 +32,6 @@ export class BookFormStore {
       .async()
       .then(this.subOnAutocomplete)
       .catch(() => {
-        console.log('error');
-
         this.notifyService.info(
           'Не удалось автоматически заполнить форму по имени книги',
         );
