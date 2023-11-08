@@ -1,11 +1,10 @@
-import { CacheService, cacheService } from '@example/shared';
+import type { CacheService } from '@example/shared';
+import { cacheService } from '@example/shared';
 
-import {
-  UserNetworkSources,
-  userNetworkSources as userNetworkSourcesInstance,
-} from '../../sources';
+import type { UserNetworkSources } from '../../sources';
+import { userNetworkSources as userNetworkSourcesInstance } from '../../sources';
 
-import { UserRepositoryDTO } from './dto';
+import type { UserRepositoryDTO } from './dto';
 
 /**
  * @description Repository для работы с даннми юзере
@@ -41,13 +40,13 @@ export class UserRepository {
   public getContactInfoQuery = () =>
     this.cache.createQuery<UserRepositoryDTO.UserContactDTO>(
       this.contactInfoCacheKey,
-      this.userNetworkSources.getContactInfo,
+      () => this.userNetworkSources.getContactInfo().then(({ data }) => data),
     );
 
   public getPersonInfoQuery = () =>
     this.cache.createQuery<UserRepositoryDTO.UserPersonDTO>(
-      this.contactInfoCacheKey,
-      this.userNetworkSources.getPersonInfo,
+      this.personInfoCacheKey,
+      () => this.userNetworkSources.getPersonInfo().then(({ data }) => data),
     );
 }
 

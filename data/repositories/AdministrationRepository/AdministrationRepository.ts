@@ -1,11 +1,10 @@
-import { CacheService, cacheService } from '@example/shared';
+import type { CacheService } from '@example/shared';
+import { cacheService } from '@example/shared';
 
-import {
-  AdministrationNetworkSources,
-  administrationNetworkSources as administrationNetworkSourcesInstance,
-} from '../../sources';
+import type { AdministrationNetworkSources } from '../../sources';
+import { administrationNetworkSources as administrationNetworkSourcesInstance } from '../../sources';
 
-import { AdministrationRepositoryDTO } from './dto';
+import type { AdministrationRepositoryDTO } from './dto';
 
 /**
  * @description Repository для работы с данными админской части приложения

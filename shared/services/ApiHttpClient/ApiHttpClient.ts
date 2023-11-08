@@ -1,7 +1,7 @@
 import { createHttpService } from '../HttpService';
 import { configService } from '../ConfigService';
 
-import { ApiDataError } from './error';
+import type { ApiDataError } from './error';
 import { formatApiError } from './utils';
 
 /**

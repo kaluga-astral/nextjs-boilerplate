@@ -1,6 +1,7 @@
-import { HttpServiceResponse, apiHttpClient } from '@example/shared';
+import type { HttpServiceResponse } from '@example/shared';
+import { apiHttpClient } from '@example/shared';
 
-import { CartNetworkSourcesDTO } from './dto';
+import type { CartNetworkSourcesDTO } from './dto';
 
 export const cartNetworkSources = {
   addGoods: (goods: CartNetworkSourcesDTO.AddGoodsInputDTO) =>
@@ -26,21 +27,6 @@ export const cartNetworkSources = {
       void,
       HttpServiceResponse<CartNetworkSourcesDTO.CartGoodsDTO>
     >('/cart/goods'),
-
-  // getGoods: async (): Promise<
-  //   HttpServiceResponse<CartNetworkSourcesDTO.CartGoodsDTO>
-  // > => ({
-  //   status: 200,
-  //   statusText: 'text',
-  //   headers: {},
-  //   config: {} as any,
-  //   data: {
-  //     data: [
-  //       { id: '1', price: 2000, name: 'Name', count: 1 },
-  //       { id: '2', price: 2000, name: 'Name', count: 0 },
-  //     ],
-  //   },
-  // }),
 };
 
 export type CartNetworkSources = typeof cartNetworkSources;

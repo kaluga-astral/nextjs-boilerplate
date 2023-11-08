@@ -1,4 +1,4 @@
-import { BookNetworkSourcesDTO } from '../../sources';
+import type { BookNetworkSourcesDTO } from '../../sources';
 
 export namespace BookRepositoryDTO {
   export type GenreListDTO = BookNetworkSourcesDTO.GenreListDTO;

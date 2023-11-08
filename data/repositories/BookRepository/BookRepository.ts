@@ -1,11 +1,10 @@
-import { ApiDataError, CacheService, cacheService } from '@example/shared';
+import type { ApiDataError, CacheService } from '@example/shared';
+import { cacheService } from '@example/shared';
 
-import {
-  BookNetworkSources,
-  bookNetworkSources as bookNetworkSourcesInstance,
-} from '../../sources';
+import type { BookNetworkSources } from '../../sources';
+import { fakeBookNetworkSources } from '../../sources';
 
-import { BookRepositoryDTO } from './dto';
+import type { BookRepositoryDTO } from './dto';
 
 /**
  * @description Работает с данными о книгах
@@ -57,6 +56,6 @@ export class BookRepository {
 }
 
 export const bookRepository = new BookRepository(
-  bookNetworkSourcesInstance,
+  fakeBookNetworkSources,
   cacheService,
 );

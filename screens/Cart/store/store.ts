@@ -1,10 +1,9 @@
 import { makeAutoObservable } from 'mobx';
 
-import {
-  CardPaymentStore,
-  createCardPaymentStore,
-} from '@example/modules/payment';
-import { APP_ROUTES, Router, createFlagStore, router } from '@example/shared';
+import type { CardPaymentStore } from '@example/modules/payment';
+import { createCardPaymentStore } from '@example/modules/payment';
+import type { Router } from '@example/shared';
+import { APP_ROUTES, createFlagStore, router } from '@example/shared';
 
 export class CartScreenStore {
   private readonly flagStore = createFlagStore();

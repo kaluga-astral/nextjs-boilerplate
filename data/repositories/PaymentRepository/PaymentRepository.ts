@@ -1,12 +1,12 @@
-import { ApiDataError, CacheService, cacheService } from '@example/shared';
+import type { ApiDataError, CacheService } from '@example/shared';
+import { cacheService } from '@example/shared';
 
-import { PaymentNetworkSources, paymentNetworkSources } from '../../sources';
-import {
-  CartRepository,
-  cartRepository as cartRepositoryInstance,
-} from '../CartRepository';
+import type { PaymentNetworkSources } from '../../sources';
+import { paymentNetworkSources } from '../../sources';
+import type { CartRepository } from '../CartRepository';
+import { cartRepository as cartRepositoryInstance } from '../CartRepository';
 
-import { PaymentRepositoryDTO } from './dto';
+import type { PaymentRepositoryDTO } from './dto';
 
 export class PaymentRepository {
   constructor(

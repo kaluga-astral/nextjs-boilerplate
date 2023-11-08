@@ -1,6 +1,7 @@
-import { HttpServiceResponse, apiHttpClient } from '@example/shared';
+import type { HttpServiceResponse } from '@example/shared';
+import { apiHttpClient } from '@example/shared';
 
-import { BookNetworkSourcesDTO } from './dto';
+import type { BookNetworkSourcesDTO } from './dto';
 
 export const bookNetworkSources = {
   getGenreList: () =>
@@ -28,22 +29,6 @@ export const bookNetworkSources = {
     >('/books', {
       params,
     }),
-  //
-  // getBookList: async (
-  //   params: BookListNetworkInputDTO,
-  // ): Promise<HttpServiceResponse<BookListNetworkDTO>> => ({
-  //   status: 200,
-  //   statusText: 'text',
-  //   headers: {},
-  //   config: {} as any,
-  //   data: {
-  //     data: [
-  //       { id: '1', price: 2000, name: 'Name' },
-  //       { id: '2', price: 2000, name: 'Name' },
-  //     ],
-  //     meta: { totalCount: 5 },
-  //   },
-  // }),
 };
 
 export type BookNetworkSources = typeof bookNetworkSources;

@@ -1,4 +1,5 @@
-import { BookFormValues, useBookFormContext } from '../../hooks';
+import type { BookFormValues } from '../../hooks';
+import { useBookFormContext } from '../../hooks';
 
 type Returned = {
   name: BookFormValues['name'];

@@ -1,12 +1,12 @@
-import {
+import type {
   FormFieldValues,
   UseFormProps as UseAstralFormProps,
   UseFormReturn,
-  useForm as useAstralForm,
 } from '@astral/ui';
+import { useForm as useAstralForm } from '@astral/ui';
 import { resolver } from '@astral/validations-react-hook-form-resolver';
 
-import { v } from '../../../services';
+import type { v } from '../../../services';
 
 export type UseFormProps<
   TFieldValues extends FormFieldValues = FormFieldValues,

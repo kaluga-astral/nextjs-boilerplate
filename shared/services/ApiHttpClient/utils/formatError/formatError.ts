@@ -1,6 +1,6 @@
+import type { HttpServiceError } from '../../../HttpService';
 import {
   BAD_REQUEST_ERROR_INFO,
-  HttpServiceError,
   INTERNAL_ERROR_INFO,
   NOT_FOUND_ERROR_INFO,
   UNAUTHORIZED_HTTP_INFO,

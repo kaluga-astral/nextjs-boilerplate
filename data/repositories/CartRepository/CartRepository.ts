@@ -1,11 +1,10 @@
-import { ApiDataError, CacheService, cacheService } from '@example/shared';
+import type { ApiDataError, CacheService } from '@example/shared';
+import { cacheService } from '@example/shared';
 
-import {
-  CartNetworkSources,
-  cartNetworkSources as cartNetworkSourcesInstance,
-} from '../../sources';
+import type { CartNetworkSources } from '../../sources';
+import { fakeCartNetworkSources } from '../../sources';
 
-import { CartRepositoryDTO } from './dto';
+import type { CartRepositoryDTO } from './dto';
 
 export class CartRepository {
   private goodsKey = 'cart-goods';
@@ -68,6 +67,6 @@ export class CartRepository {
 }
 
 export const cartRepository = new CartRepository(
-  cartNetworkSourcesInstance,
+  fakeCartNetworkSources,
   cacheService,
 );

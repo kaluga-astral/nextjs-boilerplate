@@ -1,6 +1,7 @@
 import { makeAutoObservable } from 'mobx';
 
-import { CartStore, cartStore as cartStoreInstance } from '../CartStore';
+import type { CartStore } from '../CartStore';
+import { cartStore as cartStoreInstance } from '../CartStore';
 
 /**
  * Store для добавления, удаления конкретного товара из корзины
@@ -8,7 +9,10 @@ import { CartStore, cartStore as cartStoreInstance } from '../CartStore';
 export class ProductCartManagerStore {
   private currentProductId: string;
 
-  constructor(private readonly cartStore: CartStore, productID: string) {
+  constructor(
+    private readonly cartStore: CartStore,
+    productID: string,
+  ) {
     makeAutoObservable(this);
     this.currentProductId = productID;
   }

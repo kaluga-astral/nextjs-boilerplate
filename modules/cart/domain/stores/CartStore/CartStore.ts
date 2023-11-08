@@ -1,9 +1,7 @@
 import { makeAutoObservable } from 'mobx';
 
-import {
-  CartRepository,
-  cartRepository as cartRepositoryInstance,
-} from '@example/data';
+import type { CartRepository } from '@example/data';
+import { cartRepository as cartRepositoryInstance } from '@example/data';
 import { notify } from '@example/shared';
 
 export class CartStore {

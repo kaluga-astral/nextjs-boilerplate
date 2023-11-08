@@ -1,11 +1,10 @@
 import { makeAutoObservable } from 'mobx';
 
-import {
-  PaymentRepository,
-  paymentRepository as paymentRepositoryInstance,
-} from '@example/data';
+import type { PaymentRepository } from '@example/data';
+import { paymentRepository as paymentRepositoryInstance } from '@example/data';
 
-import { CartStore, cartStore as cartStoreInstance } from '../../external';
+import type { CartStore } from '../../external';
+import { cartStore as cartStoreInstance } from '../../external';
 
 export class CardPaymentStore {
   constructor(
@@ -27,10 +26,14 @@ export class CardPaymentStore {
     return this.paymentMutation.error?.errors.map(({ message }) => message);
   }
 
-  public pay = ({ onSuccess }: { onSuccess: () => void }) => {
+  public pay = (params?: { onSuccess: () => void }) => {
+    const { onSuccess } = params || {};
     const goodsId = this.cartStore.goods.map(({ id }) => id);
 
-    this.paymentMutation.sync({ params: goodsId, onSuccess });
+    this.paymentMutation.sync({
+      params: goodsId,
+      onSuccess,
+    });
   };
 }
 

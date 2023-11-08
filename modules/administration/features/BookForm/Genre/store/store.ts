@@ -1,9 +1,7 @@
 import { makeAutoObservable } from 'mobx';
 
-import {
-  BookRepository,
-  bookRepository as bookRepositoryInstance,
-} from '@example/data';
+import type { BookRepository } from '@example/data';
+import { bookRepository as bookRepositoryInstance } from '@example/data';
 
 export class GenreStore {
   constructor(private readonly bookRepository: BookRepository) {

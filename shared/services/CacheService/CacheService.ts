@@ -1,6 +1,7 @@
-import { MobxQuery, Query } from '@astral/mobx-query';
+import type { Mutation, Query } from '@astral/mobx-query';
+import { MobxQuery } from '@astral/mobx-query';
 
-import { ApiDataError } from '../ApiHttpClient';
+import type { ApiDataError } from '../ApiHttpClient';
 
 export const cacheService = new MobxQuery<ApiDataError>({
   enabledAutoFetch: true,
@@ -8,4 +9,4 @@ export const cacheService = new MobxQuery<ApiDataError>({
 
 export { MobxQuery as CacheService };
 
-export type { Query as CacheQuery };
+export type { Query as CacheQuery, Mutation as CacheMutation };
