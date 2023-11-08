@@ -23,7 +23,9 @@ export class BookFormStore {
   };
 
   public findBook = debounce((name: string): void => {
-    this.isLoadingBookByName = true;
+    runInAction(() => {
+      this.isLoadingBookByName = true;
+    });
 
     this.bookRepository
       .getBookByNameQuery(name)
@@ -36,7 +38,7 @@ export class BookFormStore {
       })
       .finally(() => {
         runInAction(() => {
-          this.isLoadingBookByName = true;
+          this.isLoadingBookByName = false;
         });
       });
   }, 1000);

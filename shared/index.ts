@@ -11,3 +11,5 @@ export * from './enums';
 export * from './constants';
 
 export * from './illustrations';
+
+export * from './types';
