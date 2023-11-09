@@ -10,11 +10,13 @@ import { APP_ROUTES, cacheService } from '@example/shared';
 import { CreateBookScreenStore } from './store';
 
 describe('CreateBookScreenStore', () => {
-  const makeFakeBookFormValues = (): BookFormValues => ({
+  const makeFakeBookFormValues = (
+    values?: Partial<BookFormValues>,
+  ): BookFormValues => ({
     ...bookRepositoryFaker.makeBookByName(),
-    name: 'Чистый код',
     pageCount: '22',
     isPresentCoAuthor: false,
+    ...values,
   });
 
   const setupSuccessCreation = () => {
@@ -66,7 +68,7 @@ describe('CreateBookScreenStore', () => {
   });
 
   it('После успешного создании книги появляется уведомление об успешности', async () => {
-    const fakeBookFormValues = makeFakeBookFormValues();
+    const fakeBookFormValues = makeFakeBookFormValues({ name: 'Чистый код' });
     const { sut, notifyMock } = setupSuccessCreation();
 
     await sut.createBook(fakeBookFormValues);
