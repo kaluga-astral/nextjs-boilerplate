@@ -1,10 +1,5 @@
 export * from './renderWithTheme';
 
-// eslint-disable-next-line import/no-extraneous-dependencies
-export { default as userEvents } from '@testing-library/user-event';
+export * from './external';
 
-// eslint-disable-next-line import/no-extraneous-dependencies
-export * as rtl from '@testing-library/react';
-
-// eslint-disable-next-line import/no-extraneous-dependencies
-export { mock } from 'vitest-mock-extended';
+export * from './routerMock';

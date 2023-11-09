@@ -6,7 +6,7 @@ import type { Router } from '@example/shared';
 import { APP_ROUTES, createFlagStore, router } from '@example/shared';
 
 export class CartScreenStore {
-  private readonly flagStore = createFlagStore();
+  private readonly modalStore = createFlagStore();
 
   constructor(
     private readonly cardPaymentStore: CardPaymentStore,
@@ -18,16 +18,16 @@ export class CartScreenStore {
   }
 
   public get isOpenModal() {
-    return this.flagStore.flag;
+    return this.modalStore.flag;
   }
 
   public openModal = () => {
     this.pay();
-    this.flagStore.setTrue();
+    this.modalStore.setTrue();
   };
 
   public closeModal = () => {
-    this.flagStore.setFalse();
+    this.modalStore.setFalse();
   };
 
   public get isLoadingPayment() {
