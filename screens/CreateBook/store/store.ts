@@ -21,7 +21,12 @@ export class CreateBookScreenStore {
     return this.administrationRepository.createBookMutation();
   }
 
-  public createBook = ({ genre, pageCount, ...data }: BookFormValues) =>
+  public createBook = ({
+    genre,
+    pageCount,
+    isPresentCoAuthor,
+    ...data
+  }: BookFormValues) =>
     this.creationBookMutation
       .async({ ...data, genreID: genre.id, pageCount: Number(pageCount) })
       .then(() => {
