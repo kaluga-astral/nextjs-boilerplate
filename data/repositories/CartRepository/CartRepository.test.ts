@@ -1,6 +1,6 @@
 import { when } from 'mobx';
 
-import { cacheService } from '@example/shared';
+import { createCacheService } from '@example/shared';
 import { mock } from '@example/shared/_tests';
 
 import type { CartNetworkSources } from '../../sources';
@@ -15,7 +15,7 @@ describe('CartRepository', () => {
         addGoods: () => new Promise(() => {}),
       });
 
-      const sut = new CartRepository(cartSourcesStub, cacheService);
+      const sut = new CartRepository(cartSourcesStub, createCacheService());
       const goodsCountQuery = sut.getGoodsCountQuery();
 
       goodsCountQuery.forceUpdate(0);
@@ -29,7 +29,7 @@ describe('CartRepository', () => {
         addGoods: () => Promise.reject(),
       });
 
-      const sut = new CartRepository(cartSourcesStub, cacheService);
+      const sut = new CartRepository(cartSourcesStub, createCacheService());
       const goodsCountQuery = sut.getGoodsCountQuery();
 
       goodsCountQuery.forceUpdate(0);
@@ -47,7 +47,7 @@ describe('CartRepository', () => {
         removeGoods: () => new Promise(() => {}),
       });
 
-      const sut = new CartRepository(cartSourcesStub, cacheService);
+      const sut = new CartRepository(cartSourcesStub, createCacheService());
       const goodsCountQuery = sut.getGoodsCountQuery();
 
       goodsCountQuery.forceUpdate(2);
@@ -61,7 +61,7 @@ describe('CartRepository', () => {
         addGoods: () => Promise.reject(),
       });
 
-      const sut = new CartRepository(cartSourcesStub, cacheService);
+      const sut = new CartRepository(cartSourcesStub, createCacheService());
       const goodsCountQuery = sut.getGoodsCountQuery();
 
       goodsCountQuery.forceUpdate(2);

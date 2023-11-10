@@ -1,4 +1,4 @@
-import { cacheService, faker } from '@example/shared';
+import { createCacheService, faker } from '@example/shared';
 import { mock } from '@example/shared/_tests';
 
 import type { UserNetworkSources, UserNetworkSourcesDTO } from '../../sources';
@@ -23,7 +23,7 @@ describe('UserRepository', () => {
       getPersonInfo: async () => makeFakeSourceRes(personDataStub),
     });
 
-    const sut = new UserRepository(userSourcesStub, cacheService);
+    const sut = new UserRepository(userSourcesStub, createCacheService());
 
     const user = await sut.getFullInfoQuery().async();
 

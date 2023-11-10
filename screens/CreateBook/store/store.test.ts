@@ -5,7 +5,7 @@ import type { notify } from '@example/shared';
 import { bookRepositoryFaker } from '@example/data';
 import type { AdministrationRepository } from '@example/data';
 import type { BookFormValues } from '@example/modules/administration';
-import { APP_ROUTES, cacheService } from '@example/shared';
+import { APP_ROUTES, createCacheService } from '@example/shared';
 
 import { CreateBookScreenStore } from './store';
 
@@ -20,6 +20,7 @@ describe('CreateBookScreenStore', () => {
   });
 
   const setupSuccessCreation = () => {
+    const cacheService = createCacheService();
     const adminRepositoryMock = mock<AdministrationRepository>({
       createBookMutation: () =>
         cacheService.createMutation(async () => undefined),
@@ -45,6 +46,7 @@ describe('CreateBookScreenStore', () => {
       isPresentCoAuthor: false,
     };
 
+    const cacheService = createCacheService();
     const creationBookMock = vi.fn().mockResolvedValue(undefined);
     const adminRepositoryMock = mock<AdministrationRepository>({
       createBookMutation: () => cacheService.createMutation(creationBookMock),

@@ -1,4 +1,4 @@
-import { cacheService } from '@example/shared';
+import { createCacheService } from '@example/shared';
 import { mock } from '@example/shared/_tests';
 
 import type { PaymentNetworkSources } from '../../sources';
@@ -16,7 +16,7 @@ describe('PaymentRepository', () => {
     const sut = new PaymentRepository(
       cartRepositoryMock,
       paymentSourcesStub,
-      cacheService,
+      createCacheService(),
     );
 
     const payByCardMutation = sut.createPaymentByCardMutation();
