@@ -16,11 +16,6 @@ export class CartRepository {
     private readonly cache: CacheService,
   ) {}
 
-  private resetCartCache = () => {
-    this.getGoodsQuery().forceUpdate([]);
-    this.getGoodsCountQuery().forceUpdate(0);
-  };
-
   /**
    * Товары, добавленные в корзину
    */
@@ -50,10 +45,8 @@ export class CartRepository {
 
     try {
       await this.cartNetworkSources.addGoods(goods);
-      this.getGoodsQuery().forceUpdate([]);
-      this.getGoodsCountQuery().forceUpdate(0);
     } catch (err) {
-      // отказ optimistic update
+      // откат optimistic update
       this.getGoodsCountQuery().forceUpdate(prevCount);
 
       throw err;
@@ -70,21 +63,17 @@ export class CartRepository {
 
     try {
       await this.cartNetworkSources.removeGoods(goods);
-      this.resetCartCache();
     } catch (err) {
-      // отказ optimistic update
+      // откат optimistic update
       this.getGoodsCountQuery().forceUpdate(prevCount);
 
       throw err;
     }
   };
 
-  /**
-   * Инвалидирует все query корзины
-   */
-  public invalidateData = () => {
-    this.getGoodsQuery().invalidate();
-    this.getGoodsCountQuery().invalidate();
+  public resetCartCache = () => {
+    this.getGoodsQuery().forceUpdate([]);
+    this.getGoodsCountQuery().forceUpdate(0);
   };
 
   public createAddGoodsMutation = () =>

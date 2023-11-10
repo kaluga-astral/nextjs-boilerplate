@@ -23,7 +23,7 @@ export class PaymentRepository {
       PaymentRepositoryDTO.PayByCardInputDTO
     >((goods) =>
       this.paymentSources.payByCard(goods).then(() => {
-        this.cartRepository.invalidateData();
+        this.cartRepository.resetCartCache();
       }),
     );
 }

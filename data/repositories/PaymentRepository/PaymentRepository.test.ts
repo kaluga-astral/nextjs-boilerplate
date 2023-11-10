@@ -7,21 +7,23 @@ import type { CartRepository } from '../CartRepository';
 import { PaymentRepository } from './PaymentRepository';
 
 describe('PaymentRepository', () => {
-  it('После успешной покупки инвалидируются данные корзины', async () => {
-    const paymentSourcesStub = mock<PaymentNetworkSources>({
-      payByCard: async () => undefined,
+  describe('Успешная покупка', () => {
+    it('Инвалидируются данные корзины', async () => {
+      const paymentSourcesStub = mock<PaymentNetworkSources>({
+        payByCard: async () => undefined,
+      });
+      const cartRepositoryMock = mock<CartRepository>();
+
+      const sut = new PaymentRepository(
+        cartRepositoryMock,
+        paymentSourcesStub,
+        createCacheService(),
+      );
+
+      const payByCardMutation = sut.createPaymentByCardMutation();
+
+      await payByCardMutation.async(['id']);
+      expect(cartRepositoryMock.resetCartCache).toBeCalled();
     });
-    const cartRepositoryMock = mock<CartRepository>();
-
-    const sut = new PaymentRepository(
-      cartRepositoryMock,
-      paymentSourcesStub,
-      createCacheService(),
-    );
-
-    const payByCardMutation = sut.createPaymentByCardMutation();
-
-    await payByCardMutation.async(['id']);
-    expect(cartRepositoryMock.invalidateData).toBeCalled();
   });
 });
