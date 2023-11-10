@@ -4,44 +4,73 @@ import { cacheService } from '@example/shared';
 import { mock } from '@example/shared/_tests';
 
 import type { CartNetworkSources } from '../../sources';
-import { makeFakeSourceRes } from '../../sources';
 
 import { CartRepository } from './CartRepository';
 
 describe('CartRepository', () => {
-  const cartSourcesStub = mock<CartNetworkSources>({
-    addGoods: async () => makeFakeSourceRes(undefined),
-    getGoods: async () => makeFakeSourceRes({ data: [] }),
-    getGoodsCount: async () => makeFakeSourceRes(0),
-  });
+  describe('Общий счетчик товаров', () => {
+    it('Увеличивается при добавлении товаров до успешного выполнения запроса', async () => {
+      const cartSourcesStub = mock<CartNetworkSources>({
+        // постоянный pending
+        addGoods: () => new Promise(() => {}),
+      });
 
-  it('При добавлении товара в корзину инвалидирует данные корзины', async () => {
-    const sut = new CartRepository(cartSourcesStub, cacheService);
-    const goodsQuery = sut.getGoodsQuery();
-    const goodsCountQuery = sut.getGoodsCountQuery();
+      const sut = new CartRepository(cartSourcesStub, cacheService);
+      const goodsCountQuery = sut.getGoodsCountQuery();
 
-    await sut.addGoods(['id']);
+      goodsCountQuery.forceUpdate(0);
+      sut.addGoods(['id']);
+      await when(() => goodsCountQuery.data !== 0);
+      expect(goodsCountQuery.data).toBe(1);
+    });
 
-    await when(
-      () => goodsQuery.data?.length === 0 && goodsCountQuery.data === 0,
-    );
+    it('Значение откатывается в исходное при ошибке запроса на добавления товаров в корзину', async () => {
+      const cartSourcesStub = mock<CartNetworkSources>({
+        addGoods: () => Promise.reject(),
+      });
 
-    expect(goodsQuery.data).toEqual([]);
-    expect(goodsCountQuery.data).toBe(0);
-  });
+      const sut = new CartRepository(cartSourcesStub, cacheService);
+      const goodsCountQuery = sut.getGoodsCountQuery();
 
-  it('При удалении товара из корзины инвалидирует данные корзины', async () => {
-    const sut = new CartRepository(cartSourcesStub, cacheService);
-    const goodsQuery = sut.getGoodsQuery();
-    const goodsCountQuery = sut.getGoodsCountQuery();
+      goodsCountQuery.forceUpdate(0);
 
-    await sut.removeGoods(['id']);
+      try {
+        await sut.addGoods(['id']);
+      } catch (err) {
+        expect(goodsCountQuery.data).toBe(0);
+      }
+    });
 
-    await when(
-      () => goodsQuery.data?.length === 0 && goodsCountQuery.data === 0,
-    );
+    it('Уменьшается при удалении товаров до успешного выполнения запроса', async () => {
+      const cartSourcesStub = mock<CartNetworkSources>({
+        // постоянный pending
+        removeGoods: () => new Promise(() => {}),
+      });
 
-    expect(goodsQuery.data).toEqual([]);
-    expect(goodsCountQuery.data).toBe(0);
+      const sut = new CartRepository(cartSourcesStub, cacheService);
+      const goodsCountQuery = sut.getGoodsCountQuery();
+
+      goodsCountQuery.forceUpdate(2);
+      sut.removeGoods(['id']);
+      await when(() => goodsCountQuery.data !== 2);
+      expect(goodsCountQuery.data).toBe(1);
+    });
+
+    it('Значение откатывается в исходное при ошибке запроса на удаление товаров из корзины', async () => {
+      const cartSourcesStub = mock<CartNetworkSources>({
+        addGoods: () => Promise.reject(),
+      });
+
+      const sut = new CartRepository(cartSourcesStub, cacheService);
+      const goodsCountQuery = sut.getGoodsCountQuery();
+
+      goodsCountQuery.forceUpdate(2);
+
+      try {
+        await sut.removeGoods(['id']);
+      } catch (err) {
+        expect(goodsCountQuery.data).toBe(2);
+      }
+    });
   });
 });

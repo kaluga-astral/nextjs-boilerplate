@@ -16,6 +16,11 @@ export class CartRepository {
     private readonly cache: CacheService,
   ) {}
 
+  private resetCartCache = () => {
+    this.getGoodsQuery().forceUpdate([]);
+    this.getGoodsCountQuery().forceUpdate(0);
+  };
+
   /**
    * Товары, добавленные в корзину
    */
@@ -38,17 +43,40 @@ export class CartRepository {
   public addGoods = async (
     goods: CartRepositoryDTO.AddGoodsToCartInputDTO,
   ): Promise<void> => {
-    await this.cartNetworkSources.addGoods(goods);
-    this.getGoodsQuery().invalidate();
-    this.getGoodsCountQuery().invalidate();
+    const prevCount = this.getGoodsCountQuery().data || 0;
+
+    // позволяет увеличить счетчик до того, как инфа успешно сохраниться на бэк
+    this.getGoodsCountQuery().forceUpdate(prevCount + goods.length);
+
+    try {
+      await this.cartNetworkSources.addGoods(goods);
+      this.getGoodsQuery().forceUpdate([]);
+      this.getGoodsCountQuery().forceUpdate(0);
+    } catch (err) {
+      // отказ optimistic update
+      this.getGoodsCountQuery().forceUpdate(prevCount);
+
+      throw err;
+    }
   };
 
   public removeGoods = async (
     goods: CartRepositoryDTO.RemoveGoodsFromCartInputDTO,
   ): Promise<void> => {
-    await this.cartNetworkSources.removeGoods(goods);
-    this.getGoodsQuery().invalidate();
-    this.getGoodsCountQuery().invalidate();
+    const prevCount = this.getGoodsCountQuery().data || 0;
+
+    // позволяет уменьшить счетчик до того, как инфа успешно сохраниться на бэк
+    this.getGoodsCountQuery().forceUpdate(prevCount - goods.length);
+
+    try {
+      await this.cartNetworkSources.removeGoods(goods);
+      this.resetCartCache();
+    } catch (err) {
+      // отказ optimistic update
+      this.getGoodsCountQuery().forceUpdate(prevCount);
+
+      throw err;
+    }
   };
 
   /**
