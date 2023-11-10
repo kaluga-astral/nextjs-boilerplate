@@ -5,7 +5,7 @@ export const BooksScreen = () => {
   return (
     <PageLayout
       header={{ title: 'Книги' }}
-      content={{ children: <BookList /> }}
+      content={{ children: <BookList />, isPaddingDisabled: false }}
     />
   );
 };

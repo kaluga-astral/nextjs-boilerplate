@@ -3,9 +3,12 @@ import { MobxQuery } from '@astral/mobx-query';
 
 import type { ApiDataError } from '../ApiHttpClient';
 
-export const cacheService = new MobxQuery<ApiDataError>({
-  enabledAutoFetch: true,
-});
+export const createCacheService = () =>
+  new MobxQuery<ApiDataError>({
+    enabledAutoFetch: true,
+  });
+
+export const cacheService = createCacheService();
 
 export { MobxQuery as CacheService };
 

@@ -1,5 +1,5 @@
 import { mock } from '@example/shared/_tests';
-import { cacheService } from '@example/shared';
+import { createCacheService } from '@example/shared';
 
 import type { BookNetworkSources } from '../../sources';
 import { bookNetworkSourcesFaker, makeFakeSourceRes } from '../../sources';
@@ -15,7 +15,7 @@ describe('BookRepository', () => {
       getBookByName: async () => makeFakeSourceRes(bookResStub),
       getGenreByID: async () => makeFakeSourceRes(genreResStub),
     });
-    const sut = new BookRepository(bookSourcesStub, cacheService);
+    const sut = new BookRepository(bookSourcesStub, createCacheService());
 
     const bookByNameQuery = sut.getBookByNameQuery(bookResStub.name);
 
