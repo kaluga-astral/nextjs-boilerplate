@@ -7,20 +7,22 @@ import { bookNetworkSourcesFaker, makeFakeSourceRes } from '../../sources';
 import { BookRepository } from './BookRepository';
 
 describe('BookRepository', () => {
-  it('getBookByNameQuery добавляет в ответ подробную информацию о поле автора', async () => {
-    const genreResStub = bookNetworkSourcesFaker.makeGenre();
-    const bookResStub = bookNetworkSourcesFaker.makeBookByName();
+  describe('Запрос книги по автору', () => {
+    it('Формируется подробная информация об авторе', async () => {
+      const genreResStub = bookNetworkSourcesFaker.makeGenre();
+      const bookResStub = bookNetworkSourcesFaker.makeBookByName();
 
-    const bookSourcesStub = mock<BookNetworkSources>({
-      getBookByName: async () => makeFakeSourceRes(bookResStub),
-      getGenreByID: async () => makeFakeSourceRes(genreResStub),
+      const bookSourcesStub = mock<BookNetworkSources>({
+        getBookByName: async () => makeFakeSourceRes(bookResStub),
+        getGenreByID: async () => makeFakeSourceRes(genreResStub),
+      });
+      const sut = new BookRepository(bookSourcesStub, createCacheService());
+
+      const bookByNameQuery = sut.getBookByNameQuery(bookResStub.name);
+
+      const { genre } = await bookByNameQuery.async();
+
+      expect(genre).toEqual(genreResStub);
     });
-    const sut = new BookRepository(bookSourcesStub, createCacheService());
-
-    const bookByNameQuery = sut.getBookByNameQuery(bookResStub.name);
-
-    const { genre } = await bookByNameQuery.async();
-
-    expect(genre).toEqual(genreResStub);
   });
 });

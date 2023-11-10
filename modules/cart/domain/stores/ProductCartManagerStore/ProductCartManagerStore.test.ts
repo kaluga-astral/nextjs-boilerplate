@@ -6,37 +6,41 @@ import type { CartStore } from '../CartStore';
 import { ProductCartManagerStore } from './ProductCartManagerStore';
 
 describe('ProductCartManagerStore', () => {
-  it('Высчитывает количество текущего товара в корзине', () => {
-    const fakeGoods = cartRepositoryFaker.makeGoodsList();
-    const currentProduct = fakeGoods[0];
+  describe('Количество текущего товара в корзине', () => {
+    it('Высчитывается на основе полученных данных', () => {
+      const fakeGoods = cartRepositoryFaker.makeGoodsList();
+      const currentProduct = fakeGoods[0];
 
-    const cartStoreStub = mock<CartStore>({
-      goods: fakeGoods,
+      const cartStoreStub = mock<CartStore>({
+        goods: fakeGoods,
+      });
+      const sut = new ProductCartManagerStore(cartStoreStub, currentProduct.id);
+
+      expect(sut.count).toBe(currentProduct.count);
     });
-    const sut = new ProductCartManagerStore(cartStoreStub, currentProduct.id);
-
-    expect(sut.count).toBe(currentProduct.count);
   });
 
-  it('hasAddedToCart показывает, что товар был добавлен в корзину', () => {
-    const fakeGoodsItem = cartRepositoryFaker.makeGoodsItem({ count: 1 });
+  describe('Признак наличия товара в корзине', () => {
+    it('Показывает, что товар был добавлен в корзину', () => {
+      const fakeGoodsItem = cartRepositoryFaker.makeGoodsItem({ count: 1 });
 
-    const cartStoreStub = mock<CartStore>({
-      goods: [fakeGoodsItem, cartRepositoryFaker.makeGoodsItem()],
+      const cartStoreStub = mock<CartStore>({
+        goods: [fakeGoodsItem, cartRepositoryFaker.makeGoodsItem()],
+      });
+      const sut = new ProductCartManagerStore(cartStoreStub, fakeGoodsItem.id);
+
+      expect(sut.hasAddedToCart).toBeTruthy();
     });
-    const sut = new ProductCartManagerStore(cartStoreStub, fakeGoodsItem.id);
 
-    expect(sut.hasAddedToCart).toBeTruthy();
-  });
+    it('Показывает, что товар не был добавлен в корзину', () => {
+      const fakeGoodsItem = cartRepositoryFaker.makeGoodsItem({ count: 0 });
 
-  it('hasAddedToCart показывает, что товар не был добавлен в корзину', () => {
-    const fakeGoodsItem = cartRepositoryFaker.makeGoodsItem({ count: 0 });
+      const cartStoreStub = mock<CartStore>({
+        goods: [fakeGoodsItem, cartRepositoryFaker.makeGoodsItem()],
+      });
+      const sut = new ProductCartManagerStore(cartStoreStub, fakeGoodsItem.id);
 
-    const cartStoreStub = mock<CartStore>({
-      goods: [fakeGoodsItem, cartRepositoryFaker.makeGoodsItem()],
+      expect(sut.hasAddedToCart).toBeFalsy();
     });
-    const sut = new ProductCartManagerStore(cartStoreStub, fakeGoodsItem.id);
-
-    expect(sut.hasAddedToCart).toBeFalsy();
   });
 });
