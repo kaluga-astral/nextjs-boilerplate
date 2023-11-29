@@ -83,4 +83,18 @@ describe('CartRepository', () => {
     expect(goodsCountQuery.data).toBe(0);
     expect(goodsQuery.data).toEqual([]);
   });
+
+  describe('Товары', () => {
+    it('После ресета счетчик и список сбрасывают', () => {
+      const cartSourcesStub = mock<CartNetworkSources>();
+
+      const sut = new CartRepository(cartSourcesStub, createCacheService());
+      const goodsCountQuery = sut.getGoodsCountQuery();
+      const goodsQuery = sut.getGoodsQuery();
+
+      sut.resetCartCache();
+      expect(goodsCountQuery.data).toBe(0);
+      expect(goodsQuery.data).toEqual([]);
+    });
+  });
 });
