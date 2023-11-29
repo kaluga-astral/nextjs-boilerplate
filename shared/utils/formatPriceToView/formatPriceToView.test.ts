@@ -1,7 +1,7 @@
 import { formatPriceToView } from './formatPriceToView';
 
 describe('formatPriceToView', () => {
-  it('Добавляет постфикс', () => {
+  it('Добавляет постфикс рубля', () => {
     expect(formatPriceToView(100)).toBe('100 руб.');
   });
 
@@ -10,13 +10,13 @@ describe('formatPriceToView', () => {
     [10000, '10 000 руб.'],
     [100000, '100 000 руб.'],
     [1000000, '1 000 000 руб.'],
-  ])('Для %s ставит неразрывный пробел в числах', (input, output) => {
+  ])('Добавляет %s неразрывный пробел между нулями', (input, output) => {
     const result = formatPriceToView(input);
 
     expect(result).toBe(output);
   });
 
-  it('При нуле отдает текст', () => {
+  it('Отдает дефолтный текст при нуле', () => {
     expect(formatPriceToView(0)).toBe('Бесплатно');
   });
 });

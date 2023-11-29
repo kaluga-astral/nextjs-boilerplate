@@ -8,26 +8,24 @@ import { createCacheService } from '@example/shared';
 import { GoodsListStore } from './store';
 
 describe('GoodsListStore', () => {
-  describe('Список книг', () => {
-    it('Форматируется для отображения', async () => {
-      const cacheService = createCacheService();
-      const fakeBookList = bookRepositoryFaker.makeBookList(2, { price: 1000 });
-      const fakeBookListItem = fakeBookList.data[0];
+  it('Форматирует список книг для отображения', async () => {
+    const cacheService = createCacheService();
+    const fakeBookList = bookRepositoryFaker.makeBookList(2, { price: 1000 });
+    const fakeBookListItem = fakeBookList.data[0];
 
-      const bookRepositoryStub = mock<BookRepository>({
-        getBookListQuery: () =>
-          cacheService.createQuery(['id'], async () => fakeBookList),
-      });
-      const sut = new GoodsListStore(bookRepositoryStub);
+    const bookRepositoryStub = mock<BookRepository>({
+      getBookListQuery: () =>
+        cacheService.createQuery(['id'], async () => fakeBookList),
+    });
+    const sut = new GoodsListStore(bookRepositoryStub);
 
-      // ждем автоматической загрузки данных
-      await when(() => Boolean(sut.list?.length));
+    // ждем автоматической загрузки данных
+    await when(() => Boolean(sut.list?.length));
 
-      expect(sut.list[0]).toContain({
-        id: fakeBookListItem.id,
-        name: fakeBookListItem.name,
-        price: '1 000 руб.',
-      });
+    expect(sut.list[0]).toContain({
+      id: fakeBookListItem.id,
+      name: fakeBookListItem.name,
+      price: '1 000 руб.',
     });
   });
 });

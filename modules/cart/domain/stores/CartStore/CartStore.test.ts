@@ -18,35 +18,31 @@ describe('CartStore', () => {
     return { sut, notifyMock };
   };
 
-  describe('Добавление товара в корзину', () => {
-    it('При возникновении ошибки отображается уведомление', async () => {
-      const { sut, notifyMock } = setupCartStore({
-        addGoods: async () => {
-          throw Error('Неизвестная ошибка');
-        },
-      });
-
-      await vi.waitFor(() => {
-        sut.addGoods([]);
-      });
-
-      expect(notifyMock.error).toBeCalledWith('Неизвестная ошибка');
+  it('Показывает уведомление при ошибке добавлении товара в корзину', async () => {
+    const { sut, notifyMock } = setupCartStore({
+      addGoods: async () => {
+        throw Error('Неизвестная ошибка');
+      },
     });
+
+    await vi.waitFor(() => {
+      sut.addGoods([]);
+    });
+
+    expect(notifyMock.error).toBeCalledWith('Неизвестная ошибка');
   });
 
-  describe('Удаление товара из корзины', () => {
-    it('При возникновении ошибки отображается уведомление', async () => {
-      const { sut, notifyMock } = setupCartStore({
-        removeGoods: async () => {
-          throw Error('Неизвестная ошибка');
-        },
-      });
-
-      await vi.waitFor(() => {
-        sut.removeGoods([]);
-      });
-
-      expect(notifyMock.error).toBeCalledWith('Неизвестная ошибка');
+  it('Показывает уведомление при ошибке удаления товара из корзины', async () => {
+    const { sut, notifyMock } = setupCartStore({
+      removeGoods: async () => {
+        throw Error('Неизвестная ошибка');
+      },
     });
+
+    await vi.waitFor(() => {
+      sut.removeGoods([]);
+    });
+
+    expect(notifyMock.error).toBeCalledWith('Неизвестная ошибка');
   });
 });
