@@ -7,7 +7,7 @@ import { bookNetworkSourcesFaker, makeFakeSourceRes } from '../../sources';
 import { BookRepository } from './BookRepository';
 
 describe('BookRepository', () => {
-  it('Результат запроса книги по имени содержит подробную информацию о поле автора', async () => {
+  it('Запрос книги по имени отдает подробную информацию об авторе', async () => {
     const genreResStub = bookNetworkSourcesFaker.makeGenre();
     const bookResStub = bookNetworkSourcesFaker.makeBookByName();
 

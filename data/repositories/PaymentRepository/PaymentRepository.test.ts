@@ -7,7 +7,7 @@ import type { CartRepository } from '../CartRepository';
 import { PaymentRepository } from './PaymentRepository';
 
 describe('PaymentRepository', () => {
-  it('После успешной покупки инвалидируются данные корзины', async () => {
+  it('Данные корзины инвалидируются после успешной покупки', async () => {
     const paymentSourcesStub = mock<PaymentNetworkSources>({
       payByCard: async () => undefined,
     });

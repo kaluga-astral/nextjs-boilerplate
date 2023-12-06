@@ -6,18 +6,16 @@ import type { CartStore } from '../CartStore';
 import { ProductCartManagerStore } from './ProductCartManagerStore';
 
 describe('ProductCartManagerStore', () => {
-  describe('Количество текущего товара в корзине', () => {
-    it('Высчитывается на основе полученных данных', () => {
-      const fakeGoods = cartRepositoryFaker.makeGoodsList();
-      const currentProduct = fakeGoods[0];
+  it('Количество текущего товара в корзине высчитывается на основе списка добавленных товаров', () => {
+    const fakeGoods = cartRepositoryFaker.makeGoodsList();
+    const currentProduct = fakeGoods[0];
 
-      const cartStoreStub = mock<CartStore>({
-        goods: fakeGoods,
-      });
-      const sut = new ProductCartManagerStore(cartStoreStub, currentProduct.id);
-
-      expect(sut.count).toBe(currentProduct.count);
+    const cartStoreStub = mock<CartStore>({
+      goods: fakeGoods,
     });
+    const sut = new ProductCartManagerStore(cartStoreStub, currentProduct.id);
+
+    expect(sut.count).toBe(currentProduct.count);
   });
 
   describe('hasAddedToCart', () => {

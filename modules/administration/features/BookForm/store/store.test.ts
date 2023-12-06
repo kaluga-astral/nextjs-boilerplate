@@ -8,27 +8,25 @@ import type { notify } from '@example/shared';
 import { BookFormStore } from './store';
 
 describe('BookFormStore', () => {
-  describe('Ошибка загрузки данных по имени', () => {
-    it('Отображается уведомление с ошибкой', async () => {
-      const notifyMock = mock<typeof notify>();
-      const bookRepositoryStub = mock<BookRepository>({
-        getBookByNameQuery: () =>
-          cacheService.createQuery<BookRepositoryDTO.BookByNameDTO>(
-            [],
-            async () => {
-              throw Error();
-            },
-          ),
-      });
-      const sut = new BookFormStore(bookRepositoryStub, notifyMock);
-
-      sut.findBook('name');
-      await when(() => sut.isLoadingBookByName);
-      await when(() => !sut.isLoadingBookByName);
-
-      expect(notifyMock.info).toBeCalledWith(
-        'Не удалось автоматически заполнить форму по имени книги',
-      );
+  it('Ошибка при загрузки данных по имени отображает уведомление', async () => {
+    const notifyMock = mock<typeof notify>();
+    const bookRepositoryStub = mock<BookRepository>({
+      getBookByNameQuery: () =>
+        cacheService.createQuery<BookRepositoryDTO.BookByNameDTO>(
+          [],
+          async () => {
+            throw Error();
+          },
+        ),
     });
+    const sut = new BookFormStore(bookRepositoryStub, notifyMock);
+
+    sut.findBook('name');
+    await when(() => sut.isLoadingBookByName);
+    await when(() => !sut.isLoadingBookByName);
+
+    expect(notifyMock.info).toBeCalledWith(
+      'Не удалось автоматически заполнить форму по имени книги',
+    );
   });
 });
