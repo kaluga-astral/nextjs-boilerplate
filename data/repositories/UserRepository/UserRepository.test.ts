@@ -8,19 +8,19 @@ import { UserRepository } from './UserRepository';
 
 describe('UserRepository', () => {
   it('Запрос на получение полных данных пользователя содержит личные данные и контакты', async () => {
-    const personDataStub: UserNetworkSourcesDTO.PersonDTO = {
+    const fakePersonData: UserNetworkSourcesDTO.PersonDTO = {
       name: faker.person.firstName(),
       surname: faker.person.lastName(),
       displayName: faker.person.fullName(),
     };
-    const contactDataStub: UserNetworkSourcesDTO.ContactDTO = {
+    const fakeContactData: UserNetworkSourcesDTO.ContactDTO = {
       email: faker.internet.email(),
       phone: faker.phone.number(),
     };
 
     const userSourcesStub = mock<UserNetworkSources>({
-      getContactInfo: async () => makeFakeSourceRes(contactDataStub),
-      getPersonInfo: async () => makeFakeSourceRes(personDataStub),
+      getContactInfo: async () => makeFakeSourceRes(fakeContactData),
+      getPersonInfo: async () => makeFakeSourceRes(fakePersonData),
     });
 
     const sut = new UserRepository(userSourcesStub, createCacheService());
@@ -28,11 +28,11 @@ describe('UserRepository', () => {
     const user = await sut.getFullInfoQuery().async();
 
     expect(user).toEqual({
-      name: personDataStub.name,
-      surname: personDataStub.surname,
-      displayName: personDataStub.displayName,
-      email: contactDataStub.email,
-      phone: contactDataStub.phone,
+      name: fakePersonData.name,
+      surname: fakePersonData.surname,
+      displayName: fakePersonData.displayName,
+      email: fakeContactData.email,
+      phone: fakeContactData.phone,
     });
   });
 });
