@@ -1,5 +1,5 @@
 export * from './cartNetworkSources';
 
-export * from './cartNetworkSources.fake';
+export * from './faker';
 
 export * from './dto';
