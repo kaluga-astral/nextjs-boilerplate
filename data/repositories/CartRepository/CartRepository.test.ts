@@ -24,7 +24,7 @@ describe('CartRepository', () => {
       expect(goodsCountQuery.data).toBe(1);
     });
 
-    it('Значение откатывается в исходное при ошибке запроса на добавления товаров в корзину', async () => {
+    it('Откатывается в исходное при ошибке запроса на добавления товаров в корзину', async () => {
       const cartSourcesStub = mock<CartNetworkSources>({
         addGoods: () => Promise.reject(),
       });
@@ -56,7 +56,7 @@ describe('CartRepository', () => {
       expect(goodsCountQuery.data).toBe(1);
     });
 
-    it('Значение откатывается в исходное при ошибке запроса на удаление товаров из корзины', async () => {
+    it('Откатывается в исходное при ошибке запроса на удаление товаров из корзины', async () => {
       const cartSourcesStub = mock<CartNetworkSources>({
         addGoods: () => Promise.reject(),
       });
