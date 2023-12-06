@@ -7,7 +7,7 @@ import { makeFakeSourceRes } from '../../sources';
 import { UserRepository } from './UserRepository';
 
 describe('UserRepository', () => {
-  it('При получении fullUserInfo отдаются склеиные личные данные и контакты пользователя', async () => {
+  it('FullUserInfo содержит личные данные и контакты пользователя', async () => {
     const personDataStub: UserNetworkSourcesDTO.PersonDTO = {
       name: faker.person.firstName(),
       surname: faker.person.lastName(),
