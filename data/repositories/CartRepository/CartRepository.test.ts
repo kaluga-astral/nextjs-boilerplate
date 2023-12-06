@@ -74,7 +74,7 @@ describe('CartRepository', () => {
     });
   });
 
-  it('Список товаров и счетчик сбрасывают после ресета', () => {
+  it('Список товаров и счетчик сбрасывается после ресета', () => {
     const cartSourcesStub = mock<CartNetworkSources>();
 
     const sut = new CartRepository(cartSourcesStub, createCacheService());

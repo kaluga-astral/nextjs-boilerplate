@@ -20,7 +20,7 @@ describe('ProductCartManagerStore', () => {
     });
   });
 
-  describe('Признак наличия товара в корзине', () => {
+  describe('hasAddedToCart', () => {
     it('Показывает, что товар был добавлен в корзину', () => {
       const fakeGoodsItem = cartRepositoryFaker.makeGoodsItem({ count: 1 });
 
