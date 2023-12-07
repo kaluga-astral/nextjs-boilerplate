@@ -47,9 +47,9 @@ describe('CreateBookScreenStore', () => {
     };
 
     const cacheService = createCacheService();
-    const creationBookMock = vi.fn().mockResolvedValue(undefined);
+    const creationBookSpy = vi.fn().mockResolvedValue(undefined);
     const adminRepositoryMock = mock<AdministrationRepository>({
-      createBookMutation: () => cacheService.createMutation(creationBookMock),
+      createBookMutation: () => cacheService.createMutation(creationBookSpy),
     });
     const notifyMock = mock<typeof notify>();
 
@@ -61,7 +61,7 @@ describe('CreateBookScreenStore', () => {
 
     await sut.createBook(fakeBookFormValues);
 
-    expect(creationBookMock).toBeCalledWith({
+    expect(creationBookSpy).toBeCalledWith({
       name: fakeBook.name,
       genreID: fakeBook.genre.id,
       pageCount: 22,
