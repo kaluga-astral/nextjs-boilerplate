@@ -36,43 +36,41 @@ describe('CreateBookScreenStore', () => {
     return { sut, notifyMock, routerMock };
   };
 
-  describe('Создание книги', () => {
-    it('Форматирует values формы в данные для репозитория', async () => {
-      const fakeBook = bookRepositoryFaker.makeBookByName();
-      const fakeBookFormValues: BookFormValues = {
-        name: fakeBook.name,
-        genre: fakeBook.genre,
-        pageCount: '22',
-        author: fakeBook.author,
-        isPresentCoAuthor: false,
-      };
+  it('CreateBook отправляет измененные values формы в репозиторий', async () => {
+    const fakeBook = bookRepositoryFaker.makeBookByName();
+    const fakeBookFormValues: BookFormValues = {
+      name: fakeBook.name,
+      genre: fakeBook.genre,
+      pageCount: '22',
+      author: fakeBook.author,
+      isPresentCoAuthor: false,
+    };
 
-      const cacheService = createCacheService();
-      const creationBookMock = vi.fn().mockResolvedValue(undefined);
-      const adminRepositoryMock = mock<AdministrationRepository>({
-        createBookMutation: () => cacheService.createMutation(creationBookMock),
-      });
-      const notifyMock = mock<typeof notify>();
+    const cacheService = createCacheService();
+    const creationBookSpy = vi.fn().mockResolvedValue(undefined);
+    const adminRepositoryMock = mock<AdministrationRepository>({
+      createBookMutation: () => cacheService.createMutation(creationBookSpy),
+    });
+    const notifyMock = mock<typeof notify>();
 
-      const sut = new CreateBookScreenStore(
-        adminRepositoryMock,
-        createRouterMock(),
-        notifyMock,
-      );
+    const sut = new CreateBookScreenStore(
+      adminRepositoryMock,
+      createRouterMock(),
+      notifyMock,
+    );
 
-      await sut.createBook(fakeBookFormValues);
+    await sut.createBook(fakeBookFormValues);
 
-      expect(creationBookMock).toBeCalledWith({
-        name: fakeBook.name,
-        genreID: fakeBook.genre.id,
-        pageCount: 22,
-        author: fakeBook.author,
-      });
+    expect(creationBookSpy).toBeCalledWith({
+      name: fakeBook.name,
+      genreID: fakeBook.genre.id,
+      pageCount: 22,
+      author: fakeBook.author,
     });
   });
 
   describe('Успешное создание книги', () => {
-    it('Появляется уведомление об успешности', async () => {
+    it('Показывает уведомление об успешности', async () => {
       const fakeBookFormValues = makeFakeBookFormValues({ name: 'Чистый код' });
       const { sut, notifyMock } = setupSuccessCreation();
 
@@ -80,7 +78,7 @@ describe('CreateBookScreenStore', () => {
       expect(notifyMock.success).toBeCalledWith('Чистый код успешно создана');
     });
 
-    it('Происходит редирект на страницу списка книг', async () => {
+    it('Редиректит на страницу списка книг', async () => {
       const fakeBookFormValues = makeFakeBookFormValues();
       const { sut, routerMock } = setupSuccessCreation();
 

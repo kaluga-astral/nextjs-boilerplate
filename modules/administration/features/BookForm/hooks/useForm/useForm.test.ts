@@ -57,7 +57,7 @@ describe('useBookForm', () => {
       expect(sut.isPresentCoAuthor).toBeFalsy();
     });
 
-    it('Обязателен, если isPresentCoAuthor true', async () => {
+    it('Обязателен, если isPresentCoAuthor=true', async () => {
       const bookRepositoryStub = mock<BookRepository>();
       const notifyMock = mock<typeof notify>();
 

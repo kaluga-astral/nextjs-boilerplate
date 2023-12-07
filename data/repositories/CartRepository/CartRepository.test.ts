@@ -24,7 +24,7 @@ describe('CartRepository', () => {
       expect(goodsCountQuery.data).toBe(1);
     });
 
-    it('Значение откатывается в исходное при ошибке запроса на добавления товаров в корзину', async () => {
+    it('Откатывается в исходное при ошибке запроса на добавления товаров в корзину', async () => {
       const cartSourcesStub = mock<CartNetworkSources>({
         addGoods: () => Promise.reject(),
       });
@@ -56,7 +56,7 @@ describe('CartRepository', () => {
       expect(goodsCountQuery.data).toBe(1);
     });
 
-    it('Значение откатывается в исходное при ошибке запроса на удаление товаров из корзины', async () => {
+    it('Откатывается в исходное при ошибке запроса на удаление товаров из корзины', async () => {
       const cartSourcesStub = mock<CartNetworkSources>({
         addGoods: () => Promise.reject(),
       });
@@ -74,17 +74,15 @@ describe('CartRepository', () => {
     });
   });
 
-  describe('Товары', () => {
-    it('После ресета счетчик и список сбрасывают', () => {
-      const cartSourcesStub = mock<CartNetworkSources>();
+  it('Список товаров и счетчик сбрасывается после ресета', () => {
+    const cartSourcesStub = mock<CartNetworkSources>();
 
-      const sut = new CartRepository(cartSourcesStub, createCacheService());
-      const goodsCountQuery = sut.getGoodsCountQuery();
-      const goodsQuery = sut.getGoodsQuery();
+    const sut = new CartRepository(cartSourcesStub, createCacheService());
+    const goodsCountQuery = sut.getGoodsCountQuery();
+    const goodsQuery = sut.getGoodsQuery();
 
-      sut.resetCartCache();
-      expect(goodsCountQuery.data).toBe(0);
-      expect(goodsQuery.data).toEqual([]);
-    });
+    sut.resetCartCache();
+    expect(goodsCountQuery.data).toBe(0);
+    expect(goodsQuery.data).toEqual([]);
   });
 });
