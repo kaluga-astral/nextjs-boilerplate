@@ -1,5 +1,5 @@
 {
-  "extends": ["@astral/eslint-config-react-ts", "plugin:testing-library/react", "plugin:mobx/recommended"],
+  "extends": ["@astral/eslint-config-react-ts", "plugin:mobx/recommended"],
   "plugins": ["mobx"],
   "rules": {
     "mobx/missing-observer": "off",
@@ -30,11 +30,13 @@
     ]
   },
   "overrides": [
-    // Для уведичения производительности plugin:testing-library запускается только для test.tsx файлов
     {
       "files": "**/*.test.tsx",
-      "extends": ["plugin:testing-library/react"],
-      "plugins": ["testing-library"]
+      "extends": ["@astral/eslint-config-react-vitest"]
+    },
+    {
+      "files": "**/*.test.ts",
+      "extends": ["@astral/eslint-config-vitest"]
     },
     // Ниже определены правила, которые устанавливают архитектурные границы (запрещают импорты из директорий)
     {
