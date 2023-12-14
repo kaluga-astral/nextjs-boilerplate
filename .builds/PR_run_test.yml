@@ -1,0 +1,33 @@
+variables:
+  - name: projectName
+    value: example
+  - name: imageName
+    value: '$(projectName)-test:$(Build.SourceBranchName)-$(Build.BuildId)'
+
+trigger:
+  branches:
+    include:
+      - work
+      - staging
+      - master
+
+jobs:
+  - job: Tests
+    pool: DockerPool
+    steps:
+      - script: |
+          docker build -f ./Tests.Dockerfile -t ${{ variables.imageName }} ./ 
+          docker run --name $(projectName)-$(Build.BuildId) -itd --rm ${{ variables.imageName }}
+          docker cp "$(docker ps -aqf "name=$(projectName)-$(Build.BuildId)"):/usr/src/example/junit.xml" $(Pipeline.Workspace)/test-junit.xml
+          docker stop $(projectName)-$(Build.BuildId)
+        displayName: Run Tests
+
+      - task: PublishTestResults@2
+        displayName: Result of Tests
+        condition: succeededOrFailed()
+        inputs:
+          testResultsFormat: 'JUnit'
+          testResultsFiles: 'test-junit.xml'
+          searchFolder: '$(Pipeline.Workspace)'
+          mergeTestResults: true
+          failTaskOnFailedTests: true

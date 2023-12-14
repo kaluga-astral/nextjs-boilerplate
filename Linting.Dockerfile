@@ -6,4 +6,4 @@ COPY . ./
 
 RUN npm install
 
-RUN npm run lint:all & npm run lint:types
+RUN npm run lint:all & npm run lint:styles:all & npm run lint:types

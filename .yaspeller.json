@@ -13,7 +13,6 @@
   "fileExtensions": [".js", ".jsx", ".ts", ".tsx"],
   "ignoreCapitalization": true,
   "ignoreDigits": true,
-  "ignoreUppercase": true,
   "ignoreUrls": true,
   "maxRequests": 2,
   "ignoreText": [
