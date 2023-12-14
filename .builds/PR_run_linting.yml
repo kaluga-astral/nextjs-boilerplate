@@ -1,0 +1,22 @@
+variables:
+  - name: projectName
+    value: example
+  - name: imageName
+    value: '$(projectName)-linting:$(Build.SourceBranchName)-$(Build.BuildId)'
+
+trigger:
+  branches:
+    include:
+      - dev
+      - staging
+      - master
+
+jobs:
+  - job: Linting
+    pool: DockerPool
+    steps:
+      - script: |
+          docker build -f ./apps/example/Linting.Dockerfile -t ${{ variables.imageName }} ./
+          docker run --name $(projectName)-$(Build.BuildId) -itd --rm ${{ variables.imageName }}
+          docker stop $(projectName)-$(Build.BuildId)
+        displayName: Run lint
