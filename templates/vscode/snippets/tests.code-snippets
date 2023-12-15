@@ -1,0 +1,18 @@
+{
+  "Test Each Snippet": {
+    "prefix": "testeach",
+    "body": ["it.each([])(", "  '$1',", "  () => {", "    $0", "  }", ");"],
+    "description": "Шорткат для it.each"
+  },
+  "Describe Test Snippet": {
+    "prefix": "describeTest",
+    "body": [
+      "describe('$1', () => {",
+      "  it('', () => {",
+      "    expect().toEqual();",
+      "  });",
+      "});"
+    ],
+    "description": "Шорткат для describe"
+  }
+}

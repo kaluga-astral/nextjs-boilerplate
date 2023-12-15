@@ -1,0 +1,31 @@
+{
+  "React Functional Component": {
+    "prefix": "rfc",
+    "body": [
+      "type $1Props = {",
+      "",
+      "};",
+      "",
+      "export const $1 = ({ }: $1Props) => {",
+      "  return (",
+      "    $0",
+      "  );",
+      "};",
+      ""
+    ],
+    "description": "Создание React компонента"
+  },
+   "Import PageLayout and Create Screen Component": {
+      "prefix": "screen",
+      "body": [
+        "import { PageLayout } from '$1';",
+        "",
+        "export const $2Screen = () => {",
+        "  return (",
+        "    <PageLayout />",
+        "  );",
+        "}"
+      ],
+      "description": "Import PageLayout and create screen component"
+    }
+}

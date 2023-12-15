@@ -1,0 +1,17 @@
+{
+  "Export All from": {
+    "prefix": "exportAll",
+    "body": ["export * from './$1';"],
+    "description": "Шорткат для экспорта всего из файла"
+  },
+  "Import": {
+    "prefix": "import",
+    "body": ["import { $1 } from '$2';"],
+    "description": "Шорткат для импорта"
+  },
+  "Named Import": {
+    "prefix": "namedimport",
+    "body": ["import { $1 as $2 } from '$3';"],
+    "description": "Шорткат для именованного импорта"
+  }
+}
