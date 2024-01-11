@@ -1,1 +1,1 @@
-export * from './[FTName]'
+export * from './[FTName]';

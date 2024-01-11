@@ -1,5 +1,8 @@
 ## WebStorm File Templates / Live Templates 
 
+После загрузки файла ```configs.zip``` в IDE нужно пройти по следующему пути```File -> Manage IDE Settings -> Import Settings...``` 
+и найти загруженный ранее архив, выбрать его и импортировать все настройки.
+
 ## Реализованные File Templates
 [Что такое File Templates?](https://www.jetbrains.com/help/webstorm/using-file-and-code-templates.html)
 

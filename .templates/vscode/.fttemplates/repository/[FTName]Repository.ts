@@ -1,15 +1,11 @@
 import {
-  type CacheService,
-  cacheService,
+    type CacheService,
+    cacheService,
 } from '@example/shared';
 
 
-class <FTName | capitalize>Repository = {
-    constructor(private readonly cache: CacheService) {
-
-    }
+export class <FTName | capitalize>Repository {
+  constructor(private readonly cache: CacheService) {}
 }
 
-export const <FTName | camelcase>Repository = new <FTName | capitalize>Repository(
-  cacheService,
-);
+export const <FTName | camelcase>Repository = new <FTName | capitalize>Repository(cacheService);
