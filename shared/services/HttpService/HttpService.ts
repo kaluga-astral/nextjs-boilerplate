@@ -67,7 +67,7 @@ export const createHttpService = (
   };
 
   httpService.interceptors.response.use(
-    (res) => res.data,
+    (res) => res,
     (error) => {
       errorListeners.forEach((func) => {
         func(error);
