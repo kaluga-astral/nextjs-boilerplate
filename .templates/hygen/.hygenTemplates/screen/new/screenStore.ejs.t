@@ -1,5 +1,5 @@
 ---
-to: <%= h.screensPath(`${h.inflection.camelize(name, false)}/${h.inflection.camelize(name, false)}/store/store.ts`) %>
+to: <%= h.screensPath(`${h.inflection.camelize(name, false)}/${h.inflection.camelize(name, false)}/store/[FTName].ts`) %>
 ---
 import { makeAutoObservable } from 'mobx';
 
