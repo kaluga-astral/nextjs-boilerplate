@@ -1,3 +1,3 @@
-export namespace <FTName | capitalize>DTO{
+export namespace <FTName | capitalize>DTO {
 
 }

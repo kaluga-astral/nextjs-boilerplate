@@ -1,13 +1,7 @@
-import { describe, it } from 'vitest';
+import { describe, it } from '@example/shared/_tests';
 
 import { [FTName] } from './[FTName]';
 
 describe('[FTName]', () => {
-  describe('', () => {
-    it('', () => {
-      const result = [FTName]();
-
-      expect(result).toBe();
-    });
-  });
+  it('', () => {});
 });

@@ -3,13 +3,19 @@
 После загрузки файла ```configs.zip``` в IDE нужно пройти по следующему пути```File -> Manage IDE Settings -> Import Settings...``` 
 и найти загруженный ранее архив, выбрать его и импортировать все настройки.
 
+Схемы для конкретного приложения следует хранить в корне приложения, внутри директории .templates.
+Это нужно для того, чтобы "подгонять" их под конкретный проект (например, настраивать алиасы, возможно дополнять или изменять темплейты).
+
+После изменения темплейтов, необходимо их экспортировать (для этого необходимо выбрать 4 настройки: Live Templates, Live Templates (schemes), 
+File Templates, File Templates (schemes)).
+
 ## Реализованные File Templates
 [Что такое File Templates?](https://www.jetbrains.com/help/webstorm/using-file-and-code-templates.html)
 
 На данный момент существуют следующие темплейты:
 
 ```
-1. Component - создание React Component-а с type.;
+1. Component - создание React Component-а с props;
 2. NameLessStore - создание стора по пути ./store/store.ts;
 3. NamedStore - создание стора по пути ./$Name}Store/${Name}Store.ts
 4. Screen - создание сущности screen без стора 

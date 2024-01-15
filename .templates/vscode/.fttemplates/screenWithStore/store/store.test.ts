@@ -1,9 +1,7 @@
-import { describe, it } from 'vitest';
+import { describe, it } from '@example/shared/_tests';
 
 import { <FTName | capitalize>ScreenStore } from './store';
 
 describe('<FTName | capitalize>ScreenStore', () => {
-  describe('', () => {
-    it('', () => {});
-  });
+  it('', () => {});
 });
