@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
-import logo from 'public/images/logo.png';
 import { useState } from 'react';
 
+import logo from '@example/shared/images/logo.png';
 import {
   DashboardLayout,
   Divider,
@@ -27,7 +27,7 @@ export const Header = observer(() => {
           <Image
             width={20}
             height={20}
-            src={logo.src}
+            src={logo}
             alt="Логотип React-boilerplate"
           />
         ),

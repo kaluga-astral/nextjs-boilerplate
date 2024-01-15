@@ -31,7 +31,7 @@ export class CreateBookScreenStore {
       .async({ ...data, genreID: genre.id, pageCount: Number(pageCount) })
       .then(() => {
         this.notifyService.success(`${data.name} успешно создана`);
-        this.routerService.push(APP_ROUTES.books.getRedirectPath());
+        this.routerService.navigate({ to: APP_ROUTES.books.getRedirectPath() });
       });
 }
 

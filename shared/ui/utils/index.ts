@@ -1,1 +1,2 @@
-export * from './external';
+// TODO: вернуть реэкспорт, если появятся какие то внешние утилиты
+//export * from './external';

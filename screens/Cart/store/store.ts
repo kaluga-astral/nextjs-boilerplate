@@ -45,7 +45,7 @@ export class CartScreenStore {
   public pay = () => {
     this.cardPaymentStore.pay({
       onSuccess: () => {
-        this.routerService.push(APP_ROUTES.cart.getRedirectPath());
+        this.routerService.navigate({ to: APP_ROUTES.cart.getRedirectPath() });
       },
     });
   };

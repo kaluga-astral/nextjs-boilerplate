@@ -1,6 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { MemoryRouter } from 'next-router-mock';
+import { Router } from '../services';
 
-import type { Router } from '../services';
-
-export const createRouterMock = () => new MemoryRouter() as unknown as Router;
+export const createRouterMock = () => new Router({});

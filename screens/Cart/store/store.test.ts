@@ -23,6 +23,9 @@ describe('CartScreenStore', () => {
     const sut = new CartScreenStore(cartPaymentStoreMock, routerMock);
 
     sut.pay();
-    expect(routerMock.pathname).toBe(APP_ROUTES.cart.getRedirectPath());
+
+    expect(routerMock.state.location.pathname).toBe(
+      APP_ROUTES.cart.getRedirectPath(),
+    );
   });
 });

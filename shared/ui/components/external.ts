@@ -46,8 +46,6 @@ export {
   styled,
 } from '@astral/ui';
 
-export { createStylesCache as createStylesServerCache } from '@astral/ui/server';
+export { Link as RouterLink } from '@tanstack/react-router';
 
-export { default as Image } from 'next/image';
-
-export { default as RouterLink } from 'next/link';
+export { Image } from './Image';
