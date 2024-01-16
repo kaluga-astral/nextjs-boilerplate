@@ -2,15 +2,15 @@ import { makeAutoObservable } from 'mobx';
 
 import type { CardPaymentStore } from '@example/modules/payment';
 import { createCardPaymentStore } from '@example/modules/payment';
-import type { Router } from '@example/shared';
 import { APP_ROUTES, createFlagStore, router } from '@example/shared';
+import type { RouterService } from '@example/shared/services/RouterService';
 
 export class CartScreenStore {
   private readonly modalStore = createFlagStore();
 
   constructor(
     private readonly cardPaymentStore: CardPaymentStore,
-    private readonly routerService: Router,
+    private readonly routerService: RouterService,
   ) {
     makeAutoObservable<CartScreenStore, 'routerService'>(this, {
       routerService: false,
@@ -45,7 +45,7 @@ export class CartScreenStore {
   public pay = () => {
     this.cardPaymentStore.pay({
       onSuccess: () => {
-        this.routerService.push(APP_ROUTES.cart.getRedirectPath());
+        this.routerService.navigate(APP_ROUTES.cart.getRedirectPath());
       },
     });
   };

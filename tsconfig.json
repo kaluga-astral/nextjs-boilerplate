@@ -18,14 +18,15 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "types": [
-      "vitest/globals"
+      "vitest/globals",
+      "vite/client"
     ],
     "paths": {
       "@example/*": [
         "./*"
       ],
       "public/*": [
-        "./public/*"
+        "./pages/public/*"
       ]
     },
     "allowJs": true

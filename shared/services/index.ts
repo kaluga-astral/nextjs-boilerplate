@@ -13,3 +13,5 @@ export * from './external';
 export * from './MonitoringErrorService';
 
 export * from './CacheService';
+
+export * from './RouterService';

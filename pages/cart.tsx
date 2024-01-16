@@ -1,8 +1,6 @@
-import type { NextPage } from 'next';
-
 import { CartScreen } from '@example/screens';
 
-export const CartPage: NextPage = () => {
+export const CartPage = () => {
   return <CartScreen />;
 };
 
