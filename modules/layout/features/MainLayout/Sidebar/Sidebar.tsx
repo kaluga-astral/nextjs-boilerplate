@@ -3,13 +3,13 @@ import {
   AddOutlineMd,
   DashboardLayout,
   RouterLink,
-  useRouter,
+  useLocation,
 } from '@example/shared';
 
 import { CartBadge } from '../../../external';
 
 export const Sidebar = () => {
-  const { pathname } = useRouter();
+  const { pathname } = useLocation();
 
   return (
     <DashboardLayout.Sidebar
@@ -20,9 +20,9 @@ export const Sidebar = () => {
             {
               icon: <CartBadge />,
               text: 'Корзина',
-              active: pathname.includes(APP_ROUTES.cart.route),
+              active: pathname?.includes(APP_ROUTES.cart.route),
               component: ({ children, ...props }) => (
-                <RouterLink {...props} href={APP_ROUTES.cart.getRedirectPath()}>
+                <RouterLink {...props} to={APP_ROUTES.cart.getRedirectPath()}>
                   {children}
                 </RouterLink>
               ),
@@ -33,11 +33,11 @@ export const Sidebar = () => {
             {
               icon: <AddOutlineMd />,
               text: 'Добавить книгу',
-              active: pathname.includes(APP_ROUTES.creatingBook.route),
+              active: pathname?.includes(APP_ROUTES.creatingBook.route),
               component: ({ children, ...props }) => (
                 <RouterLink
                   {...props}
-                  href={APP_ROUTES.creatingBook.getRedirectPath()}
+                  to={APP_ROUTES.creatingBook.getRedirectPath()}
                 >
                   {children}
                 </RouterLink>

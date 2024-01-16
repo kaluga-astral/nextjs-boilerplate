@@ -2,14 +2,15 @@ import { makeAutoObservable } from 'mobx';
 
 import type { AdministrationRepository } from '@example/data';
 import { administrationRepository as administrationRepositoryInstance } from '@example/data';
-import type { Router } from '@example/shared';
-import { APP_ROUTES, notify, router } from '@example/shared';
+import { APP_ROUTES, notify } from '@example/shared';
 import type { BookFormValues } from '@example/modules/administration';
+import type { RouterService } from '@example/shared/services/RouterService';
+import { router } from '@example/shared/services/RouterService';
 
 export class CreateBookScreenStore {
   constructor(
     private readonly administrationRepository: AdministrationRepository,
-    private readonly routerService: Router,
+    private readonly routerService: RouterService,
     private readonly notifyService: typeof notify,
   ) {
     makeAutoObservable<CreateBookScreenStore, 'routerService'>(this, {
@@ -31,7 +32,7 @@ export class CreateBookScreenStore {
       .async({ ...data, genreID: genre.id, pageCount: Number(pageCount) })
       .then(() => {
         this.notifyService.success(`${data.name} успешно создана`);
-        this.routerService.push(APP_ROUTES.books.getRedirectPath());
+        this.routerService.navigate(APP_ROUTES.books.getRedirectPath());
       });
 }
 

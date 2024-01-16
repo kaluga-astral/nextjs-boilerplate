@@ -1,8 +1,6 @@
-import type { NextPage } from 'next';
-
 import { BooksScreen } from '@example/screens';
 
-export const IndexPage: NextPage = () => {
+export const IndexPage = () => {
   return <BooksScreen />;
 };
 

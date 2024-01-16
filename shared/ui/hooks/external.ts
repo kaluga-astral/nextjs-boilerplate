@@ -9,4 +9,4 @@ export {
 
 export { useToggle, useBoolean, useEffectOnce } from 'react-use';
 
-export { useRouter } from 'next/router';
+export { useLocation } from 'react-router-dom';

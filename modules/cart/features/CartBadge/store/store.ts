@@ -22,7 +22,7 @@ export class CartBadgeStore {
   }
 
   public redirectToCart = () => {
-    router.push(APP_ROUTES.cart.getRedirectPath());
+    router.navigate(APP_ROUTES.cart.getRedirectPath());
   };
 }
 

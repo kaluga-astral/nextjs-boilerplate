@@ -4,6 +4,7 @@ export * from './theme';
 
 export * from './icons';
 
-export * from './utils';
+// TODO: вернуть реэкспорт, если появятся какие нибудь утилиты
+//export * from './utils';
 
 export * from './hooks';
