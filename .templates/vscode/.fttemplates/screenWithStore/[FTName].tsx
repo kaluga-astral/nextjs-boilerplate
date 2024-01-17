@@ -5,7 +5,7 @@ import { PageLayout } from '@example/shared';
 
 import { create<FTName | pascalcase>ScreenStore } from './store';
 
-export const <FTName | camelcase>Screen = observer(() => {
+export const <FTName | pascalcase>Screen = observer(() => {
   const [store] = useState(create<FTName | pascalcase>ScreenStore);
 
   return (

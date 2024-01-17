@@ -1,6 +1,6 @@
 import { PageLayout } from '@example/shared';
 
-export const <FTName | camelcase>Screen = () => {
+export const <FTName | pascalcase>Screen = () => {
   return (
     <PageLayout
       header={{ title: '' }}
