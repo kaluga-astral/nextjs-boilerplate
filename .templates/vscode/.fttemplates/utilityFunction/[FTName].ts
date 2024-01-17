@@ -1,3 +1,3 @@
-export const <FTName | camelcase> = () => {
+export const <FTName> = () => {
 
 }

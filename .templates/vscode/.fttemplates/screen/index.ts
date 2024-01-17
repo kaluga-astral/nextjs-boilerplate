@@ -1,1 +1,1 @@
-export * from './<FTName | pascalcase>Screen';
+export * from './<FTName | pascalcase>';

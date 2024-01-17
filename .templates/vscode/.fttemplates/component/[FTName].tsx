@@ -1,5 +1,5 @@
-type <FTName | camelcase>Props = {};
+type <FTName | pascalcase>Props = {};
 
-export const <FTName | camelcase> = ({}: <FTName | camelcase>Props) => {
+export const <FTName | pascalcase> = ({}: <FTName | pascalcase>Props) => {
   return ();
 };
