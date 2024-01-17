@@ -1,0 +1,29 @@
+{
+  "Styled Component": {
+    "prefix": "scomp",
+    "body": [
+      "",
+      "export const $1 = styled($2)`",
+      "  $0",
+      "`;"
+    ],
+    "description": "Styled Component"
+  },
+  "Styled Component with Props": {
+    "prefix": "scompwp",
+    "body": [
+      "",
+      "export const $1 = styled($2, {",
+      "  shouldForwardProp: (prop) => prop !== '$3',",
+      "})<{$3: $4}>`",
+      "  $0",
+      "`;"
+    ],
+    "description": "Styled Component with Props Template"
+  },
+   "Styled Theme": {
+      "prefix": "theme",
+      "body": ["${({ theme }) => theme.${1}};"],
+      "description": "Шорткат для theme"
+    }
+}

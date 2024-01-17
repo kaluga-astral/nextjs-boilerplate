@@ -1,0 +1,17 @@
+{
+  "MobX Store": {
+    "prefix": "mobxstore",
+    "body": [
+      "import { makeAutoObservable } from 'mobx';",
+      "",
+      "export class $1 {",
+      "  constructor() {",
+      "    makeAutoObservable(this, {}, { autoBind: true });",
+      "  }",
+      "}",
+      "",
+      "export const create$1 = () => new $1();$0"
+    ],
+    "description": "MobX Store Snippet"
+  }
+}
