@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@astral/mobx-query": "^1.3.0",
-    "@astral/ui": "^3.29.1",
+    "@astral/ui": "^3.93.1",
     "@astral/validations": "^4.10.1",
     "utility-types": "^3.10.0",
     "@astral/validations-react-hook-form-resolver": "^4.10.1",

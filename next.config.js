@@ -16,10 +16,6 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   transpilePackages: [
-    '@astral/ui',
-    '@astral/icons',
-    '@astral/components',
-    '@astral/form',
     '@astral/validations',
     '@astral/mobx-query',
     '@astral/validations-react-hook-form-resolver',
